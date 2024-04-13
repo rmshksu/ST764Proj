@@ -1,0 +1,542 @@
+# (PART) Data {-}
+
+# Data Acquisition and Preparation {-}
+
+***
+
+This chapter will cover all data acquisition, preparation, and organization. Each step in this process will be "over-detailed" to an extent. This is done to act more as guide of the thought process and intent of the code in the event that:
+
+>The R packages and syntax used have lost support and become outdated.
+
+>The individual reading this intends to use an alternate programming language for replication of this project.
+
+Despite this, there will still be a component of acting as an in-depth R tutorial. The following packages will be needed for this chapter's content, so their install commands have been included below:
+
+```{r data_prep_packages, eval=FALSE, include=FALSE, echo=TRUE}
+install.packages("readxl")
+install.packages("lubridate")
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("stringr")
+```
+
+Final Note: The entirety of the original code is riddled with "shower thought" markdowns. These have been left out of this tutorial in lieu of a more "professionally acceptable" documentation style, but they remain in the original code which can be viewed via a download link in the references portion of this book. This is just an acknowledgement, not an apology. 
+
+## Acquisition {-}
+
+We first start with the acquisition of the VSP data. This can be found on the CDC website: 
+https://www.cdc.gov/nceh/vsp/surv/gilist.htm
+
+The data is in descending chronological order, with the most recent outbreak on the current year shown first, and each year separated into its own block.
+
+We chose to use Excel to query the data directly from the website. It should be noted that there is a massive variety of data scraping techniques available, all of which are more efficient at the process than Excel. We chose Excel because it was the most user-friendly and readily accessible method at the time. 
+
+The method for performing a query can be seen in the screenshots below:
+
+
+```{r image1, echo=FALSE, fig.cap="1. Select the 'Data' tab 2. Select 'From Other Sources' 3. Select 'From Web'"}
+knitr::include_graphics("_book/_main_files/images/Excel_Query_Guide.png")
+```
+
+```{r image2, echo=FALSE, fig.cap="Input the URL containing your data."}
+knitr::include_graphics("_book/_main_files/images/url_input.png")
+```
+
+```{r image3, echo=FALSE, fig.cap="Check the 'Select Multiple Items' box if you wish you pull more than one, otherwise select one and press load."}
+knitr::include_graphics("_book/_main_files/images/Excel_Query_Multi.png")
+```
+
+
+Once the data is in the Excel document all that needs to be done is save the individual sheets in .csv format. We chose to do minor cleaning before-hand, and the steps associated with saving individual sheets is a needlessly cumbersome burden to place on the reader, so a dropbox link is included below containing the .csv files used in the proceeding code. Downloading the files is preferable to using the dropbox URL to reduce computing burden every time troubleshooting has to occur or a new environment is being loaded up.
+
+Dropbox is used over github for end-user friendliness.
+
+***
+
+#### URL {-}
+https://www.dropbox.com/scl/fo/7d2e8ro0e8mbkoxkbi6c3/AMT0sQ86B27OIEZopkIMXhg?rlkey=e5otlpcp0rr7931h3j1u5r3cp&dl=0
+
+## Infection Data {-} 
+
+Place the files into an accessible folder of the RStudio environment you're using. The code string below will read them into R as named, accessible units. 
+
+In order to get the code to function, you will have to rename the file paths. An easy way to ensure the file path is correct and readable from your project environment you can write the read.csv("") command and press 'Tab' while the space between the two quotations is selected. This should show a list of files available to the environment that you can parse through to find what you're trying to connect to the command. 
+
+You will need the following packages for all data preparation, the code block below will make them available to your project environment post-intallation:
+
+```{r data_packages, eval=TRUE, include=FALSE, echo=TRUE}
+library(readxl) # for reading files to pull data
+library(lubridate) # adjusting dates in data
+# general data manipulation packages below
+library(dplyr) 
+library(tidyr)
+library(stringr)
+```
+
+```{r .csv_reads, eval=TRUE, include=TRUE, echo=TRUE}
+
+cru.noro.14 <- read.csv("_book/_main_files/.csv files/Cruise_2014.csv")
+cru.noro.15 <- read.csv("_book/_main_files/.csv files/Cruise_2015.csv")
+cru.noro.16 <- read.csv("_book/_main_files/.csv files/Cruise_2016.csv")
+cru.noro.17 <- read.csv("_book/_main_files/.csv files/Cruise_2017.csv")
+cru.noro.18 <- read.csv("_book/_main_files/.csv files/Cruise_2018.csv")
+cru.noro.19 <- read.csv("_book/_main_files/.csv files/Cruise_2019.csv")
+```
+
+```{r .csv_head, eval=TRUE, include=TRUE, echo=TRUE}
+head(cru.noro.19)
+```
+
+Reading through the files you will find that there is a large amount of excess information, we want to isolate the numerator, (confirmed infected), and denominator, (total population), columns in each file so that we can begin working with the rates of infection. 
+
+It's convenient to place the data we need into data frames as well, so we can accomplish two goals with one action per sheet by defining the columns we want as columns in a new data frame:
+
+```{r inf_dfs, eval=TRUE, include=TRUE, echo=TRUE}
+df.cru.14 <- data.frame(pcn = cru.noro.14[,6],
+                        pcd = cru.noro.14[,7],
+                        ccn = cru.noro.14[,10],
+                        ccd = cru.noro.14[,11])
+df.cru.15 <- data.frame(pcn = cru.noro.15[,6],
+                          pcd = cru.noro.15[,7],
+                          ccn = cru.noro.15[,9],
+                          ccd = cru.noro.15[,10])
+df.cru.16 <- data.frame(pcn = cru.noro.16[,6],
+                        pcd = cru.noro.16[,7],
+                        ccn = cru.noro.16[,9],
+                        ccd = cru.noro.16[,10])
+df.cru.17 <- data.frame(pcn = cru.noro.17[,6],
+                        pcd = cru.noro.17[,7],
+                        ccn = cru.noro.17[,9],
+                        ccd = cru.noro.17[,10])
+df.cru.18 <- data.frame(pcn = cru.noro.18[,6],
+                        pcd = cru.noro.18[,7],
+                        ccn = cru.noro.18[,9],
+                        ccd = cru.noro.18[,10])
+df.cru.19 <- data.frame(pcn = cru.noro.19[,6],
+                        pcd = cru.noro.19[,7],
+                        ccn = cru.noro.19[,9],
+                        ccd = cru.noro.19[,10])
+
+head(df.cru.14)
+```
+
+The top row of each column contains the descriptions of the columns rather than any usable data, so we'll remove those:
+
+```{r desc_rm, eval=TRUE, include=TRUE, echo=TRUE}
+df.cru.14c <- df.cru.14[-c(1),]
+df.cru.15c <- df.cru.15[-c(1),]
+df.cru.16c <- df.cru.16[-c(1),]
+df.cru.17c <- df.cru.17[-c(1),]
+df.cru.18c <- df.cru.18[-c(1),]
+df.cru.19c <- df.cru.19[-c(1),]
+
+head(df.cru.14c)
+```
+
+The numeric data includes commas to denote 1000s, while we can declare prefixes before working with the data to ensure these aren't a problem, it's more convenient for future troubleshooting of errors to not have them involved in our data frames. 
+
+We'll remove them by using the `gsub` command and "replacing" our commas with nothing.
+
+```{r comma_rm, eval=TRUE, include=TRUE, echo=TRUE}
+df.cru.14c$pcd <- gsub(",","", df.cru.14c$pcd)
+df.cru.14c$ccd <- gsub(",","", df.cru.14c$ccd)
+
+df.cru.15c$pcd <- gsub(",","", df.cru.15c$pcd)
+df.cru.15c$ccd <- gsub(",","", df.cru.15c$ccd)
+
+df.cru.16c$pcd <- gsub(",","", df.cru.16c$pcd)
+df.cru.16c$ccd <- gsub(",","", df.cru.16c$ccd)
+
+df.cru.17c$pcd <- gsub(",","", df.cru.17c$pcd)
+df.cru.17c$ccd <- gsub(",","", df.cru.17c$ccd)
+
+df.cru.18c$pcd <- gsub(",","", df.cru.18c$pcd)
+df.cru.18c$ccd <- gsub(",","", df.cru.18c$ccd)
+
+df.cru.19c$pcd <- gsub(",","", df.cru.19c$pcd)
+df.cru.19c$ccd <- gsub(",","", df.cru.19c$ccd)
+
+head(df.cru.19c)
+```
+
+### Infection Totals and Rate {-}
+
+Our basic infection data is now sufficiently cleaned up to begin organizing it into more useful formats.
+
+Next we'll compute the infection rate, which, as our labels of the data suggests, follows a simple rate of change format:
+
+\vspace{10mm}
+
+\begin{equation}
+Rate = {Cases \over Total}
+\end{equation}
+
+\vspace{10mm}
+
+The code below generates a total count column across all voyages for each individual sheet:
+
+```{r tot_gen, eval=TRUE, include=TRUE, echo=TRUE}
+df.cru.14c <- df.cru.14c %>% mutate(tcn = as.numeric(df.cru.14c$pcn) + as.numeric(df.cru.14c$ccn))
+df.cru.14c <- df.cru.14c %>% mutate(tcd = as.numeric(df.cru.14c$pcd) + as.numeric(df.cru.14c$ccd))
+
+df.cru.15c <- df.cru.15c %>% mutate(tcn = as.numeric(df.cru.15c$pcn) + as.numeric(df.cru.15c$ccn))
+df.cru.15c <- df.cru.15c %>% mutate(tcd = as.numeric(df.cru.15c$pcd) + as.numeric(df.cru.15c$ccd))
+
+df.cru.16c <- df.cru.16c %>% mutate(tcn = as.numeric(df.cru.16c$pcn) + as.numeric(df.cru.16c$ccn))
+df.cru.16c <- df.cru.16c %>% mutate(tcd = as.numeric(df.cru.16c$pcd) + as.numeric(df.cru.16c$ccd))
+
+df.cru.17c <- df.cru.17c %>% mutate(tcn = as.numeric(df.cru.17c$pcn) + as.numeric(df.cru.17c$ccn))
+df.cru.17c <- df.cru.17c %>% mutate(tcd = as.numeric(df.cru.17c$pcd) + as.numeric(df.cru.17c$ccd))
+
+df.cru.18c <- df.cru.18c %>% mutate(tcn = as.numeric(df.cru.18c$pcn) + as.numeric(df.cru.18c$ccn))
+df.cru.18c <- df.cru.18c %>% mutate(tcd = as.numeric(df.cru.18c$pcd) + as.numeric(df.cru.18c$ccd))
+
+df.cru.19c <- df.cru.19c %>% mutate(tcn = as.numeric(df.cru.19c$pcn) + as.numeric(df.cru.19c$ccn))
+df.cru.19c <- df.cru.19c %>% mutate(tcd = as.numeric(df.cru.19c$pcd) + as.numeric(df.cru.19c$ccd))
+```
+
+This code block computes the rate of infection:
+
+```{r rat_gen, eval=TRUE, include=TRUE, echo=TRUE}
+df.cru.14c <- df.cru.14c %>% mutate(pc = as.numeric(df.cru.14c$pcn) / as.numeric(df.cru.14c$pcd))
+df.cru.14c <- df.cru.14c %>% mutate(cc = as.numeric(df.cru.14c$ccn) / as.numeric(df.cru.14c$ccd))
+df.cru.14c <- df.cru.14c %>% mutate(tc = as.numeric(df.cru.14c$tcn) / as.numeric(df.cru.14c$tcd))
+
+df.cru.15c <- df.cru.15c %>% mutate(pc = as.numeric(df.cru.15c$pcn) / as.numeric(df.cru.15c$pcd))
+df.cru.15c <- df.cru.15c %>% mutate(cc = as.numeric(df.cru.15c$ccn) / as.numeric(df.cru.15c$ccd))
+df.cru.15c <- df.cru.15c %>% mutate(tc = as.numeric(df.cru.15c$tcn) / as.numeric(df.cru.15c$tcd))
+
+df.cru.16c <- df.cru.16c %>% mutate(pc = as.numeric(df.cru.16c$pcn) / as.numeric(df.cru.16c$pcd))
+df.cru.16c <- df.cru.16c %>% mutate(cc = as.numeric(df.cru.16c$ccn) / as.numeric(df.cru.16c$ccd))
+df.cru.16c <- df.cru.16c %>% mutate(tc = as.numeric(df.cru.16c$tcn) / as.numeric(df.cru.16c$tcd))
+
+df.cru.17c <- df.cru.17c %>% mutate(pc = as.numeric(df.cru.17c$pcn) / as.numeric(df.cru.17c$pcd))
+df.cru.17c <- df.cru.17c %>% mutate(cc = as.numeric(df.cru.17c$ccn) / as.numeric(df.cru.17c$ccd))
+df.cru.17c <- df.cru.17c %>% mutate(tc = as.numeric(df.cru.17c$tcn) / as.numeric(df.cru.17c$tcd))
+
+df.cru.18c <- df.cru.18c %>% mutate(pc = as.numeric(df.cru.18c$pcn) / as.numeric(df.cru.18c$pcd))
+df.cru.18c <- df.cru.18c %>% mutate(cc = as.numeric(df.cru.18c$ccn) / as.numeric(df.cru.18c$ccd))
+df.cru.18c <- df.cru.18c %>% mutate(tc = as.numeric(df.cru.18c$tcn) / as.numeric(df.cru.18c$tcd))
+
+df.cru.19c <- df.cru.19c %>% mutate(pc = as.numeric(df.cru.19c$pcn) / as.numeric(df.cru.19c$pcd))
+df.cru.19c <- df.cru.19c %>% mutate(cc = as.numeric(df.cru.19c$ccn) / as.numeric(df.cru.19c$ccd))
+df.cru.19c <- df.cru.19c %>% mutate(tc = as.numeric(df.cru.19c$tcn) / as.numeric(df.cru.19c$tcd))
+```
+
+### Sectioning Off Data {-}
+
+Now we'll pull the relevant columns out of our data frames and place them into vectors for later use in our models. 
+
+It should be noted that this is not an "absolute" methodology for working with data in R, so long as the data ends up in the intended places and serves the intended purpose any method for getting it to that point can be used. 
+
+Below you'll see us first pull our infection rates, then our "sizes" which is our nomenclature of sample population for the purpose of this project (total passenger and crew counts), and our total cases. 
+
+```{r vec_gen, eval=TRUE, include=TRUE, echo=TRUE}
+# vector of infection rates
+cru.rate <- c(tc.14 = df.cru.14c$tc,
+                tc.15 = df.cru.15c$tc,
+                tc.16 = df.cru.16c$tc,
+                tc.17 = df.cru.17c$tc,
+                tc.18 = df.cru.18c$tc,
+                tc.19 = df.cru.19c$tc)
+
+# vector of cruise sizes in the vsp data
+Ac.size <- c(tc.14 = df.cru.14c$tcd,
+             tc.15 = df.cru.15c$tcd,
+             tc.16 = df.cru.16c$tcd,
+             tc.17 = df.cru.17c$tcd,
+             tc.18 = df.cru.18c$tcd,
+             tc.19 = df.cru.19c$tcd)
+
+# vector of case counts in the vsp data
+Ac.cases <- c(tc.14 = df.cru.14c$tcn,
+              tc.15 = df.cru.15c$tcn,
+              tc.16 = df.cru.16c$tcn,
+              tc.17 = df.cru.17c$tcn,
+              tc.18 = df.cru.18c$tcn,
+              tc.19 = df.cru.19c$tcn)
+```
+
+With this we can say that our disease data is set up for our model. We'll move on to our other model components.
+
+## Temporal Data {-}
+
+As the goal of this project is to produce a model that incorporates both space and time it's best we clean up and prepare our temporal component of the data.
+
+### Voyage Duration {-}
+
+We'll follow a similar system as with our infection data and place our start and end dates into data frames.
+
+```{r time_dfs, eval=TRUE, include=TRUE, echo=TRUE}
+df.t14 <- data.frame(start = cru.noro.14[,3],
+                   end = cru.noro.14[,4])
+df.t15 <- data.frame(start = cru.noro.15[,3],
+                     end = cru.noro.15[,4])
+df.t16 <- data.frame(start = cru.noro.16[,3],
+                     end = cru.noro.16[,4])
+df.t17 <- data.frame(start = cru.noro.17[,3],
+                     end = cru.noro.17[,4])
+df.t18 <- data.frame(start = cru.noro.18[,3],
+                     end = cru.noro.18[,4])
+df.t19 <- data.frame(start = cru.noro.19[,3],
+                     end = cru.noro.19[,4])
+
+head(df.t14)
+```
+
+While this isn't a situation of actual messy data, it's appropriate to say the data's format is very "messy". We see once again that we have a descriptive row at the top of each column, using the same technique we'll remove it.
+
+```{r cat_trm, eval=TRUE, include=TRUE, echo=TRUE}
+df.t14c <- df.t14[-c(1),]
+df.t15c <- df.t15[-c(1),]
+df.t16c <- df.t16[-c(1),]
+df.t17c <- df.t17[-c(1),]
+df.t18c <- df.t18[-c(1),]
+df.t19c <- df.t19[-c(1),]
+```
+
+We'll now reformat the dates into Month/Day/Year using the `dplyr` `mutate` function.
+
+```{r mdy_form, eval=TRUE, include=TRUE, echo=TRUE}
+df.t14c <- df.t14c %>% mutate(start = mdy(start))
+df.t14c <- df.t14c %>% mutate(end = mdy(end))
+
+df.t15c <- df.t15c %>% mutate(start = mdy(start))
+df.t15c <- df.t15c %>% mutate(end = mdy(end))
+
+df.t16c <- df.t16c %>% mutate(start = mdy(start))
+df.t16c <- df.t16c %>% mutate(end = mdy(end))
+
+df.t17c <- df.t17c %>% mutate(start = mdy(start))
+df.t17c <- df.t17c %>% mutate(end = mdy(end))
+
+df.t18c <- df.t18c %>% mutate(start = mdy(start))
+df.t18c <- df.t18c %>% mutate(end = mdy(end))
+
+df.t19c <- df.t19c %>% mutate(start = mdy(start))
+df.t19c <- df.t19c %>% mutate(end = mdy(end))
+```
+
+Our goal is to use this as a way to get the duration these cruise ships are at sea. We also want to retain these start and end dates for future use in potential variables so we'll be sure to declare a new column rather than eliminate any currently cleaned up data. 
+
+Taking the difference between the start and end will give us a number of days. We have to declare our column data `as.Date` in order for it to work in this function. 
+
+It's more logical to subtract the end from the start rather than what we do with the code below, but this does allow an opportunity to detail the syntax for taking absolute values so it's useful to the overall tutorial to retain this method regardless of redundancy. 
+
+```{r diff_time, eval=TRUE, include=TRUE, echo=TRUE}
+df.t14c$d_t <- c(as.Date(as.character(df.t14c$start))-as.Date(as.character(df.t14c$end)))
+df.t15c$d_t <- c(as.Date(as.character(df.t15c$start))-as.Date(as.character(df.t15c$end)))
+df.t16c$d_t <- c(as.Date(as.character(df.t16c$start))-as.Date(as.character(df.t16c$end)))
+df.t17c$d_t <- c(as.Date(as.character(df.t17c$start))-as.Date(as.character(df.t17c$end)))
+df.t18c$d_t <- c(as.Date(as.character(df.t18c$start))-as.Date(as.character(df.t18c$end)))
+df.t19c$d_t <- c(as.Date(as.character(df.t19c$start))-as.Date(as.character(df.t19c$end)))
+```
+```{r abs_val, eval=TRUE, include=TRUE, echo=TRUE}
+# convert negative values to positive
+
+df.t14c$d_t <- abs(df.t14c$d_t)
+df.t15c$d_t <- abs(df.t15c$d_t)
+df.t16c$d_t <- abs(df.t16c$d_t)
+df.t17c$d_t <- abs(df.t17c$d_t)
+df.t18c$d_t <- abs(df.t18c$d_t)
+df.t19c$d_t <- abs(df.t19c$d_t)
+```
+
+Now we merge all of our cleaned up time data into one convenient data frame.
+
+```{r time_bind, eval=TRUE, include=TRUE, echo=TRUE}
+df.tt <- bind_rows(df.t14c, df.t15c, df.t16c, df.t17c, df.t18c, df.t19c)
+
+head(df.tt)
+```
+
+### Voyage Seasons {-}
+
+We want to categorize our data into seasons to gain another discrete temporal variable. It's easier to do this with our new data frame constructed out of our cleaned up time data, so please remember to follow these steps in the order they are presented to get proper results.
+
+It isn't a particularly clean technique to create a new data frame every time you want to create more variables. 
+
+In an environment where your code may inevitably be passed along to someone further ahead in production than yourself you will want to clear all of the excess vectors and data frames we make use of here. 
+
+However, it cannot be understated the value of using this practice when testing unfamiliar programming techniques. By separating variables of interest from their sources you can avoid a lot of unnecessary back tracking through your data preparation scripts whenever an error is made. This practice can also make troubleshooting errors a smooth, piece-wise operation, rather than a gauntlet of interpreting error logs.
+
+We'll create a new data frame to isolate the columns we want to work with.
+
+```{r season_df, eval=TRUE, include=TRUE, echo=TRUE}
+df.seasons <- data.frame(start = df.tt$start,
+                         end = df.tt$end)
+```
+
+We'll make use of the `dplyr` package again to reformat our M/D/Y format to just months. `lubridate` is currently a useful replacement for this package, in this context, but I found `dplyr` to be sufficient for this specific task and far less prone to errors.
+
+The syntax below simply declares the columns for the start and end dates as just the month component of each current column. If you receive errors after this point you will likely have to rebuild the `df.seasons` data frame.
+
+```{r month_mut, eval=TRUE, include=TRUE, echo=TRUE}
+df.seasons <- df.seasons %>% mutate(start = month(start))
+df.seasons <- df.seasons %>% mutate(end = month(end))
+```
+
+Since we are categorizing our start and end dates by seasons, we have to declare what these seasons will look like in our final product. When looking at both the data available and the function being used, it's most convenient to organize them in the following way:
+
+>1  Winter = December to February (12 to 2)
+>2 Spring = March to May (3 to 5)
+>3 Fall = September to November (9 to 11)
+>4 Summer = June to August (6 to 8)
+
+`findInterval` works well for this, each number in `c(...)` has to be the cut-off for the category. Since winter includes a month labeled with a number greater than our cut-off value in it's category, we'll use `gsub` once again to change anything that is found to be in the `"0"` interval into the `"1"` interval. 
+
+```{r season_inter, eval=TRUE, include=TRUE, echo=TRUE}
+df.seasons$start <- findInterval(df.seasons$start, c(2,5,8,11))
+df.seasons$end <- findInterval(df.seasons$end, c(2,5,8,11))
+
+# converting all 0s to 1s
+df.seasons$start <- gsub("0","1",df.seasons$start)
+df.seasons$end <- gsub("0","1",df.seasons$end)
+
+head(df.seasons)
+```
+
+We now have all of our time data prepared and organized for our model.
+
+## Spatial Data {-}
+
+For the purpose of this project, the cruise ships themselves will be treated as a "Spatial" component. There will be three major steps to this process. 
+
+- Isolating Cruise Liners (Corporate ownership) and Cruise Ships (The named vessel).
+- Creating "size" intervals (reminder that size references sample population).
+- Adding in their port of origin as a column.
+
+### Liners and Ships {-}
+
+First, we go back to our original data and place it all into one unified data frame.
+
+```{r raw_bind, eval=TRUE, include=TRUE, echo=TRUE}
+df.raw.all <- bind_rows(cru.noro.14,cru.noro.15,cru.noro.16,cru.noro.17,cru.noro.18,cru.noro.19)
+```
+
+Then we remove all of the rows that are our spreadsheet headers.
+
+```{r raw_rm, eval=TRUE, include=TRUE, echo=TRUE}
+df.raw.all <- df.raw.all[-c(1),]
+df.raw.all <- df.raw.all[-c(10),]
+df.raw.all <- df.raw.all[-c(22),]
+df.raw.all <- df.raw.all[-c(35),]
+df.raw.all <- df.raw.all[-c(46),]
+df.raw.all <- df.raw.all[-c(57),]
+```
+
+To finish this step we separate our liner and ship IDs into a new data frame.
+
+```{r las_df, eval=TRUE, include=TRUE, echo=TRUE}
+df.las <- data.frame(liner = df.raw.all[,1],
+                     ship = df.raw.all[,2])
+
+head(df.las)
+```
+
+Step one of our process is complete.
+
+### Size Intervals {-}
+
+This step uses the same technique as the season categorization.
+First we declare our categories:
+
+>1 small cruise: 50-800
+>2 small-mid cruise: 801-1500
+>3 mid-sized cruise: 1501-2500
+>4 large cruise: 2501-3500
+>5 mega cruise: 3501+
+
+Then we apply our interval function and place the sizes into a column vector.
+
+```{r size_int, eval=TRUE, include=TRUE, echo=TRUE}
+size.interv <- findInterval(Ac.size, c(50,801,1501,2501,3501))
+
+head(size.interv)
+```
+
+Step two is complete.
+
+### Ports of Origin {-}
+
+Gathering the port of origin for these ships is a more complicated act of research and data scraping than the scope of this tutorial allows. If you would like to learn more about making API calls, please refer to this website:
+
+https://learn.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
+
+Data of the itineraries of the exact voyages for these cruises was found, and condensed into a .csv file. 
+
+This file can be downloaded at the below URL:
+
+https://www.dropbox.com/scl/fi/2efm7ugkhjanzqc0opiz6/Cleanedstartendcru.csv?rlkey=gpnynbxwlllzrb2v8gaynyc7e&dl=0
+
+```{r lat_long_csv, eval=TRUE, include=TRUE, echo=TRUE}
+cru.strt_lat_long <- read.csv("_book/_main_files/.csv files/Cleanedstartendcru.csv")
+
+head(cru.strt_lat_long)
+```
+
+There's a significant amount of NAs in columns of NAs. These columns are likely just errors in reading the .csv, as no data from the original .csv is missing. We'll clean those up by changing `cru.strt_lat_long` to a data frame with only the columns we want to retain.
+
+```{r lat_long_df, eval=TRUE, include=TRUE, echo=TRUE}
+cru.strt_lat_long <- data.frame(Ship = cru.strt_lat_long$Ship,
+                                Start_dest = cru.strt_lat_long$Start.Destination,
+                                End_dest = cru.strt_lat_long$End.Destination,
+                                Start_lat = cru.strt_lat_long$Start.Lat,
+                                Start_long = cru.strt_lat_long$Start.Long)
+
+head(cru.strt_lat_long)
+```
+
+## Final Preparations {-}
+
+When we inspect this data frame now we'll notice there are three missing cruise ships from the list. These ships did not have itinerary data available. Case deletion will be used for this situation, with the assumption that the loss of three data points due to lack of available associated spatial data will not cause significant error in our models.
+
+Understand, with every ounce of truth I can weigh against this statement, that it is far easier to locate the three missing cruise vessels manually than it is to use any amount of programming to automate the task. I retract that statement in the event there's a machine learning expert reading this tutorial for reasons far beyond comprehension. 
+
+We'll remove the rows containing these cruise vessels. In order to do this lets make our first unified data frame.
+
+```{r marry1, eval=TRUE, include=TRUE, echo=TRUE}
+cruisedata.df <- data.frame(cases = Ac.cases,
+                            size = Ac.size,
+                            infection = cru.rate,
+                            liner = df.las[,1],
+                            ship = df.las[,2],
+                            size.cat = factor(size.interv),
+                            start_date = df.tt[,1],
+                            end_date = df.tt[,2],
+                            start_season = df.seasons[,1],
+                            end_season = df.seasons[,2],
+                            total_days = df.tt[,3])
+```
+
+Then delete the rows of interest.
+
+```{r case_del, eval=TRUE, include=TRUE, echo=TRUE}
+{
+  cruisedata.df <- cruisedata.df[-c(19),]
+  cruisedata.df <- cruisedata.df[-c(37),]
+  cruisedata.df <- cruisedata.df[-c(42),]
+}
+```
+
+Finally we add our latitude and longitudes to the unified data frame.
+
+```{r unif_df, eval=TRUE, include=TRUE, echo=TRUE}
+cruisedata.df <- data.frame(cases = cruisedata.df$cases,
+                            size = cruisedata.df$size,
+                            infection = cruisedata.df$infection,
+                            liner = cruisedata.df$liner,
+                            ship = cruisedata.df$ship,
+                            size.cat = cruisedata.df$size.cat,
+                            start_date = cruisedata.df$start_date,
+                            end_date = cruisedata.df$end_date,
+                            start_season = cruisedata.df$start_season,
+                            end_season = cruisedata.df$end_season,
+                            total_days = cruisedata.df$total_days,
+                            Start_dest = cru.strt_lat_long$Start_dest,
+                            End_dest = cru.strt_lat_long$End_dest,
+                            Start_lat = cru.strt_lat_long$Start_lat,
+                            Start_long = cru.strt_lat_long$Start_long)  
+```
+
+We've completed the tedious portion of this project. The end result is a large data frame with all of the variables we've deemed necessary and appropriate for our analytics.

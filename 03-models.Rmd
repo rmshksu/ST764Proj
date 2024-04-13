@@ -1,0 +1,187 @@
+# (PART) Model Fitting {-}
+
+# Model selection {-}
+
+The objective of this R program is to build a viable model for making predictions on probability of infection for cruise voyages based on set parameters. Two models will be used and checked against one another:
+
+- An intercept-only linear model (serving as a reference)
+
+- A binomial regression model
+
+Results of each model will be shown, but analysis on what they provide will not be covered in this section. 
+
+For the analytics, please refer to Analysis chapter. 
+
+## Intercept-Only Model {-}
+
+The intercept-only regression model contains no predictor variables. For our purpose, it serves as a baseline reference to the efficacy of our other models. 
+
+The general model is shown below:
+
+```{=latex}
+\begin{equation}
+Y_{ij} = \beta_0*\epsilon_{i,j}
+\end{equation}
+```
+
+We're using the duration of our voyages as the intercept, and plotting the results of the model against the reported rate of infection and the duration of the voyages.
+
+The `lm` function is used, where we declare our `infection` variable, (our reported rates), to `total_days`, (our voyage duration), referencing our master data frame.
+
+
+```{r m1, eval=TRUE, include=TRUE, echo=TRUE}
+m1 <- lm(infection ~ size, data=cruisedata.df)
+
+summary(m1)
+```
+
+We'll create a data frame for our model's predictions of rate, declaring an empty column for that prediction and placing in our reported rate as well as our voyage duration as additional columns.
+
+```{r predm1, eval=TRUE, include=TRUE, echo=TRUE}
+df.predm1 <- data.frame(yhat_rate = NA,
+                        actual_rate = cruisedata.df$infection,
+                        size = cruisedata.df$size)
+
+df.predm1$yhat_rate <- predict(m1,newdata=df.predm1) 
+
+head(df.predm1)
+```
+
+We'll use `ggplot` to visualize the model on a line plot, with the X-axis being our voyage duration, the Y-axis being our observed rates, and the rate predictions of the model shown as a red line. 
+
+```{r predm1_plot, eval=TRUE, include=TRUE, echo=TRUE}
+library(ggplot2)
+
+ggplot(data = df.predm1, aes(x=size, y=actual_rate)) + 
+  labs(x="Passenger Population", y="Observed Rate") +
+  geom_point() +
+  geom_line(aes(y=yhat_rate), color='red')
+```
+
+## Binomial Regression {-}
+
+The `glm` function in the `stats` R package is a simple yet effective tool for this next model. 
+
+Using the following framework for our model:
+
+```{=latex}
+\begin{equation}
+{Data \ Model}: [z=y]
+\newline
+{Process \ Model}: y_{ij} \sim Binom(n_i,\phi_j)
+\newline
+{Parameter \ Model}: [\phi_j \ | \ \phi_s,\phi_t]
+\newline
+\phi_s = MVN(0,\epsilon)
+\end{equation}
+```
+
+We will be using the logit function 
+```{=latex}
+\begin{equation}
+1 \over e^{\beta_0 + \beta_1*X + \phi_s + \phi_t}
+\end{equation}
+```
+as our model for predicted rate of infection.
+
+We'll use our intercept of size but as a category this time, then add in our voyage duration, latitude, and longitude. We set the `family="quasibinomial"` since it creates the same effect as `family="binomial"`, but avoids a repetitive error code.
+
+```{r m2, eval=TRUE, include=TRUE, echo=TRUE}
+m2 <- glm(infection ~ size.cat + total_days + cruisedata.df$Start_lat + cruisedata.df$Start_long, data=cruisedata.df, family="quasibinomial")
+
+summary(m2)
+```
+
+Once again, a data frame for our prediction is built, with predicted rate, size categories, observed rate of infection, voyage duration, latitude, and longitude. Then we fill the empty prediction column with expected rates of infection.
+
+```{r predm2, eval=TRUE, include=TRUE, echo=TRUE}
+df.predm2 <- data.frame(yhat_rate = NA,
+                        size.cat = cruisedata.df$size.cat,
+                        actual_rate = cruisedata.df$infection,
+                        total_days = cruisedata.df$total_days,
+                        lat = cruisedata.df$Start_lat,
+                        long = cruisedata.df$Start_long)
+
+df.predm2$yhat_rate <- predict(m2,newdata=df.predm2) 
+
+df.predm2$yhat_rate <- 1 / (1 + exp(-df.predm2$yhat_rate))
+
+head(df.predm2)
+```
+
+Plotting this the way we did before does not achieve much due to how many variables we're working with. The plot below details that concept, in my opinion, very well.
+
+```{r predm2_plot, eval=TRUE, include=TRUE, echo=TRUE}
+ggplot(data = df.predm2, aes(x=as.numeric(total_days), y=actual_rate)) +
+  labs(x="Voyage Duration", y="Observed Rate") +
+  geom_point() +
+  geom_line(aes(y=yhat_rate), color='red')
+```
+
+## Program Validation {-}
+
+Our data is organized, our models are fit. I find it appropriate to look at the data that's being returned by the code that's been written, to ensure everything is rational to the intent. This portion is a practice I have become fond of in my personal experience, but it is not necessary since it doesn't follow any statistical methodology
+
+We'll observe the predictions our models have made.
+
+```{r pred_df_print, eval=TRUE, include=TRUE, echo=FALSE}
+head(df.predm1)
+summary(df.predm1)
+head(df.predm2)
+summary(df.predm2)
+```
+
+For each model, the results of our predicted rates are rational to the models themselves. Low variance on model 1 is to be expected, model 2 looks appropriate given the syntax it's constructed from.
+
+Visualizing it in our plots may not be inherently useful to the analysis of our data, but
+I've learned that it's exceptionally good at parsing out any errors that might have occured in our code blocks. 
+
+```{r predm1_plot2, eval=TRUE, include=TRUE, echo=FALSE}
+ggplot(data = df.predm1, aes(x=size, y=actual_rate)) + 
+  labs(x="Passenger Population", y="Observed Rate", title="Intercept-Only Model") +
+  geom_point() +
+  geom_line(aes(y=yhat_rate), color='red')
+```
+
+```{r predm2_plot2, eval=TRUE, include=TRUE, echo=FALSE}
+ggplot(data = df.predm2, aes(x=as.numeric(total_days), y=actual_rate)) +
+  labs(x="Voyage Duration", y="Observed Rate", title="Binomial Regression Model") +
+  geom_point() +
+  geom_line(aes(y=yhat_rate), color='red')
+```
+
+The plots don't return any errors, and our lines of fit coincide with what the data frames have been telling us. Interpreting them isn't the current goal, so whether or not the second model is "over-fit" isn't relevant at the moment. 
+
+### Troubleshooting {-}
+
+The majority of errors you'll experience during this process with come from two sources:
+
+> Out of order set-up
+
+As stated previously, if you don't build your code in the order it has been presented so far, you will encounter continuous errors. In the event you make this error, clear the environment. Rebuild your variables and data frames. Double check you have followed the correct path laid out by this tutorial. 
+
+> Incorrect specification of file pathing
+
+There are 5 files that have been provided through dropbox URLs. If you:
+
+1) Have not downloaded them.
+
+2) Have not placed them into a folder your environment can path to.
+
+3) Have not deleted the file paths in the code provided so far and re-specified the appropriate paths for your system.
+
+You will encounter errors that won't resolve until you complete those three steps.
+
+Remember the golden rules of troubleshooting all technology:
+
+> Power cycle then repeat the fault
+
+> When in doubt, check for updates
+
+> If all else fails, Google the error message
+
+Fully power cycling a device or program is not only definitively and objectively a mystical solution to 99% of all technological errors the instant the IT support tech shows up, it's also essential in the process of "repeat the fault". If you can figure out how to make the error repeatedly, you can work to locate the source.
+
+Updates fix programs and hardware while breaking other things in the process, further updates fix them and break different aspects than the previous one. Failing to maintain updates keeps things broken forever. 
+
+Google is free. People become Chess Grandmasters with free online tools they access from Google. 
