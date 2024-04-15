@@ -26,7 +26,7 @@ jobs:
       run: |
         Rscript -e "install.packages('remotes')"
         Rscript -e "remotes::install_deps(dependencies = TRUE)"
-        Rscript -e "remotes::install_github('rstudio/bookdown')"
+        Rscript -e "remotes::install_github('rstudio/bookdown', auth_token = Sys.getenv('PHO_BE'))"
 
     - name: build book
       run: |
@@ -35,5 +35,5 @@ jobs:
     - name: deploy to the hub pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.PHO_BE }}
         publish_dir: ./_book
