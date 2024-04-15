@@ -1,13 +1,2 @@
-Welcome! 
-
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
-
-This template provides a skeleton file structure that you can edit to create your book. 
-
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
-
-Additional resources:
-
-The **bookdown** book: https://bookdown.org/yihui/bookdown/
-
-The **bookdown** package reference site: https://pkgs.rstudio.com/bookdown
+This document is intended to serve as a method of presenting the STAT764 final project at KSU. 
+Do not submit help requests, as this is not meant to be a supported program whatsoever. Issues will be ignored unless the document itself is broken for someone who needs to have access for the purposes of the STAT764 class.

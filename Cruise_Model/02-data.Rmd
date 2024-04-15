@@ -10,7 +10,16 @@ This chapter will cover all data acquisition, preparation, and organization. Eac
 
 >The individual reading this intends to use an alternate programming language for replication of this project.
 
-Despite this, there will still be a component of acting as an in-depth R tutorial. The following packages will be needed for this chapter's content, so their install commands have been included below:
+Despite this, there will still be a component of acting as an in-depth R tutorial. The following packages will be needed for this book's content, so their install commands have been included below:
+
+```{r data_prep_packages_install, eval=TRUE, include=FALSE, echo=FALSE}
+install.packages("readxl")
+install.packages("lubridate")
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("stringr")
+install.packages("ggplot2")
+```
 
 ```{r data_prep_packages, eval=FALSE, include=FALSE, echo=TRUE}
 install.packages("readxl")
@@ -18,6 +27,7 @@ install.packages("lubridate")
 install.packages("dplyr")
 install.packages("tidyr")
 install.packages("stringr")
+install.packages("ggplot2")
 ```
 
 Final Note: The entirety of the original code is riddled with "shower thought" markdowns. These have been left out of this tutorial in lieu of a more "professionally acceptable" documentation style, but they remain in the original code which can be viewed via a download link in the references portion of this book. This is just an acknowledgement, not an apology. 
