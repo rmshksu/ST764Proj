@@ -22,11 +22,10 @@ jobs:
         key: ${{ runner.os }}-r-${{ hashFiles('**/DESCRIPTION', '**/renv.lock') }}
         restore-keys: ${{ runner.os }}-r-
 
-    - name: install dependencies
+    - name: install pak and dependencies
       run: |
-        Rscript -e "install.packages('remotes')"
-        Rscript -e "remotes::install_deps(dependencies = TRUE)"
-        Rscript -e "remotes::install_github('rmshksu/stat764-cruise-proj', auth_token = Sys.getenv('PHOE_BE'))"
+        install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")
+        pak::pkg_install('rstudio/bookdown')
 
     - name: build book
       run: |
