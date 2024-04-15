@@ -1,4 +1,4 @@
-Package: STAT764-CRUISE-PROJ
+Package: stat764-cruise-proj
 Type: Book
 Title: Modeling the Spread of Norovirus on Commercial Cruise Voyages in R
 Version: 0.1.0
