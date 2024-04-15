@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - release/*
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -22,9 +23,12 @@ jobs:
         key: ${{ runner.os }}-r-${{ hashFiles('**/DESCRIPTION', '**/renv.lock') }}
         restore-keys: ${{ runner.os }}-r-
 
+    - name: install system dependencies
+      run: sudo apt-get install -y libcurl4-openssl-dev libssl-dev
+
     - name: install pak and dependencies
       run: |
-        Rscript -e "install.packages("pak")"
+        Rscript -e "install.packages('pak')"
         Rscript -e "pak::pkg_install('rstudio/bookdown')"
 
     - name: build book
