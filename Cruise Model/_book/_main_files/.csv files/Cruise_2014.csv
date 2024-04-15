@@ -1,0 +1,11 @@
+﻿Column1,Column2,Column3,Column4,Column5,Column6,Column7,Column8,Column9,Column103,Column102,Column11,Column12
+Cruise_Line,Cruise_Ship,Sailing_Dates(Start),Sailing_Dates(End),Causative_Agent,Case_Counts_Numerator(Passengers),Case_Counts_Denominator(Passengers),%_Case_Counts(Passengers),Comments(Passengers),Case_Counts_Numerator(Crew),Case_Counts_Denominator(Crew),%_Case_Counts(Crew),Comments(Crew)
+Princess Cruises,Crown Princess,10/18/2014,11/16/2014,Norovirus,158,"3,009",5.25,145 passenger cases (4.82%) in the last 15 days of the voyage,14,"1,160",1.21,11 crew cases (0.95%) in the last 15 days of the voyage
+Princess Cruises,Crown Princess,4/5/2014,4/12/2014,Norovirus and Enterotoxigenic E. coli (ETEC),122,"3,161",3.86,,30,"1,176",2.55,
+Royal Caribbean Cruise Line,Grandeur of the Seas,4/5/2014,4/12/2014,Norovirus,97,"2,120",4.58,,8,808,0.99,
+Royal Caribbean Cruise Line,Grandeur of the Seas,3/28/2014,4/5/2014,Norovirus,111,"2,122",5.23,,6,790,0.76,
+Holland America Line,ms Maasdam,3/2/2014,3/28/2014,Unknown,65,"1,096",5.93,,8,569,1.41,
+Holland America Line,ms Veendam,2/8/2014,2/22/2014,Norovirus,114,"1,273",8.96,,10,575,1.74,
+Princess Cruises,Caribbean Princess,1/25/2014,2/1/2014,Norovirus,181,"3,102",5.80,,11,"1,148",0.96,
+Royal Caribbean Cruise Line,Explorer of the Seas,1/21/2014,1/31/2014,Norovirus,634,"3,071",20.60,,55,"1,166",4.70,
+Norwegian Cruise Line,Norwegian Star,1/5/2014,1/19/2014,Norovirus,130,"2,318",5.61,,12,"1,039",1.15,

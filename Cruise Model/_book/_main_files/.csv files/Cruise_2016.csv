@@ -1,0 +1,15 @@
+﻿Column1,Column2,Column3,Column4,Column5,Column6,Column7,Column8,Column9,Column10,Column11
+Cruise Line,Cruise Ship,Sailing_Dates(Start),Sailing_Dates(End),Causative Agent,Proportion_Case_Counts_Numerator(Passengers),Proportion_Case_Counts_Denominator(Passengers),%_Case_Counts(Passengers),Proportion_Case_Counts_Numerator(Crew),Proportion_Case_Counts_Denominator(Crew),%_Case_Counts(Crew)
+Holland America Line,Oosterdam,11/3/2016,11/18/2016,Norovirus,90,"1,843",4.88,22,796,2.76
+P&O Cruises,Adonia,10/16/2016,10/23/2016,Unknown,23,668,3.44,2,388,0.52
+Disney Cruise Line,Disney Wonder,4/27/2016,5/1/2016,Norovirus,131,2680,4.89,14,991,1.41
+Fred Olsen Cruises,Balmoral,4/16/2016,5/20/2016,Norovirus,277,915,30.27,9,520,1.73
+Oceania Cruises,Oceania Riviera,3/20/2016,4/2/2016,Norovirus,98,1204,8.13,6,776,0.77
+Norwegian Cruise Line,Norwegian Gem,3/12/2016,3/22/2016,Norovirus,128,2882,4.44,7,1100,0.64
+Silversea Cruises,Silver Spirit,3/3/2016,3/21/2016,Enterotoxigenic E. coli (ETEC),24,388,6.19,13,366,3.55
+Carnival Cruise Line,Carnival Sunshine,2/21/2016,3/5/2016,Norovirus,173,3001,5.76,5,1142,0.44
+Royal Caribbean Cruise Line,Anthem of the Seas,2/21/2016,3/4/2016,Norovirus,132,4061,3.25,16,1592,1.01
+Princess Cruises,Ocean Princess,2/13/2016,3/7/2016,Norovirus and Enterotoxigenic E. coli (ETEC),63,603,10.45,7,385,1.82
+Oceania Cruises,Oceania Riviera,2/12/2016,2/22/2016,Norovirus,124,1225,10.12,3,773,0.39
+Oceania Cruises,Oceania Riviera,2/2/2016,2/12/2016,Norovirus,33,1045,3.16,0,774,0
+Princess Cruises,Crown Princess,1/8/2016,1/18/2016,Norovirus,180,3060,5.88,24,1168,2.05

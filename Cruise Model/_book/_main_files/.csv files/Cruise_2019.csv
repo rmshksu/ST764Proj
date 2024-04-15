@@ -1,0 +1,12 @@
+﻿Column1,Column2,Column3,Column4,Column5,Column6,Column7,Column8,Column9,Column10,Column11
+Cruise Line,Cruise Ship,Sailing_Dates(Start),Sailing_Dates(End),Causative Agent,Proportion_Case_Counts_Numerator(Passengers),Proportion_Case_Counts_Denominator(Passengers),%_Case_Counts(Passengers),Proportion_Case_Counts_Numerator(Crew),Proportion_Case_Counts_Denominator(Crew),%_Case_Counts(Crew)
+Norwegian Cruise Line,Norwegian Joy,11/8/2019,11/24/2019,Unknown,127,"3,602",3.53,6,"1,769",0.34
+Aida Cruises,AIDAdiva,10/3/2019,10/13/2019,Norovirus,83,"2,251",3.70,10,610,1.60
+Aida Cruises,AIDAluna,9/28/2019,10/12/2019,Norovirus,85,"2,166",3.90,10,612,1.60
+Aida Cruises,AIDAdiva,9/5/2019,9/23/2019,Norovirus,117,"2,055",5.70,8,610,1.30
+Carnival Cruise Line,Conquest,9/7/2019,9/14/2019,Norovirus,17,"3,241",0.52,35,1158,3.02
+Oceania Cruises,Oceania Marina,3/18/2019,4/5/2019,Unknown,36,"1,066",3.38,4,763,0.52
+Princess Cruises,Island Princess,2/8/2019,2/18/2019,Norovirus,101,"2,193",4.61,9,905,0.99
+Viking Ocean Cruises,Viking Star,2/7/2019,2/14/2019,Norovirus,36,904,3.98,1,461,0.22
+Viking Ocean Cruises,Viking Sea,1/18/2019,1/28/2019,Norovirus,38,925,4.10,0,455,0
+Royal Caribbean International,Oasis of the Seas,1/6/2019,1/13/2019,Norovirus,561,"6,285",8.91,31,2169,1.45

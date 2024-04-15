@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Infection Data Cleaning | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</title>
+  <meta name="description" content="Infection Data Cleaning | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Infection Data Cleaning | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Infection Data Cleaning | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  
+  
+  
+
+<meta name="author" content="Robert Sholl, Kelechi Igwe, Stephen Edache" />
+
+
+<meta name="date" content="2024-04-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="acquisition.html"/>
+<link rel="next" href="infection-data-organization.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="1" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>1</b> Background</a>
+<ul>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#project-intent"><i class="fa fa-check"></i>Project Intent</a></li>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#structure"><i class="fa fa-check"></i>Structure</a></li>
+<li class="chapter" data-level="" data-path="simplifying-assumptions.html"><a href="simplifying-assumptions.html"><i class="fa fa-check"></i>Simplifying Assumptions</a></li>
+</ul></li>
+<li class="part"><span><b>II Data</b></span></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html"><i class="fa fa-check"></i>Data Acquisition and Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i>Acquisition</a></li>
+<li class="chapter" data-level="" data-path="infection-data-cleaning.html"><a href="infection-data-cleaning.html"><i class="fa fa-check"></i>Infection Data Cleaning</a></li>
+<li class="chapter" data-level="" data-path="infection-data-organization.html"><a href="infection-data-organization.html"><i class="fa fa-check"></i>Infection Data Organization</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="infection-data-cleaning" class="section level2 unnumbered hasAnchor">
+<h2>Infection Data Cleaning<a href="infection-data-cleaning.html#infection-data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Place the files into an accessible folder of the RStudio environment you’re using. The code string below will read them into R as named, accessible units.</p>
+<p>In order to get the code to function, you will have to rename the file paths. An easy way to ensure the file path is correct and readable from your project environment you can write the read.csv(““) command and press ‘Tab’ while the space between the two quotations is selected. This should show a list of files available to the environment that you can parse through to find what you’re trying to connect to the command.</p>
+<p>You will need the following packages for all data preparation, the code block below will make them available to your project environment post-intallation:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="infection-data-cleaning.html#cb1-1" tabindex="-1"></a>cru.noro<span class="fl">.14</span> <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;_book/_main_files/.csv files/Cruise_2014.csv&quot;</span>)</span>
+<span id="cb1-2"><a href="infection-data-cleaning.html#cb1-2" tabindex="-1"></a>cru.noro<span class="fl">.15</span> <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;_book/_main_files/.csv files/Cruise_2015.csv&quot;</span>)</span>
+<span id="cb1-3"><a href="infection-data-cleaning.html#cb1-3" tabindex="-1"></a>cru.noro<span class="fl">.16</span> <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;_book/_main_files/.csv files/Cruise_2016.csv&quot;</span>)</span>
+<span id="cb1-4"><a href="infection-data-cleaning.html#cb1-4" tabindex="-1"></a>cru.noro<span class="fl">.17</span> <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;_book/_main_files/.csv files/Cruise_2017.csv&quot;</span>)</span>
+<span id="cb1-5"><a href="infection-data-cleaning.html#cb1-5" tabindex="-1"></a>cru.noro<span class="fl">.18</span> <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;_book/_main_files/.csv files/Cruise_2018.csv&quot;</span>)</span>
+<span id="cb1-6"><a href="infection-data-cleaning.html#cb1-6" tabindex="-1"></a>cru.noro<span class="fl">.19</span> <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;_book/_main_files/.csv files/Cruise_2019.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="infection-data-cleaning.html#cb2-1" tabindex="-1"></a><span class="fu">head</span>(cru.noro<span class="fl">.19</span>)</span></code></pre></div>
+<pre><code>##                 Column1       Column2              Column3            Column4         Column5
+## 1           Cruise Line   Cruise Ship Sailing_Dates(Start) Sailing_Dates(End) Causative Agent
+## 2 Norwegian Cruise Line Norwegian Joy            11/8/2019         11/24/2019         Unknown
+## 3          Aida Cruises      AIDAdiva            10/3/2019         10/13/2019       Norovirus
+## 4          Aida Cruises      AIDAluna            9/28/2019         10/12/2019       Norovirus
+## 5          Aida Cruises      AIDAdiva             9/5/2019          9/23/2019       Norovirus
+## 6  Carnival Cruise Line      Conquest             9/7/2019          9/14/2019       Norovirus
+##                                        Column6                                        Column7
+## 1 Proportion_Case_Counts_Numerator(Passengers) Proportion_Case_Counts_Denominator(Passengers)
+## 2                                          127                                          3,602
+## 3                                           83                                          2,251
+## 4                                           85                                          2,166
+## 5                                          117                                          2,055
+## 6                                           17                                          3,241
+##                     Column8                                Column9
+## 1 %_Case_Counts(Passengers) Proportion_Case_Counts_Numerator(Crew)
+## 2                      3.53                                      6
+## 3                      3.70                                     10
+## 4                      3.90                                     10
+## 5                      5.70                                      8
+## 6                      0.52                                     35
+##                                   Column10            Column11
+## 1 Proportion_Case_Counts_Denominator(Crew) %_Case_Counts(Crew)
+## 2                                    1,769                0.34
+## 3                                      610                1.60
+## 4                                      612                1.60
+## 5                                      610                1.30
+## 6                                     1158                3.02</code></pre>
+<p>Reading through the files you will find that there is a large amount of excess information, we want to isolate the numerator, (confirmed infected), and denominator, (total population), columns in each file so that we can begin working with the rates of infection.</p>
+<p>It’s convenient to place the data we need into data frames as well, so we can accomplish two goals with one action per sheet by defining the columns we want as columns in a new data frame:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="infection-data-cleaning.html#cb4-1" tabindex="-1"></a>df.cru<span class="fl">.14</span> <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">pcn =</span> cru.noro<span class="fl">.14</span>[,<span class="dv">6</span>],</span>
+<span id="cb4-2"><a href="infection-data-cleaning.html#cb4-2" tabindex="-1"></a>                        <span class="at">pcd =</span> cru.noro<span class="fl">.14</span>[,<span class="dv">7</span>],</span>
+<span id="cb4-3"><a href="infection-data-cleaning.html#cb4-3" tabindex="-1"></a>                        <span class="at">ccn =</span> cru.noro<span class="fl">.14</span>[,<span class="dv">10</span>],</span>
+<span id="cb4-4"><a href="infection-data-cleaning.html#cb4-4" tabindex="-1"></a>                        <span class="at">ccd =</span> cru.noro<span class="fl">.14</span>[,<span class="dv">11</span>])</span>
+<span id="cb4-5"><a href="infection-data-cleaning.html#cb4-5" tabindex="-1"></a>df.cru<span class="fl">.15</span> <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">pcn =</span> cru.noro<span class="fl">.15</span>[,<span class="dv">6</span>],</span>
+<span id="cb4-6"><a href="infection-data-cleaning.html#cb4-6" tabindex="-1"></a>                          <span class="at">pcd =</span> cru.noro<span class="fl">.15</span>[,<span class="dv">7</span>],</span>
+<span id="cb4-7"><a href="infection-data-cleaning.html#cb4-7" tabindex="-1"></a>                          <span class="at">ccn =</span> cru.noro<span class="fl">.15</span>[,<span class="dv">9</span>],</span>
+<span id="cb4-8"><a href="infection-data-cleaning.html#cb4-8" tabindex="-1"></a>                          <span class="at">ccd =</span> cru.noro<span class="fl">.15</span>[,<span class="dv">10</span>])</span>
+<span id="cb4-9"><a href="infection-data-cleaning.html#cb4-9" tabindex="-1"></a>df.cru<span class="fl">.16</span> <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">pcn =</span> cru.noro<span class="fl">.16</span>[,<span class="dv">6</span>],</span>
+<span id="cb4-10"><a href="infection-data-cleaning.html#cb4-10" tabindex="-1"></a>                        <span class="at">pcd =</span> cru.noro<span class="fl">.16</span>[,<span class="dv">7</span>],</span>
+<span id="cb4-11"><a href="infection-data-cleaning.html#cb4-11" tabindex="-1"></a>                        <span class="at">ccn =</span> cru.noro<span class="fl">.16</span>[,<span class="dv">9</span>],</span>
+<span id="cb4-12"><a href="infection-data-cleaning.html#cb4-12" tabindex="-1"></a>                        <span class="at">ccd =</span> cru.noro<span class="fl">.16</span>[,<span class="dv">10</span>])</span>
+<span id="cb4-13"><a href="infection-data-cleaning.html#cb4-13" tabindex="-1"></a>df.cru<span class="fl">.17</span> <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">pcn =</span> cru.noro<span class="fl">.17</span>[,<span class="dv">6</span>],</span>
+<span id="cb4-14"><a href="infection-data-cleaning.html#cb4-14" tabindex="-1"></a>                        <span class="at">pcd =</span> cru.noro<span class="fl">.17</span>[,<span class="dv">7</span>],</span>
+<span id="cb4-15"><a href="infection-data-cleaning.html#cb4-15" tabindex="-1"></a>                        <span class="at">ccn =</span> cru.noro<span class="fl">.17</span>[,<span class="dv">9</span>],</span>
+<span id="cb4-16"><a href="infection-data-cleaning.html#cb4-16" tabindex="-1"></a>                        <span class="at">ccd =</span> cru.noro<span class="fl">.17</span>[,<span class="dv">10</span>])</span>
+<span id="cb4-17"><a href="infection-data-cleaning.html#cb4-17" tabindex="-1"></a>df.cru<span class="fl">.18</span> <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">pcn =</span> cru.noro<span class="fl">.18</span>[,<span class="dv">6</span>],</span>
+<span id="cb4-18"><a href="infection-data-cleaning.html#cb4-18" tabindex="-1"></a>                        <span class="at">pcd =</span> cru.noro<span class="fl">.18</span>[,<span class="dv">7</span>],</span>
+<span id="cb4-19"><a href="infection-data-cleaning.html#cb4-19" tabindex="-1"></a>                        <span class="at">ccn =</span> cru.noro<span class="fl">.18</span>[,<span class="dv">9</span>],</span>
+<span id="cb4-20"><a href="infection-data-cleaning.html#cb4-20" tabindex="-1"></a>                        <span class="at">ccd =</span> cru.noro<span class="fl">.18</span>[,<span class="dv">10</span>])</span>
+<span id="cb4-21"><a href="infection-data-cleaning.html#cb4-21" tabindex="-1"></a>df.cru<span class="fl">.19</span> <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">pcn =</span> cru.noro<span class="fl">.19</span>[,<span class="dv">6</span>],</span>
+<span id="cb4-22"><a href="infection-data-cleaning.html#cb4-22" tabindex="-1"></a>                        <span class="at">pcd =</span> cru.noro<span class="fl">.19</span>[,<span class="dv">7</span>],</span>
+<span id="cb4-23"><a href="infection-data-cleaning.html#cb4-23" tabindex="-1"></a>                        <span class="at">ccn =</span> cru.noro<span class="fl">.19</span>[,<span class="dv">9</span>],</span>
+<span id="cb4-24"><a href="infection-data-cleaning.html#cb4-24" tabindex="-1"></a>                        <span class="at">ccd =</span> cru.noro<span class="fl">.19</span>[,<span class="dv">10</span>])</span>
+<span id="cb4-25"><a href="infection-data-cleaning.html#cb4-25" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="infection-data-cleaning.html#cb4-26" tabindex="-1"></a><span class="fu">head</span>(df.cru<span class="fl">.14</span>)</span></code></pre></div>
+<pre><code>##                                 pcn                                 pcd                         ccn
+## 1 Case_Counts_Numerator(Passengers) Case_Counts_Denominator(Passengers) Case_Counts_Numerator(Crew)
+## 2                               158                               3,009                          14
+## 3                               122                               3,161                          30
+## 4                                97                               2,120                           8
+## 5                               111                               2,122                           6
+## 6                                65                               1,096                           8
+##                             ccd
+## 1 Case_Counts_Denominator(Crew)
+## 2                         1,160
+## 3                         1,176
+## 4                           808
+## 5                           790
+## 6                           569</code></pre>
+<p>The top row of each column contains the descriptions of the columns rather than any usable data, so we’ll remove those:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="infection-data-cleaning.html#cb6-1" tabindex="-1"></a>df.cru<span class="fl">.14</span>c <span class="ot">&lt;-</span> df.cru<span class="fl">.14</span>[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb6-2"><a href="infection-data-cleaning.html#cb6-2" tabindex="-1"></a>df.cru<span class="fl">.15</span>c <span class="ot">&lt;-</span> df.cru<span class="fl">.15</span>[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb6-3"><a href="infection-data-cleaning.html#cb6-3" tabindex="-1"></a>df.cru<span class="fl">.16</span>c <span class="ot">&lt;-</span> df.cru<span class="fl">.16</span>[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb6-4"><a href="infection-data-cleaning.html#cb6-4" tabindex="-1"></a>df.cru<span class="fl">.17</span>c <span class="ot">&lt;-</span> df.cru<span class="fl">.17</span>[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb6-5"><a href="infection-data-cleaning.html#cb6-5" tabindex="-1"></a>df.cru<span class="fl">.18</span>c <span class="ot">&lt;-</span> df.cru<span class="fl">.18</span>[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb6-6"><a href="infection-data-cleaning.html#cb6-6" tabindex="-1"></a>df.cru<span class="fl">.19</span>c <span class="ot">&lt;-</span> df.cru<span class="fl">.19</span>[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb6-7"><a href="infection-data-cleaning.html#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="infection-data-cleaning.html#cb6-8" tabindex="-1"></a><span class="fu">head</span>(df.cru<span class="fl">.14</span>c)</span></code></pre></div>
+<pre><code>##   pcn   pcd ccn   ccd
+## 2 158 3,009  14 1,160
+## 3 122 3,161  30 1,176
+## 4  97 2,120   8   808
+## 5 111 2,122   6   790
+## 6  65 1,096   8   569
+## 7 114 1,273  10   575</code></pre>
+<p>The numeric data includes commas to denote 1000s, while we can declare prefixes before working with the data to ensure these aren’t a problem, it’s more convenient for future troubleshooting of errors to not have them involved in our data frames.</p>
+<p>We’ll remove them by using the <code>gsub</code> command and “replacing” our commas with nothing.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="infection-data-cleaning.html#cb8-1" tabindex="-1"></a>df.cru<span class="fl">.14</span>c<span class="sc">$</span>pcd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.14</span>c<span class="sc">$</span>pcd)</span>
+<span id="cb8-2"><a href="infection-data-cleaning.html#cb8-2" tabindex="-1"></a>df.cru<span class="fl">.14</span>c<span class="sc">$</span>ccd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.14</span>c<span class="sc">$</span>ccd)</span>
+<span id="cb8-3"><a href="infection-data-cleaning.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="infection-data-cleaning.html#cb8-4" tabindex="-1"></a>df.cru<span class="fl">.15</span>c<span class="sc">$</span>pcd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.15</span>c<span class="sc">$</span>pcd)</span>
+<span id="cb8-5"><a href="infection-data-cleaning.html#cb8-5" tabindex="-1"></a>df.cru<span class="fl">.15</span>c<span class="sc">$</span>ccd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.15</span>c<span class="sc">$</span>ccd)</span>
+<span id="cb8-6"><a href="infection-data-cleaning.html#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="infection-data-cleaning.html#cb8-7" tabindex="-1"></a>df.cru<span class="fl">.16</span>c<span class="sc">$</span>pcd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.16</span>c<span class="sc">$</span>pcd)</span>
+<span id="cb8-8"><a href="infection-data-cleaning.html#cb8-8" tabindex="-1"></a>df.cru<span class="fl">.16</span>c<span class="sc">$</span>ccd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.16</span>c<span class="sc">$</span>ccd)</span>
+<span id="cb8-9"><a href="infection-data-cleaning.html#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="infection-data-cleaning.html#cb8-10" tabindex="-1"></a>df.cru<span class="fl">.17</span>c<span class="sc">$</span>pcd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.17</span>c<span class="sc">$</span>pcd)</span>
+<span id="cb8-11"><a href="infection-data-cleaning.html#cb8-11" tabindex="-1"></a>df.cru<span class="fl">.17</span>c<span class="sc">$</span>ccd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.17</span>c<span class="sc">$</span>ccd)</span>
+<span id="cb8-12"><a href="infection-data-cleaning.html#cb8-12" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="infection-data-cleaning.html#cb8-13" tabindex="-1"></a>df.cru<span class="fl">.18</span>c<span class="sc">$</span>pcd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.18</span>c<span class="sc">$</span>pcd)</span>
+<span id="cb8-14"><a href="infection-data-cleaning.html#cb8-14" tabindex="-1"></a>df.cru<span class="fl">.18</span>c<span class="sc">$</span>ccd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.18</span>c<span class="sc">$</span>ccd)</span>
+<span id="cb8-15"><a href="infection-data-cleaning.html#cb8-15" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="infection-data-cleaning.html#cb8-16" tabindex="-1"></a>df.cru<span class="fl">.19</span>c<span class="sc">$</span>pcd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.19</span>c<span class="sc">$</span>pcd)</span>
+<span id="cb8-17"><a href="infection-data-cleaning.html#cb8-17" tabindex="-1"></a>df.cru<span class="fl">.19</span>c<span class="sc">$</span>ccd <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>, df.cru<span class="fl">.19</span>c<span class="sc">$</span>ccd)</span>
+<span id="cb8-18"><a href="infection-data-cleaning.html#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="infection-data-cleaning.html#cb8-19" tabindex="-1"></a><span class="fu">head</span>(df.cru<span class="fl">.19</span>c)</span></code></pre></div>
+<pre><code>##   pcn  pcd ccn  ccd
+## 2 127 3602   6 1769
+## 3  83 2251  10  610
+## 4  85 2166  10  612
+## 5 117 2055   8  610
+## 6  17 3241  35 1158
+## 7  36 1066   4  763</code></pre>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="acquisition.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="infection-data-organization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+# (PART) Model Evaluation {-}
+
+# Model Checking {-}
+
+Checking the predictive accuracy of our model is the next step in this process. There are numerous methods for performing model checks and their efficacy varies based on the data/model/function being used. 
+
+For this project and tutorial we'll be using 4 separate methods:
+
+- Regression Diagnostics
+
+- Graphical Diagnostics
+
+- Within-Sample Validation
+
+- Forecasting
+
+## Regression Diagnostics {-}
+
+
+
+## Graphical Diagnostics {-}
+
+## Within-Sample Validation {-}
+
+## Forecasting {-}

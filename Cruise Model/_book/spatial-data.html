@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Spatial Data | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</title>
+  <meta name="description" content="Spatial Data | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Spatial Data | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Spatial Data | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  
+  
+  
+
+<meta name="author" content="Robert Sholl, Kelechi Igwe, Stephen Edache" />
+
+
+<meta name="date" content="2024-04-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="temporal-data.html"/>
+<link rel="next" href="final-preparations.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i>Background</a>
+<ul>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#project-intent"><i class="fa fa-check"></i>Project Intent</a></li>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#structure"><i class="fa fa-check"></i>Structure</a></li>
+<li class="chapter" data-level="" data-path="simplifying-assumptions.html"><a href="simplifying-assumptions.html"><i class="fa fa-check"></i>Simplifying Assumptions</a></li>
+</ul></li>
+<li class="part"><span><b>II Data</b></span></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html"><i class="fa fa-check"></i>Data Acquisition and Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i>Acquisition</a></li>
+<li class="chapter" data-level="" data-path="infection-data.html"><a href="infection-data.html"><i class="fa fa-check"></i>Infection Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="infection-data.html"><a href="infection-data.html#infection-totals-and-rate"><i class="fa fa-check"></i>Infection Totals and Rate</a></li>
+<li class="chapter" data-level="" data-path="infection-data.html"><a href="infection-data.html#sectioning-off-data"><i class="fa fa-check"></i>Sectioning Off Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="temporal-data.html"><a href="temporal-data.html"><i class="fa fa-check"></i>Temporal Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="temporal-data.html"><a href="temporal-data.html#voyage-duration"><i class="fa fa-check"></i>Voyage Duration</a></li>
+<li class="chapter" data-level="" data-path="temporal-data.html"><a href="temporal-data.html#voyage-seasons"><i class="fa fa-check"></i>Voyage Seasons</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i>Spatial Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html#liners-and-ships"><i class="fa fa-check"></i>Liners and Ships</a></li>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html#size-intervals"><i class="fa fa-check"></i>Size Intervals</a></li>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html#ports-of-origin"><i class="fa fa-check"></i>Ports of Origin</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="final-preparations.html"><a href="final-preparations.html"><i class="fa fa-check"></i>Final Preparations</a></li>
+</ul></li>
+<li class="part"><span><b>III Model Fitting</b></span></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="intercept-only-model.html"><a href="intercept-only-model.html"><i class="fa fa-check"></i>Intercept-Only Model</a></li>
+<li class="chapter" data-level="" data-path="binomial-regression.html"><a href="binomial-regression.html"><i class="fa fa-check"></i>Binomial Regression</a></li>
+<li class="chapter" data-level="" data-path="program-validation.html"><a href="program-validation.html"><i class="fa fa-check"></i>Program Validation</a>
+<ul>
+<li class="chapter" data-level="" data-path="program-validation.html"><a href="program-validation.html#troubleshooting"><i class="fa fa-check"></i>Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Model Evaluation</b></span></li>
+<li class="chapter" data-level="" data-path="model-checking.html"><a href="model-checking.html"><i class="fa fa-check"></i>Model Checking</a>
+<ul>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i>Regression Diagnostics</a></li>
+<li class="chapter" data-level="" data-path="graphical-diagnostics.html"><a href="graphical-diagnostics.html"><i class="fa fa-check"></i>Graphical Diagnostics</a></li>
+<li class="chapter" data-level="" data-path="within-sample-validation.html"><a href="within-sample-validation.html"><i class="fa fa-check"></i>Within-Sample Validation</a></li>
+<li class="chapter" data-level="" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i>Forecasting</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="spatial-data" class="section level2 unnumbered hasAnchor">
+<h2>Spatial Data<a href="spatial-data.html#spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the purpose of this project, the cruise ships themselves will be treated as a “Spatial” component. There will be three major steps to this process.</p>
+<ul>
+<li>Isolating Cruise Liners (Corporate ownership) and Cruise Ships (The named vessel).</li>
+<li>Creating “size” intervals (reminder that size references sample population).</li>
+<li>Adding in their port of origin as a column.</li>
+</ul>
+<div id="liners-and-ships" class="section level3 unnumbered hasAnchor">
+<h3>Liners and Ships<a href="spatial-data.html#liners-and-ships" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, we go back to our original data and place it all into one unified data frame.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="spatial-data.html#cb25-1" tabindex="-1"></a>df.raw.all <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(cru.noro<span class="fl">.14</span>,cru.noro<span class="fl">.15</span>,cru.noro<span class="fl">.16</span>,cru.noro<span class="fl">.17</span>,cru.noro<span class="fl">.18</span>,cru.noro<span class="fl">.19</span>)</span></code></pre></div>
+<p>Then we remove all of the rows that are our spreadsheet headers.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="spatial-data.html#cb26-1" tabindex="-1"></a>df.raw.all <span class="ot">&lt;-</span> df.raw.all[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb26-2"><a href="spatial-data.html#cb26-2" tabindex="-1"></a>df.raw.all <span class="ot">&lt;-</span> df.raw.all[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">10</span>),]</span>
+<span id="cb26-3"><a href="spatial-data.html#cb26-3" tabindex="-1"></a>df.raw.all <span class="ot">&lt;-</span> df.raw.all[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">22</span>),]</span>
+<span id="cb26-4"><a href="spatial-data.html#cb26-4" tabindex="-1"></a>df.raw.all <span class="ot">&lt;-</span> df.raw.all[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">35</span>),]</span>
+<span id="cb26-5"><a href="spatial-data.html#cb26-5" tabindex="-1"></a>df.raw.all <span class="ot">&lt;-</span> df.raw.all[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">46</span>),]</span>
+<span id="cb26-6"><a href="spatial-data.html#cb26-6" tabindex="-1"></a>df.raw.all <span class="ot">&lt;-</span> df.raw.all[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">57</span>),]</span></code></pre></div>
+<p>To finish this step we separate our liner and ship IDs into a new data frame.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="spatial-data.html#cb27-1" tabindex="-1"></a>df.las <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">liner =</span> df.raw.all[,<span class="dv">1</span>],</span>
+<span id="cb27-2"><a href="spatial-data.html#cb27-2" tabindex="-1"></a>                     <span class="at">ship =</span> df.raw.all[,<span class="dv">2</span>])</span>
+<span id="cb27-3"><a href="spatial-data.html#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="spatial-data.html#cb27-4" tabindex="-1"></a><span class="fu">head</span>(df.las)</span></code></pre></div>
+<pre><code>##                         liner                 ship
+## 1            Princess Cruises       Crown Princess
+## 2            Princess Cruises       Crown Princess
+## 3 Royal Caribbean Cruise Line Grandeur of the Seas
+## 4 Royal Caribbean Cruise Line Grandeur of the Seas
+## 5        Holland America Line           ms Maasdam
+## 6        Holland America Line           ms Veendam</code></pre>
+<p>Step one of our process is complete.</p>
+</div>
+<div id="size-intervals" class="section level3 unnumbered hasAnchor">
+<h3>Size Intervals<a href="spatial-data.html#size-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This step uses the same technique as the season categorization.
+First we declare our categories:</p>
+<blockquote>
+<p>1 small cruise: 50-800
+2 small-mid cruise: 801-1500
+3 mid-sized cruise: 1501-2500
+4 large cruise: 2501-3500
+5 mega cruise: 3501+</p>
+</blockquote>
+<p>Then we apply our interval function and place the sizes into a column vector.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="spatial-data.html#cb29-1" tabindex="-1"></a>size.interv <span class="ot">&lt;-</span> <span class="fu">findInterval</span>(Ac.size, <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">801</span>,<span class="dv">1501</span>,<span class="dv">2501</span>,<span class="dv">3501</span>))</span>
+<span id="cb29-2"><a href="spatial-data.html#cb29-2" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="spatial-data.html#cb29-3" tabindex="-1"></a><span class="fu">head</span>(size.interv)</span></code></pre></div>
+<pre><code>## [1] 5 5 4 4 3 3</code></pre>
+<p>Step two is complete.</p>
+</div>
+<div id="ports-of-origin" class="section level3 unnumbered hasAnchor">
+<h3>Ports of Origin<a href="spatial-data.html#ports-of-origin" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Gathering the port of origin for these ships is a more complicated act of research and data scraping than the scope of this tutorial allows. If you would like to learn more about making API calls, please refer to this website:</p>
+<p><a href="https://learn.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client" class="uri">https://learn.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client</a></p>
+<p>Data of the itineraries of the exact voyages for these cruises was found, and condensed into a .csv file.</p>
+<p>This file can be downloaded at the below URL:</p>
+<p><a href="https://www.dropbox.com/scl/fi/2efm7ugkhjanzqc0opiz6/Cleanedstartendcru.csv?rlkey=gpnynbxwlllzrb2v8gaynyc7e&amp;dl=0" class="uri">https://www.dropbox.com/scl/fi/2efm7ugkhjanzqc0opiz6/Cleanedstartendcru.csv?rlkey=gpnynbxwlllzrb2v8gaynyc7e&amp;dl=0</a></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="spatial-data.html#cb31-1" tabindex="-1"></a>cru.strt_lat_long <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;_book/_main_files/.csv files/Cleanedstartendcru.csv&quot;</span>)</span>
+<span id="cb31-2"><a href="spatial-data.html#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="spatial-data.html#cb31-3" tabindex="-1"></a><span class="fu">head</span>(cru.strt_lat_long)</span></code></pre></div>
+<pre><code>##                   Ship Start.Destination End.Destination Year Start.Lat Start.Long  X X.1
+## 1       Crown Princess       Los Angeles      California 2014   33.7405  -118.2786 NA  NA
+## 2       Crown Princess       Los Angeles      California 2014   33.7405  -118.2786 NA  NA
+## 3 Grandeur of the Seas         Baltimore         Bahamas 2014   39.2876   -76.6108 NA  NA
+## 4 Grandeur of the Seas         Baltimore         Bahamas 2014   39.2876   -76.6108 NA  NA
+## 5           ms Maasdam    Rio de Janeiro Fort Lauderdale 2014  -22.8955   -43.1822 NA  NA
+## 6           ms Veendam         San Diego Fort Lauderdale 2014   32.7157  -117.1611 NA  NA
+##   X.2 X.3 X.4 X.5 X.6 X.7 X.8 X.9 X.10 X.11
+## 1  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 2  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 3  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 4  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 5  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 6  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA</code></pre>
+<p>There’s a significant amount of NAs in columns of NAs. These columns are likely just errors in reading the .csv, as no data from the original .csv is missing. We’ll clean those up by changing <code>cru.strt_lat_long</code> to a data frame with only the columns we want to retain.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="spatial-data.html#cb33-1" tabindex="-1"></a>cru.strt_lat_long <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Ship =</span> cru.strt_lat_long<span class="sc">$</span>Ship,</span>
+<span id="cb33-2"><a href="spatial-data.html#cb33-2" tabindex="-1"></a>                                <span class="at">Start_dest =</span> cru.strt_lat_long<span class="sc">$</span>Start.Destination,</span>
+<span id="cb33-3"><a href="spatial-data.html#cb33-3" tabindex="-1"></a>                                <span class="at">End_dest =</span> cru.strt_lat_long<span class="sc">$</span>End.Destination,</span>
+<span id="cb33-4"><a href="spatial-data.html#cb33-4" tabindex="-1"></a>                                <span class="at">Start_lat =</span> cru.strt_lat_long<span class="sc">$</span>Start.Lat,</span>
+<span id="cb33-5"><a href="spatial-data.html#cb33-5" tabindex="-1"></a>                                <span class="at">Start_long =</span> cru.strt_lat_long<span class="sc">$</span>Start.Long)</span>
+<span id="cb33-6"><a href="spatial-data.html#cb33-6" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="spatial-data.html#cb33-7" tabindex="-1"></a><span class="fu">head</span>(cru.strt_lat_long)</span></code></pre></div>
+<pre><code>##                   Ship     Start_dest        End_dest Start_lat Start_long
+## 1       Crown Princess    Los Angeles      California   33.7405  -118.2786
+## 2       Crown Princess    Los Angeles      California   33.7405  -118.2786
+## 3 Grandeur of the Seas      Baltimore         Bahamas   39.2876   -76.6108
+## 4 Grandeur of the Seas      Baltimore         Bahamas   39.2876   -76.6108
+## 5           ms Maasdam Rio de Janeiro Fort Lauderdale  -22.8955   -43.1822
+## 6           ms Veendam      San Diego Fort Lauderdale   32.7157  -117.1611</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="temporal-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-preparations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

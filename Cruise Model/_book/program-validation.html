@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Program Validation | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</title>
+  <meta name="description" content="Program Validation | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Program Validation | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Program Validation | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  
+  
+  
+
+<meta name="author" content="Robert Sholl, Kelechi Igwe, Stephen Edache" />
+
+
+<meta name="date" content="2024-04-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="binomial-regression.html"/>
+<link rel="next" href="model-checking.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i>Background</a>
+<ul>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#project-intent"><i class="fa fa-check"></i>Project Intent</a></li>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#structure"><i class="fa fa-check"></i>Structure</a></li>
+<li class="chapter" data-level="" data-path="simplifying-assumptions.html"><a href="simplifying-assumptions.html"><i class="fa fa-check"></i>Simplifying Assumptions</a></li>
+</ul></li>
+<li class="part"><span><b>II Data</b></span></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html"><i class="fa fa-check"></i>Data Acquisition and Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i>Acquisition</a></li>
+<li class="chapter" data-level="" data-path="infection-data.html"><a href="infection-data.html"><i class="fa fa-check"></i>Infection Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="infection-data.html"><a href="infection-data.html#infection-totals-and-rate"><i class="fa fa-check"></i>Infection Totals and Rate</a></li>
+<li class="chapter" data-level="" data-path="infection-data.html"><a href="infection-data.html#sectioning-off-data"><i class="fa fa-check"></i>Sectioning Off Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="temporal-data.html"><a href="temporal-data.html"><i class="fa fa-check"></i>Temporal Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="temporal-data.html"><a href="temporal-data.html#voyage-duration"><i class="fa fa-check"></i>Voyage Duration</a></li>
+<li class="chapter" data-level="" data-path="temporal-data.html"><a href="temporal-data.html#voyage-seasons"><i class="fa fa-check"></i>Voyage Seasons</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i>Spatial Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html#liners-and-ships"><i class="fa fa-check"></i>Liners and Ships</a></li>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html#size-intervals"><i class="fa fa-check"></i>Size Intervals</a></li>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html#ports-of-origin"><i class="fa fa-check"></i>Ports of Origin</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="final-preparations.html"><a href="final-preparations.html"><i class="fa fa-check"></i>Final Preparations</a></li>
+</ul></li>
+<li class="part"><span><b>III Model Fitting</b></span></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="intercept-only-model.html"><a href="intercept-only-model.html"><i class="fa fa-check"></i>Intercept-Only Model</a></li>
+<li class="chapter" data-level="" data-path="binomial-regression.html"><a href="binomial-regression.html"><i class="fa fa-check"></i>Binomial Regression</a></li>
+<li class="chapter" data-level="" data-path="program-validation.html"><a href="program-validation.html"><i class="fa fa-check"></i>Program Validation</a>
+<ul>
+<li class="chapter" data-level="" data-path="program-validation.html"><a href="program-validation.html#troubleshooting"><i class="fa fa-check"></i>Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Model Evaluation</b></span></li>
+<li class="chapter" data-level="" data-path="model-checking.html"><a href="model-checking.html"><i class="fa fa-check"></i>Model Checking</a>
+<ul>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i>Regression Diagnostics</a></li>
+<li class="chapter" data-level="" data-path="graphical-diagnostics.html"><a href="graphical-diagnostics.html"><i class="fa fa-check"></i>Graphical Diagnostics</a></li>
+<li class="chapter" data-level="" data-path="within-sample-validation.html"><a href="within-sample-validation.html"><i class="fa fa-check"></i>Within-Sample Validation</a></li>
+<li class="chapter" data-level="" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i>Forecasting</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="program-validation" class="section level2 unnumbered hasAnchor">
+<h2>Program Validation<a href="program-validation.html#program-validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our data is organized, our models are fit. I find it appropriate to look at the data that’s being returned by the code that’s been written, to ensure everything is rational to the intent. This portion is a practice I have become fond of in my personal experience, but it is not necessary since it doesn’t follow any statistical methodology</p>
+<p>We’ll observe the predictions our models have made.</p>
+<pre><code>##    yhat_rate actual_rate size
+## 1 0.04577220  0.04125690 4169
+## 2 0.04588604  0.03504727 4337
+## 3 0.04493127  0.03586066 2928
+## 4 0.04492043  0.04017857 2912
+## 5 0.04407544  0.04384384 1665
+## 6 0.04419945  0.06709957 1848</code></pre>
+<pre><code>##    yhat_rate        actual_rate           size     
+##  Min.   :0.04313   Min.   :0.01182   Min.   : 265  
+##  1st Qu.:0.04419   1st Qu.:0.03195   1st Qu.:1838  
+##  Median :0.04487   Median :0.04018   Median :2839  
+##  Mean   :0.04486   Mean   :0.04486   Mean   :2824  
+##  3rd Qu.:0.04554   3rd Qu.:0.04785   3rd Qu.:3832  
+##  Max.   :0.04868   Max.   :0.19930   Max.   :8454</code></pre>
+<pre><code>##    yhat_rate size.cat actual_rate total_days      lat      long
+## 1 0.07566357        5  0.04125690    29 days  33.7405 -118.2786
+## 2 0.03889552        5  0.03504727     7 days  33.7405 -118.2786
+## 3 0.03590919        4  0.03586066     7 days  39.2876  -76.6108
+## 4 0.03703431        4  0.04017857     8 days  39.2876  -76.6108
+## 5 0.05298255        3  0.04384384    26 days -22.8955  -43.1822
+## 6 0.03939088        3  0.06709957    14 days  32.7157 -117.1611</code></pre>
+<pre><code>##    yhat_rate       size.cat  actual_rate       total_days            lat        
+##  Min.   :0.03173   1: 3     Min.   :0.01182   Length:63         Min.   :-33.05  
+##  1st Qu.:0.03732   2: 9     1st Qu.:0.03195   Class :difftime   1st Qu.: 25.94  
+##  Median :0.04148   3:15     Median :0.04018   Mode  :numeric    Median : 32.72  
+##  Mean   :0.04486   4:18     Mean   :0.04486                     Mean   : 29.22  
+##  3rd Qu.:0.04827   5:18     3rd Qu.:0.04785                     3rd Qu.: 40.69  
+##  Max.   :0.10990            Max.   :0.19930                     Max.   : 60.10  
+##       long        
+##  Min.   :-149.44  
+##  1st Qu.:-117.16  
+##  Median : -80.19  
+##  Mean   : -82.01  
+##  3rd Qu.: -75.36  
+##  Max.   : 139.69</code></pre>
+<p>For each model, the results of our predicted rates are rational to the models themselves. Low variance on model 1 is to be expected, model 2 looks appropriate given the syntax it’s constructed from.</p>
+<p>Visualizing it in our plots may not be inherently useful to the analysis of our data, but
+I’ve learned that it’s exceptionally good at parsing out any errors that might have occured in our code blocks.</p>
+<p><img src="_main_files/figure-html/predm1_plot2-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/predm2_plot2-1.png" width="672" /></p>
+<p>The plots don’t return any errors, and our lines of fit coincide with what the data frames have been telling us. Interpreting them isn’t the current goal, so whether or not the second model is “over-fit” isn’t relevant at the moment.</p>
+<div id="troubleshooting" class="section level3 unnumbered hasAnchor">
+<h3>Troubleshooting<a href="program-validation.html#troubleshooting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The majority of errors you’ll experience during this process with come from two sources:</p>
+<blockquote>
+<p>Out of order set-up</p>
+</blockquote>
+<p>As stated previously, if you don’t build your code in the order it has been presented so far, you will encounter continuous errors. In the event you make this error, clear the environment. Rebuild your variables and data frames. Double check you have followed the correct path laid out by this tutorial.</p>
+<blockquote>
+<p>Incorrect specification of file pathing</p>
+</blockquote>
+<p>There are 5 files that have been provided through dropbox URLs. If you:</p>
+<ol style="list-style-type: decimal">
+<li><p>Have not downloaded them.</p></li>
+<li><p>Have not placed them into a folder your environment can path to.</p></li>
+<li><p>Have not deleted the file paths in the code provided so far and re-specified the appropriate paths for your system.</p></li>
+</ol>
+<p>You will encounter errors that won’t resolve until you complete those three steps.</p>
+<p>Remember the golden rules of troubleshooting all technology:</p>
+<blockquote>
+<p>Power cycle then repeat the fault</p>
+</blockquote>
+<blockquote>
+<p>When in doubt, check for updates</p>
+</blockquote>
+<blockquote>
+<p>If all else fails, Google the error message</p>
+</blockquote>
+<p>Fully power cycling a device or program is not only definitively and objectively a mystical solution to 99% of all technological errors the instant the IT support tech shows up, it’s also essential in the process of “repeat the fault”. If you can figure out how to make the error repeatedly, you can work to locate the source.</p>
+<p>Updates fix programs and hardware while breaking other things in the process, further updates fix them and break different aspects than the previous one. Failing to maintain updates keeps things broken forever.</p>
+<p>Google is free. People become Chess Grandmasters with free online tools they access from Google.</p>
+
+</div>
+</div>
+<!-- </div> -->
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="binomial-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model-checking.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+﻿Column1,Column2,Column3,Column4,Column5,Column6,Column7,Column8,Column9,Column10,Column11
+Cruise Line,Cruise Ship,Sailing_Dates(Start),Sailing_Dates(End),Causative Agent,Proportion_Case_Counts_Numerator(Passengers),Proportion_Case_Counts_Denominator(Passengers),%_Case_Counts(Passengers),Proportion_Case_Counts_Numerator(Crew),Proportion_Case_Counts_Denominator(Crew),%_Case_Counts(Crew)
+Royal Caribbean,Independence of the Seas,12/11/2017,12/16/2017,Norovirus,310,"4,160",7.45,22,"1,398",1.57
+Celebrity Cruises,Celebrity Reflection,11/17/2017,11/27/2017,Norovirus,173,"3,034",5.70,3,"1,240",0.24
+Princess Cruises,Crown Princess,10/25/2017,11/8/2017,C. perfringens enterotoxin,184,"2,957",6.22,12,"1,173",1.02
+Lindblad Expeditions,National Geographic Sea Bird,9/26/2017,10/2/2017,Unknown,13,57,22.81,1,30,3.33
+Holland America Line,Noordam,7/30/2017,8/6/2017,Norovirus,82,"2,143",3.832,5,790,0.63
+Holland America Line,Nieuw Amsterdam,7/22/2017,7/29/2017,Norovirus,73,"2,210",3.30,4,869,0.46
+Holland America Line,Noordam,7/23/2017,7/30/2017,Norovirus,167,"2,086",8.02,6,802,0.75
+Holland America Line,Volendam,7/19/2017,7/26/2017,Norovirus,46,"1,473",3.12,10,620,1.61
+Holland America Line,Volendam,7/12/2017,7/19/2017,Norovirus,68,"1,480",4.59,1,610,0.16
+Oceania Cruises,Regatta,3/29/2017,4/14/2017,Norovirus,23,639,3.60,1,397,0.25
+Princess Cruises,Coral Princess,3/8/2017,3/18/2017,Norovirus,157,"2,016",7.79,25,881,2.84

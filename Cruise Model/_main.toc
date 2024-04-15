@@ -1,0 +1,6 @@
+\contentsline {part}{I\hspace {1em}Introduction}{7}{part.1}%
+\contentsline {paragraph}{VSP Definition of Outbreak}{10}{section*.7}%
+\contentsline {paragraph}{Spread of Norovirus}{10}{section*.8}%
+\contentsline {paragraph}{The Jones Act and The Passenger Vessel Services Act}{11}{section*.9}%
+\contentsline {part}{II\hspace {1em}Data}{13}{part.2}%
+\contentsline {part}{III\hspace {1em}Model Fitting}{35}{part.3}%

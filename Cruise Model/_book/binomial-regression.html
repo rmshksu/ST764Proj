@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Binomial Regression | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</title>
+  <meta name="description" content="Binomial Regression | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Binomial Regression | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Binomial Regression | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  
+  
+  
+
+<meta name="author" content="Robert Sholl, Kelechi Igwe, Stephen Edache" />
+
+
+<meta name="date" content="2024-04-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intercept-only-model.html"/>
+<link rel="next" href="program-validation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i>Background</a>
+<ul>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#project-intent"><i class="fa fa-check"></i>Project Intent</a></li>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#structure"><i class="fa fa-check"></i>Structure</a></li>
+<li class="chapter" data-level="" data-path="simplifying-assumptions.html"><a href="simplifying-assumptions.html"><i class="fa fa-check"></i>Simplifying Assumptions</a></li>
+</ul></li>
+<li class="part"><span><b>II Data</b></span></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html"><i class="fa fa-check"></i>Data Acquisition and Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i>Acquisition</a></li>
+<li class="chapter" data-level="" data-path="infection-data.html"><a href="infection-data.html"><i class="fa fa-check"></i>Infection Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="infection-data.html"><a href="infection-data.html#infection-totals-and-rate"><i class="fa fa-check"></i>Infection Totals and Rate</a></li>
+<li class="chapter" data-level="" data-path="infection-data.html"><a href="infection-data.html#sectioning-off-data"><i class="fa fa-check"></i>Sectioning Off Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="temporal-data.html"><a href="temporal-data.html"><i class="fa fa-check"></i>Temporal Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="temporal-data.html"><a href="temporal-data.html#voyage-duration"><i class="fa fa-check"></i>Voyage Duration</a></li>
+<li class="chapter" data-level="" data-path="temporal-data.html"><a href="temporal-data.html#voyage-seasons"><i class="fa fa-check"></i>Voyage Seasons</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i>Spatial Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html#liners-and-ships"><i class="fa fa-check"></i>Liners and Ships</a></li>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html#size-intervals"><i class="fa fa-check"></i>Size Intervals</a></li>
+<li class="chapter" data-level="" data-path="spatial-data.html"><a href="spatial-data.html#ports-of-origin"><i class="fa fa-check"></i>Ports of Origin</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="final-preparations.html"><a href="final-preparations.html"><i class="fa fa-check"></i>Final Preparations</a></li>
+</ul></li>
+<li class="part"><span><b>III Model Fitting</b></span></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="intercept-only-model.html"><a href="intercept-only-model.html"><i class="fa fa-check"></i>Intercept-Only Model</a></li>
+<li class="chapter" data-level="" data-path="binomial-regression.html"><a href="binomial-regression.html"><i class="fa fa-check"></i>Binomial Regression</a></li>
+<li class="chapter" data-level="" data-path="program-validation.html"><a href="program-validation.html"><i class="fa fa-check"></i>Program Validation</a>
+<ul>
+<li class="chapter" data-level="" data-path="program-validation.html"><a href="program-validation.html#troubleshooting"><i class="fa fa-check"></i>Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Model Evaluation</b></span></li>
+<li class="chapter" data-level="" data-path="model-checking.html"><a href="model-checking.html"><i class="fa fa-check"></i>Model Checking</a>
+<ul>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i>Regression Diagnostics</a></li>
+<li class="chapter" data-level="" data-path="graphical-diagnostics.html"><a href="graphical-diagnostics.html"><i class="fa fa-check"></i>Graphical Diagnostics</a></li>
+<li class="chapter" data-level="" data-path="within-sample-validation.html"><a href="within-sample-validation.html"><i class="fa fa-check"></i>Within-Sample Validation</a></li>
+<li class="chapter" data-level="" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i>Forecasting</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="binomial-regression" class="section level2 unnumbered hasAnchor">
+<h2>Binomial Regression<a href="binomial-regression.html#binomial-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>glm</code> function in the <code>stats</code> R package is a simple yet effective tool for this next model.</p>
+<p>Using the following framework for our model:</p>
+<span class="math display">\[\begin{equation}
+{Data \ Model}: [z=y]
+\newline
+{Process \ Model}: y_{ij} \sim Binom(n_i,\phi_j)
+\newline
+{Parameter \ Model}: [\phi_j \ | \ \phi_s,\phi_t]
+\newline
+\phi_s = MVN(0,\epsilon)
+\end{equation}\]</span>
+<p>We will be using the logit function</p>
+<span class="math display">\[\begin{equation}
+1 \over e^{\beta_0 + \beta_1*X + \phi_s + \phi_t}
+\end{equation}\]</span>
+<p>as our model for predicted rate of infection.</p>
+<p>We’ll use our intercept of size but as a category this time, then add in our voyage duration, latitude, and longitude. We set the <code>family="quasibinomial"</code> since it creates the same effect as <code>family="binomial"</code>, but avoids a repetitive error code.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="binomial-regression.html#cb43-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(infection <span class="sc">~</span> size.cat <span class="sc">+</span> total_days <span class="sc">+</span> cruisedata.df<span class="sc">$</span>Start_lat <span class="sc">+</span> cruisedata.df<span class="sc">$</span>Start_long, <span class="at">data=</span>cruisedata.df, <span class="at">family=</span><span class="st">&quot;quasibinomial&quot;</span>)</span>
+<span id="cb43-2"><a href="binomial-regression.html#cb43-2" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="binomial-regression.html#cb43-3" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = infection ~ size.cat + total_days + cruisedata.df$Start_lat + 
+##     cruisedata.df$Start_long, family = &quot;quasibinomial&quot;, data = cruisedata.df)
+## 
+## Coefficients:
+##                           Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)              -3.354517   0.448056  -7.487 6.01e-10 ***
+## size.cat2                -0.066468   0.384998  -0.173   0.8636    
+## size.cat3                -0.138738   0.374774  -0.370   0.7127    
+## size.cat4                -0.148188   0.368990  -0.402   0.6895    
+## size.cat5                 0.070229   0.361981   0.194   0.8469    
+## total_days                0.032019   0.012450   2.572   0.0129 *  
+## cruisedata.df$Start_lat   0.004797   0.003678   1.304   0.1976    
+## cruisedata.df$Start_long  0.002612   0.001564   1.670   0.1006    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for quasibinomial family taken to be 0.01363758)
+## 
+##     Null deviance: 0.84225  on 62  degrees of freedom
+## Residual deviance: 0.64622  on 55  degrees of freedom
+## AIC: NA
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<p>Once again, a data frame for our prediction is built, with predicted rate, size categories, observed rate of infection, voyage duration, latitude, and longitude. Then we fill the empty prediction column with expected rates of infection.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="binomial-regression.html#cb45-1" tabindex="-1"></a>df.predm2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">yhat_rate =</span> <span class="cn">NA</span>,</span>
+<span id="cb45-2"><a href="binomial-regression.html#cb45-2" tabindex="-1"></a>                        <span class="at">size.cat =</span> cruisedata.df<span class="sc">$</span>size.cat,</span>
+<span id="cb45-3"><a href="binomial-regression.html#cb45-3" tabindex="-1"></a>                        <span class="at">actual_rate =</span> cruisedata.df<span class="sc">$</span>infection,</span>
+<span id="cb45-4"><a href="binomial-regression.html#cb45-4" tabindex="-1"></a>                        <span class="at">total_days =</span> cruisedata.df<span class="sc">$</span>total_days,</span>
+<span id="cb45-5"><a href="binomial-regression.html#cb45-5" tabindex="-1"></a>                        <span class="at">lat =</span> cruisedata.df<span class="sc">$</span>Start_lat,</span>
+<span id="cb45-6"><a href="binomial-regression.html#cb45-6" tabindex="-1"></a>                        <span class="at">long =</span> cruisedata.df<span class="sc">$</span>Start_long)</span>
+<span id="cb45-7"><a href="binomial-regression.html#cb45-7" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="binomial-regression.html#cb45-8" tabindex="-1"></a>df.predm2<span class="sc">$</span>yhat_rate <span class="ot">&lt;-</span> <span class="fu">predict</span>(m2,<span class="at">newdata=</span>df.predm2) </span>
+<span id="cb45-9"><a href="binomial-regression.html#cb45-9" tabindex="-1"></a></span>
+<span id="cb45-10"><a href="binomial-regression.html#cb45-10" tabindex="-1"></a>df.predm2<span class="sc">$</span>yhat_rate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>df.predm2<span class="sc">$</span>yhat_rate))</span>
+<span id="cb45-11"><a href="binomial-regression.html#cb45-11" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="binomial-regression.html#cb45-12" tabindex="-1"></a><span class="fu">head</span>(df.predm2)</span></code></pre></div>
+<pre><code>##    yhat_rate size.cat actual_rate total_days      lat      long
+## 1 0.07566357        5  0.04125690    29 days  33.7405 -118.2786
+## 2 0.03889552        5  0.03504727     7 days  33.7405 -118.2786
+## 3 0.03590919        4  0.03586066     7 days  39.2876  -76.6108
+## 4 0.03703431        4  0.04017857     8 days  39.2876  -76.6108
+## 5 0.05298255        3  0.04384384    26 days -22.8955  -43.1822
+## 6 0.03939088        3  0.06709957    14 days  32.7157 -117.1611</code></pre>
+<p>Plotting this the way we did before does not achieve much due to how many variables we’re working with. The plot below details that concept, in my opinion, very well.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="binomial-regression.html#cb47-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df.predm2, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(total_days), <span class="at">y=</span>actual_rate)) <span class="sc">+</span></span>
+<span id="cb47-2"><a href="binomial-regression.html#cb47-2" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Voyage Duration&quot;</span>, <span class="at">y=</span><span class="st">&quot;Observed Rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="binomial-regression.html#cb47-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-4"><a href="binomial-regression.html#cb47-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>yhat_rate), <span class="at">color=</span><span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/predm2_plot-1.png" width="672" /></p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intercept-only-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="program-validation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

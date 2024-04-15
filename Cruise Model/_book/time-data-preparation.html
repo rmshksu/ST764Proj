@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Time Data Preparation | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</title>
+  <meta name="description" content="Time Data Preparation | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Time Data Preparation | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Time Data Preparation | Modeling the Spread of Norovirus on Commercial Cruise Voyages in R" />
+  
+  
+  
+
+<meta name="author" content="Robert Sholl, Kelechi Igwe, Stephen Edache" />
+
+
+<meta name="date" content="2024-04-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="infection-data-preparation.html"/>
+<link rel="next" href="spatial-data-preparation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i>Background</a>
+<ul>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#project-intent"><i class="fa fa-check"></i>Project Intent</a></li>
+<li class="chapter" data-level="" data-path="background.html"><a href="background.html#structure"><i class="fa fa-check"></i>Structure</a></li>
+<li class="chapter" data-level="" data-path="simplifying-assumptions.html"><a href="simplifying-assumptions.html"><i class="fa fa-check"></i>Simplifying Assumptions</a></li>
+</ul></li>
+<li class="part"><span><b>II Data</b></span></li>
+<li class="chapter" data-level="" data-path="data-acquisition-and-preparation.html"><a href="data-acquisition-and-preparation.html"><i class="fa fa-check"></i>Data Acquisition and Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i>Acquisition</a></li>
+<li class="chapter" data-level="" data-path="infection-data-preparation.html"><a href="infection-data-preparation.html"><i class="fa fa-check"></i>Infection Data Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="infection-data-preparation.html"><a href="infection-data-preparation.html#infection-totals-and-rate"><i class="fa fa-check"></i>Infection Totals and Rate</a></li>
+<li class="chapter" data-level="" data-path="infection-data-preparation.html"><a href="infection-data-preparation.html#sectioning-off-data"><i class="fa fa-check"></i>Sectioning Off Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="time-data-preparation.html"><a href="time-data-preparation.html"><i class="fa fa-check"></i>Time Data Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="time-data-preparation.html"><a href="time-data-preparation.html#voyage-duration"><i class="fa fa-check"></i>Voyage Duration</a></li>
+<li class="chapter" data-level="" data-path="time-data-preparation.html"><a href="time-data-preparation.html#voyage-seasons"><i class="fa fa-check"></i>Voyage Seasons</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="spatial-data-preparation.html"><a href="spatial-data-preparation.html"><i class="fa fa-check"></i>Spatial Data Preparation</a>
+<ul>
+<li class="chapter" data-level="" data-path="spatial-data-preparation.html"><a href="spatial-data-preparation.html#liners-and-ships"><i class="fa fa-check"></i>Liners and Ships</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-preparation.html"><a href="spatial-data-preparation.html#size-intervals"><i class="fa fa-check"></i>Size Intervals</a></li>
+<li class="chapter" data-level="" data-path="spatial-data-preparation.html"><a href="spatial-data-preparation.html#ports-of-origin"><i class="fa fa-check"></i>Ports of Origin</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="final-preparations.html"><a href="final-preparations.html"><i class="fa fa-check"></i>Final Preparations</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="time-data-preparation" class="section level2 unnumbered hasAnchor">
+<h2>Time Data Preparation<a href="time-data-preparation.html#time-data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As the goal of this project is to produce a model that incorporates both space and time it’s best we clean up and prepare our temporal component of the data.</p>
+<div id="voyage-duration" class="section level3 unnumbered hasAnchor">
+<h3>Voyage Duration<a href="time-data-preparation.html#voyage-duration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ll follow a similar system as with our infection data and place our start and end dates into data frames.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="time-data-preparation.html#cb13-1" tabindex="-1"></a>df.t14 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> cru.noro<span class="fl">.14</span>[,<span class="dv">3</span>],</span>
+<span id="cb13-2"><a href="time-data-preparation.html#cb13-2" tabindex="-1"></a>                   <span class="at">end =</span> cru.noro<span class="fl">.14</span>[,<span class="dv">4</span>])</span>
+<span id="cb13-3"><a href="time-data-preparation.html#cb13-3" tabindex="-1"></a>df.t15 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> cru.noro<span class="fl">.15</span>[,<span class="dv">3</span>],</span>
+<span id="cb13-4"><a href="time-data-preparation.html#cb13-4" tabindex="-1"></a>                     <span class="at">end =</span> cru.noro<span class="fl">.15</span>[,<span class="dv">4</span>])</span>
+<span id="cb13-5"><a href="time-data-preparation.html#cb13-5" tabindex="-1"></a>df.t16 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> cru.noro<span class="fl">.16</span>[,<span class="dv">3</span>],</span>
+<span id="cb13-6"><a href="time-data-preparation.html#cb13-6" tabindex="-1"></a>                     <span class="at">end =</span> cru.noro<span class="fl">.16</span>[,<span class="dv">4</span>])</span>
+<span id="cb13-7"><a href="time-data-preparation.html#cb13-7" tabindex="-1"></a>df.t17 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> cru.noro<span class="fl">.17</span>[,<span class="dv">3</span>],</span>
+<span id="cb13-8"><a href="time-data-preparation.html#cb13-8" tabindex="-1"></a>                     <span class="at">end =</span> cru.noro<span class="fl">.17</span>[,<span class="dv">4</span>])</span>
+<span id="cb13-9"><a href="time-data-preparation.html#cb13-9" tabindex="-1"></a>df.t18 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> cru.noro<span class="fl">.18</span>[,<span class="dv">3</span>],</span>
+<span id="cb13-10"><a href="time-data-preparation.html#cb13-10" tabindex="-1"></a>                     <span class="at">end =</span> cru.noro<span class="fl">.18</span>[,<span class="dv">4</span>])</span>
+<span id="cb13-11"><a href="time-data-preparation.html#cb13-11" tabindex="-1"></a>df.t19 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> cru.noro<span class="fl">.19</span>[,<span class="dv">3</span>],</span>
+<span id="cb13-12"><a href="time-data-preparation.html#cb13-12" tabindex="-1"></a>                     <span class="at">end =</span> cru.noro<span class="fl">.19</span>[,<span class="dv">4</span>])</span>
+<span id="cb13-13"><a href="time-data-preparation.html#cb13-13" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="time-data-preparation.html#cb13-14" tabindex="-1"></a><span class="fu">head</span>(df.t14)</span></code></pre></div>
+<pre><code>##                  start                end
+## 1 Sailing_Dates(Start) Sailing_Dates(End)
+## 2           10/18/2014         11/16/2014
+## 3             4/5/2014          4/12/2014
+## 4             4/5/2014          4/12/2014
+## 5            3/28/2014           4/5/2014
+## 6             3/2/2014          3/28/2014</code></pre>
+<p>While this isn’t a situation of actual messy data, it’s appropriate to say the data’s format is very “messy”. We see once again that we have a descriptive row at the top of each column, using the same technique we’ll remove it.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="time-data-preparation.html#cb15-1" tabindex="-1"></a>df.t14c <span class="ot">&lt;-</span> df.t14[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb15-2"><a href="time-data-preparation.html#cb15-2" tabindex="-1"></a>df.t15c <span class="ot">&lt;-</span> df.t15[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb15-3"><a href="time-data-preparation.html#cb15-3" tabindex="-1"></a>df.t16c <span class="ot">&lt;-</span> df.t16[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb15-4"><a href="time-data-preparation.html#cb15-4" tabindex="-1"></a>df.t17c <span class="ot">&lt;-</span> df.t17[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb15-5"><a href="time-data-preparation.html#cb15-5" tabindex="-1"></a>df.t18c <span class="ot">&lt;-</span> df.t18[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span>
+<span id="cb15-6"><a href="time-data-preparation.html#cb15-6" tabindex="-1"></a>df.t19c <span class="ot">&lt;-</span> df.t19[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]</span></code></pre></div>
+<p>We’ll now reformat the dates into Month/Day/Year using the <code>dplyr</code> <code>mutate</code> function.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="time-data-preparation.html#cb16-1" tabindex="-1"></a>df.t14c <span class="ot">&lt;-</span> df.t14c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">start =</span> <span class="fu">mdy</span>(start))</span>
+<span id="cb16-2"><a href="time-data-preparation.html#cb16-2" tabindex="-1"></a>df.t14c <span class="ot">&lt;-</span> df.t14c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">end =</span> <span class="fu">mdy</span>(end))</span>
+<span id="cb16-3"><a href="time-data-preparation.html#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="time-data-preparation.html#cb16-4" tabindex="-1"></a>df.t15c <span class="ot">&lt;-</span> df.t15c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">start =</span> <span class="fu">mdy</span>(start))</span>
+<span id="cb16-5"><a href="time-data-preparation.html#cb16-5" tabindex="-1"></a>df.t15c <span class="ot">&lt;-</span> df.t15c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">end =</span> <span class="fu">mdy</span>(end))</span>
+<span id="cb16-6"><a href="time-data-preparation.html#cb16-6" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="time-data-preparation.html#cb16-7" tabindex="-1"></a>df.t16c <span class="ot">&lt;-</span> df.t16c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">start =</span> <span class="fu">mdy</span>(start))</span>
+<span id="cb16-8"><a href="time-data-preparation.html#cb16-8" tabindex="-1"></a>df.t16c <span class="ot">&lt;-</span> df.t16c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">end =</span> <span class="fu">mdy</span>(end))</span>
+<span id="cb16-9"><a href="time-data-preparation.html#cb16-9" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="time-data-preparation.html#cb16-10" tabindex="-1"></a>df.t17c <span class="ot">&lt;-</span> df.t17c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">start =</span> <span class="fu">mdy</span>(start))</span>
+<span id="cb16-11"><a href="time-data-preparation.html#cb16-11" tabindex="-1"></a>df.t17c <span class="ot">&lt;-</span> df.t17c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">end =</span> <span class="fu">mdy</span>(end))</span>
+<span id="cb16-12"><a href="time-data-preparation.html#cb16-12" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="time-data-preparation.html#cb16-13" tabindex="-1"></a>df.t18c <span class="ot">&lt;-</span> df.t18c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">start =</span> <span class="fu">mdy</span>(start))</span>
+<span id="cb16-14"><a href="time-data-preparation.html#cb16-14" tabindex="-1"></a>df.t18c <span class="ot">&lt;-</span> df.t18c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">end =</span> <span class="fu">mdy</span>(end))</span>
+<span id="cb16-15"><a href="time-data-preparation.html#cb16-15" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="time-data-preparation.html#cb16-16" tabindex="-1"></a>df.t19c <span class="ot">&lt;-</span> df.t19c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">start =</span> <span class="fu">mdy</span>(start))</span>
+<span id="cb16-17"><a href="time-data-preparation.html#cb16-17" tabindex="-1"></a>df.t19c <span class="ot">&lt;-</span> df.t19c <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">end =</span> <span class="fu">mdy</span>(end))</span></code></pre></div>
+<p>Our goal is to use this as a way to get the duration these cruise ships are at sea. We also want to retain these start and end dates for future use in potential variables so we’ll be sure to declare a new column rather than eliminate any currently cleaned up data.</p>
+<p>Taking the difference between the start and end will give us a number of days. We have to declare our column data <code>as.Date</code> in order for it to work in this function.</p>
+<p>It’s more logical to subtract the end from the start rather than what we do with the code below, but this does allow an opportunity to detail the syntax for taking absolute values so it’s useful to the overall tutorial to retain this method regardless of redundancy.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="time-data-preparation.html#cb17-1" tabindex="-1"></a>df.t14c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t14c<span class="sc">$</span>start))<span class="sc">-</span><span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t14c<span class="sc">$</span>end)))</span>
+<span id="cb17-2"><a href="time-data-preparation.html#cb17-2" tabindex="-1"></a>df.t15c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t15c<span class="sc">$</span>start))<span class="sc">-</span><span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t15c<span class="sc">$</span>end)))</span>
+<span id="cb17-3"><a href="time-data-preparation.html#cb17-3" tabindex="-1"></a>df.t16c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t16c<span class="sc">$</span>start))<span class="sc">-</span><span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t16c<span class="sc">$</span>end)))</span>
+<span id="cb17-4"><a href="time-data-preparation.html#cb17-4" tabindex="-1"></a>df.t17c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t17c<span class="sc">$</span>start))<span class="sc">-</span><span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t17c<span class="sc">$</span>end)))</span>
+<span id="cb17-5"><a href="time-data-preparation.html#cb17-5" tabindex="-1"></a>df.t18c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t18c<span class="sc">$</span>start))<span class="sc">-</span><span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t18c<span class="sc">$</span>end)))</span>
+<span id="cb17-6"><a href="time-data-preparation.html#cb17-6" tabindex="-1"></a>df.t19c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t19c<span class="sc">$</span>start))<span class="sc">-</span><span class="fu">as.Date</span>(<span class="fu">as.character</span>(df.t19c<span class="sc">$</span>end)))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="time-data-preparation.html#cb18-1" tabindex="-1"></a><span class="co"># convert negative values to positive</span></span>
+<span id="cb18-2"><a href="time-data-preparation.html#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="time-data-preparation.html#cb18-3" tabindex="-1"></a>df.t14c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">abs</span>(df.t14c<span class="sc">$</span>d_t)</span>
+<span id="cb18-4"><a href="time-data-preparation.html#cb18-4" tabindex="-1"></a>df.t15c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">abs</span>(df.t15c<span class="sc">$</span>d_t)</span>
+<span id="cb18-5"><a href="time-data-preparation.html#cb18-5" tabindex="-1"></a>df.t16c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">abs</span>(df.t16c<span class="sc">$</span>d_t)</span>
+<span id="cb18-6"><a href="time-data-preparation.html#cb18-6" tabindex="-1"></a>df.t17c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">abs</span>(df.t17c<span class="sc">$</span>d_t)</span>
+<span id="cb18-7"><a href="time-data-preparation.html#cb18-7" tabindex="-1"></a>df.t18c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">abs</span>(df.t18c<span class="sc">$</span>d_t)</span>
+<span id="cb18-8"><a href="time-data-preparation.html#cb18-8" tabindex="-1"></a>df.t19c<span class="sc">$</span>d_t <span class="ot">&lt;-</span> <span class="fu">abs</span>(df.t19c<span class="sc">$</span>d_t)</span></code></pre></div>
+<p>Now we merge all of our cleaned up time data into one convenient data frame.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="time-data-preparation.html#cb19-1" tabindex="-1"></a>df.tt <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df.t14c, df.t15c, df.t16c, df.t17c, df.t18c, df.t19c)</span>
+<span id="cb19-2"><a href="time-data-preparation.html#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="time-data-preparation.html#cb19-3" tabindex="-1"></a><span class="fu">head</span>(df.tt)</span></code></pre></div>
+<pre><code>##        start        end     d_t
+## 1 2014-10-18 2014-11-16 29 days
+## 2 2014-04-05 2014-04-12  7 days
+## 3 2014-04-05 2014-04-12  7 days
+## 4 2014-03-28 2014-04-05  8 days
+## 5 2014-03-02 2014-03-28 26 days
+## 6 2014-02-08 2014-02-22 14 days</code></pre>
+</div>
+<div id="voyage-seasons" class="section level3 unnumbered hasAnchor">
+<h3>Voyage Seasons<a href="time-data-preparation.html#voyage-seasons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We want to categorize our data into seasons to gain another discrete temporal variable. It’s easier to do this with our new data frame constructed out of our cleaned up time data, so please remember to follow these steps in the order they are presented to get proper results.</p>
+<p>It isn’t a particularly clean technique to create a new data frame every time you want to create more variables.</p>
+<p>In an environment where your code may inevitably be passed along to someone further ahead in production than yourself you will want to clear all of the excess vectors and data frames we make use of here.</p>
+<p>However, it cannot be understated the value of using this practice when testing unfamiliar programming techniques. By separating variables of interest from their sources you can avoid a lot of unnecessary back tracking through your data preparation scripts whenever an error is made. This practice can also make troubleshooting errors a smooth, piece-wise operation, rather than a gauntlet of interpreting error logs.</p>
+<p>We’ll create a new data frame to isolate the columns we want to work with.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="time-data-preparation.html#cb21-1" tabindex="-1"></a>df.seasons <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> df.tt<span class="sc">$</span>start,</span>
+<span id="cb21-2"><a href="time-data-preparation.html#cb21-2" tabindex="-1"></a>                         <span class="at">end =</span> df.tt<span class="sc">$</span>end)</span></code></pre></div>
+<p>We’ll make use of the <code>dplyr</code> package again to reformat our M/D/Y format to just months. <code>lubridate</code> is currently a useful replacement for this package, in this context, but I found <code>dplyr</code> to be sufficient for this specific task and far less prone to errors.</p>
+<p>The syntax below simply declares the columns for the start and end dates as just the month component of each current column. If you receive errors after this point you will likely have to rebuild the <code>df.seasons</code> data frame.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="time-data-preparation.html#cb22-1" tabindex="-1"></a>df.seasons <span class="ot">&lt;-</span> df.seasons <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">start =</span> <span class="fu">month</span>(start))</span>
+<span id="cb22-2"><a href="time-data-preparation.html#cb22-2" tabindex="-1"></a>df.seasons <span class="ot">&lt;-</span> df.seasons <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">end =</span> <span class="fu">month</span>(end))</span></code></pre></div>
+<p>Since we are categorizing our start and end dates by seasons, we have to declare what these seasons will look like in our final product. When looking at both the data available and the function being used, it’s most convenient to organize them in the following way:</p>
+<blockquote>
+<p>1 Winter = December to February (12 to 2)
+2 Spring = March to May (3 to 5)
+3 Fall = September to November (9 to 11)
+4 Summer = June to August (6 to 8)</p>
+</blockquote>
+<p><code>findInterval</code> works well for this, each number in <code>c(...)</code> has to be the cut-off for the category. Since winter includes a month labeled with a number greater than our cut-off value in it’s category, we’ll use <code>gsub</code> once again to change anything that is found to be in the <code>"0"</code> interval into the <code>"1"</code> interval.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="time-data-preparation.html#cb23-1" tabindex="-1"></a>df.seasons<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">findInterval</span>(df.seasons<span class="sc">$</span>start, <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">11</span>))</span>
+<span id="cb23-2"><a href="time-data-preparation.html#cb23-2" tabindex="-1"></a>df.seasons<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">findInterval</span>(df.seasons<span class="sc">$</span>end, <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">11</span>))</span>
+<span id="cb23-3"><a href="time-data-preparation.html#cb23-3" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="time-data-preparation.html#cb23-4" tabindex="-1"></a><span class="co"># converting all 0s to 1s</span></span>
+<span id="cb23-5"><a href="time-data-preparation.html#cb23-5" tabindex="-1"></a>df.seasons<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>,df.seasons<span class="sc">$</span>start)</span>
+<span id="cb23-6"><a href="time-data-preparation.html#cb23-6" tabindex="-1"></a>df.seasons<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>,df.seasons<span class="sc">$</span>end)</span>
+<span id="cb23-7"><a href="time-data-preparation.html#cb23-7" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="time-data-preparation.html#cb23-8" tabindex="-1"></a><span class="fu">head</span>(df.seasons)</span></code></pre></div>
+<pre><code>##   start end
+## 1     3   4
+## 2     1   1
+## 3     1   1
+## 4     1   1
+## 5     1   1
+## 6     1   1</code></pre>
+<p>We now have all of our time data prepared and organized for our model.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="infection-data-preparation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="spatial-data-preparation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

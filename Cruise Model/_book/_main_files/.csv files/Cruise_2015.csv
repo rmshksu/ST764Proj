@@ -1,0 +1,14 @@
+﻿Column1,Column2,Column3,Column4,Column5,Column6,Column7,Column8,Column9,Column10,Column11
+Cruise Line,Cruise Ship,Sailing_Dates(Start),Sailing_Dates(End),Causative Agent,Proportion_Case_Counts_Numerator(Passengers),Proportion_Case_Counts_Denominator(Passengers),%_Case_Counts(Passengers),Proportion_Case_Counts_Numerator(Crew),Proportion_Case_Counts_Denominator(Crew),%_Case_Counts(Crew)
+Holland America Line,Veendam,12/20/2015,12/27/2015,Norovirus,73,"1,429",5.11,11,588,1.87
+Princess Cruises,Caribbean Princess,12/13/2015,12/20/2015,Norovirus,163,"3,239",5.03,13,"1,154",1.13
+Oceania Cruises,Oceania Riviera,11/18/2015,12/2/2015,Norovirus,74,"1,160",6.38,12,776,1.55
+Princess Cruises,Star Princess,4/29/2015,5/14/2015,Norovirus,135,"2,588",5.22,16,"1,093",1.46
+Oceania Cruises,Oceania Marina,4/21/2015,5/7/2015,Norovirus,69,"1,185",5.82,11,769,1.43
+Holland America Line,ms Maasdam,4/17/2015,5/1/2015,Norovirus,67,"1,138",5.89,12,578,2.08
+Princess Cruises,Coral Princess,4/12/2015,4/27/2015,Norovirus,99,"1,958",5.06,12,881,1.36
+Royal Caribbean Cruise Line,Legend of the Seas,3/30/2015,4/14/2015,Norovirus,135,"1,746",7.73,7,748,0.94
+Celebrity Cruises,Celebrity Infinity,3/29/2015,4/13/2015,Norovirus,106,"2,117",5.00,6,964,0.62
+Norwegian Cruise Line,Norwegian Pearl,3/26/2015,4/6/2015,Norovirus,145,"2,472",5.87,13,"1,062",1.22
+Celebrity Cruises,Celebrity Equinox,2/13/2015,2/23/2015,Norovirus,142,"2,896",4.89,8,"1,209",0.66
+Royal Caribbean Cruise Line,Grandeur of the Seas,1/24/2015,2/3/2015,Norovirus,198,"1,948",10.16,9,786,1.15
