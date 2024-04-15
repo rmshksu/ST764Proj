@@ -86,6 +86,7 @@ library(stringr, lib = "_bookdown_files/")
 library(withr, lib = "_bookdown_files/")
 library(ggplot2, lib = "_bookdown_files/")
 library(labeling, lib = "_bookdown_files/")
+library(farver, lib = "_bookdown_files/")
 ```
 
 ```{r data_packages_echo, eval=FALSE, include=FALSE, echo=TRUE}

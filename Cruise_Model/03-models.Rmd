@@ -12,9 +12,28 @@ Results of each model will be shown, but analysis on what they provide will not 
 
 For the analytics, please refer to Analysis chapter. 
 
-```{r data_packages_echo_f, eval=TRUE, include=FALSE, echo=FALSE}
-install.packages("ggplot2", lib = "_bookdown_files/")
+```{r data_packages_tobesafe, eval=TRUE, include=FALSE, echo=FALSE}
+library(readxl, lib = "_bookdown_files/")
+library(lubridate, lib = "_bookdown_files/")
+library(dplyr, lib = "_bookdown_files/") 
+library(tidyr, lib = "_bookdown_files/")
+library(stringr, lib = "_bookdown_files/")
+library(withr, lib = "_bookdown_files/")
 library(ggplot2, lib = "_bookdown_files/")
+library(labeling, lib = "_bookdown_files/")
+library(farver, lib = "_bookdown_files/")
+```
+
+```{r data_prep_packages_install_kms, eval=TRUE, include=FALSE, echo=FALSE}
+install.packages("readxl", dependencies=T, lib = "_bookdown_files/")
+install.packages("lubridate", dependencies=T, lib = "_bookdown_files/")
+install.packages("dplyr", dependencies=T, lib = "_bookdown_files/")
+install.packages("tidyr", dependencies=T, lib = "_bookdown_files/")
+install.packages("stringr", dependencies=T, lib = "_bookdown_files/")
+install.packages("ggplot2", dependencies=T, lib = "_bookdown_files/")
+install.packages("withr", dependencies=T, lib = "_bookdown_files/")
+install.packages("labeling", dependencies=T, lib="_bookdown_files/")
+install.packages("farver", dependencies=T, lib="_bookdown_files/")
 ```
 
 ## Intercept-Only Model {-}
