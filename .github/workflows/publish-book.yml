@@ -33,7 +33,7 @@ jobs:
 
     - name: build book
       run: |
-        cd C:\Users\rmsho\Documents\GitHub\stat764-cruise-proj\Cruise Model
+        cd Cruise_Model
         Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
 
     - name: deploy to the hub pages
