@@ -14,7 +14,6 @@ bookdown::gitbook:
     sharing:
       github: yes
       facebook: no
-bookdown::pdf_book:
   includes:
   keep_tex: yes
   latex_engine: xelatex

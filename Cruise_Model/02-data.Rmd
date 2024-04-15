@@ -12,15 +12,6 @@ This chapter will cover all data acquisition, preparation, and organization. Eac
 
 Despite this, there will still be a component of acting as an in-depth R tutorial. The following packages will be needed for this book's content, so their install commands have been included below:
 
-```{r data_prep_packages_install, eval=TRUE, include=FALSE, echo=FALSE}
-install.packages("readxl")
-install.packages("lubridate")
-install.packages("dplyr")
-install.packages("tidyr")
-install.packages("stringr")
-install.packages("ggplot2")
-```
-
 ```{r data_prep_packages, eval=FALSE, include=FALSE, echo=TRUE}
 install.packages("readxl")
 install.packages("lubridate")
