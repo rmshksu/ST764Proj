@@ -24,7 +24,7 @@ jobs:
 
     - name: install dependencies
       run: |
-        Rscript -e "install.packages('remotes')""
+        Rscript -e "install.packages('remotes')"
         Rscript -e "remotes::install_deps(dependencies = TRUE)"
         Rscript -e "remotes::install_github('rstudio/bookdown')"
 
