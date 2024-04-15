@@ -20,6 +20,7 @@ install.packages("tidyr", lib = "_bookdown_files/")
 install.packages("stringr", lib = "_bookdown_files/")
 install.packages("ggplot2", lib = "_bookdown_files/")
 install.packages("withr", lib = "_bookdown_files/")
+install.packages("labeling", lib="_bookdown_files/")
 ```
 
 ```{r data_prep_packages, eval=FALSE, include=FALSE, echo=TRUE}
@@ -83,6 +84,7 @@ library(tidyr, lib = "_bookdown_files/")
 library(stringr, lib = "_bookdown_files/")
 library(withr, lib = "_bookdown_files/")
 library(ggplot2, lib = "_bookdown_files/")
+library(labeling, lib = "_bookdown_files/")
 ```
 
 ```{r data_packages_echo, eval=FALSE, include=FALSE, echo=TRUE}
