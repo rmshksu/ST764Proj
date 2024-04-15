@@ -33,7 +33,7 @@ jobs:
 
     - name: build book
       run: |
-        Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
+        Rscript -e "bookdown::render_book('Cruise_Model/index.Rmd', 'bookdown::gitbook')"
 
     - name: deploy to the hub pages
       uses: peaceiris/actions-gh-pages@v3
