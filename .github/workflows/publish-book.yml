@@ -24,7 +24,7 @@ jobs:
 
     - name: install pak and dependencies
       run: |
-        Rscript -e "install.packages("pak", repos = "r-lib.github.io/p/pak/dev/")"
+        Rscript -e "install.packages('pak', repos = "r-lib.github.io/p/pak/dev/")"
         Rscript -e "pak::pkg_install('rstudio/bookdown')"
 
     - name: build book
