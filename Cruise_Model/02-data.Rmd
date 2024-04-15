@@ -19,6 +19,7 @@ install.packages("dplyr", lib = "_bookdown_files/")
 install.packages("tidyr", lib = "_bookdown_files/")
 install.packages("stringr", lib = "_bookdown_files/")
 install.packages("ggplot2", lib = "_bookdown_files/")
+install.packages("withr", lib = "_bookdown_files/")
 ```
 
 ```{r data_prep_packages, eval=FALSE, include=FALSE, echo=TRUE}
@@ -74,12 +75,13 @@ In order to get the code to function, you will have to rename the file paths. An
 
 You will need the following packages for all data preparation, the code block below will make them available to your project environment post-intallation:
 lib = "_bookdown_files/"
-```{r data_packages_echo_f, eval=TRUE, include=FALSE, echo=FALSE}
+```{r data_packages, eval=TRUE, include=FALSE, echo=FALSE}
 library(readxl, lib = "_bookdown_files/")
 library(lubridate, lib = "_bookdown_files/")
 library(dplyr, lib = "_bookdown_files/") 
 library(tidyr, lib = "_bookdown_files/")
 library(stringr, lib = "_bookdown_files/")
+library(withr, lib = "_bookdown_files/")
 library(ggplot2, lib = "_bookdown_files/")
 ```
 

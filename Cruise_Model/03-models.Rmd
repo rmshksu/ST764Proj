@@ -12,6 +12,11 @@ Results of each model will be shown, but analysis on what they provide will not 
 
 For the analytics, please refer to Analysis chapter. 
 
+```{r data_packages_echo_f, eval=TRUE, include=FALSE, echo=FALSE}
+install.packages("ggplot2", lib = "_bookdown_files/")
+library(ggplot2, lib = "_bookdown_files/")
+```
+
 ## Intercept-Only Model {-}
 
 The intercept-only regression model contains no predictor variables. For our purpose, it serves as a baseline reference to the efficacy of our other models. 
