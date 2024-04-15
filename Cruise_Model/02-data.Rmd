@@ -12,6 +12,15 @@ This chapter will cover all data acquisition, preparation, and organization. Eac
 
 Despite this, there will still be a component of acting as an in-depth R tutorial. The following packages will be needed for this book's content, so their install commands have been included below:
 
+```{r data_prep_packages_install, eval=TRUE, include=FALSE, echo=FALSE}
+install.packages("readxl", lib = "_bookdown_files/")
+install.packages("lubridate", lib = "_bookdown_files/")
+install.packages("dplyr", lib = "_bookdown_files/")
+install.packages("tidyr", lib = "_bookdown_files/")
+install.packages("stringr", lib = "_bookdown_files/")
+install.packages("ggplot2", lib = "_bookdown_files/")
+```
+
 ```{r data_prep_packages, eval=FALSE, include=FALSE, echo=TRUE}
 install.packages("readxl")
 install.packages("lubridate")
@@ -64,14 +73,27 @@ Place the files into an accessible folder of the RStudio environment you're usin
 In order to get the code to function, you will have to rename the file paths. An easy way to ensure the file path is correct and readable from your project environment you can write the read.csv("") command and press 'Tab' while the space between the two quotations is selected. This should show a list of files available to the environment that you can parse through to find what you're trying to connect to the command. 
 
 You will need the following packages for all data preparation, the code block below will make them available to your project environment post-intallation:
+lib = "_bookdown_files/"
+```{r data_packages, eval=TRUE, include=FALSE, echo=FALSE}
+library(readxl, lib = "_bookdown_files/")
+library(lubridate, lib = "_bookdown_files/")
+library(dplyr, lib = "_bookdown_files/") 
+library(tidyr, lib = "_bookdown_files/")
+library(stringr, lib = "_bookdown_files/")
+library(ggplot2, lib = "_bookdown_files/")
+```
 
-```{r data_packages, eval=TRUE, include=FALSE, echo=TRUE}
+```{r data_packages, eval=FALSE, include=FALSE, echo=TRUE}
 library(readxl) # for reading files to pull data
 library(lubridate) # adjusting dates in data
 # general data manipulation packages below
 library(dplyr) 
 library(tidyr)
 library(stringr)
+# this is for later visualization
+# later syntax errors with github publishing mandate
+# that this be included earlier in the document
+library(ggplot2)
 ```
 
 ```{r .csv_reads, eval=TRUE, include=TRUE, echo=TRUE}

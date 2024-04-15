@@ -50,8 +50,6 @@ head(df.predm1)
 We'll use `ggplot` to visualize the model on a line plot, with the X-axis being our voyage duration, the Y-axis being our observed rates, and the rate predictions of the model shown as a red line. 
 
 ```{r predm1_plot, eval=TRUE, include=TRUE, echo=TRUE}
-library(ggplot2)
-
 ggplot(data = df.predm1, aes(x=size, y=actual_rate)) + 
   labs(x="Passenger Population", y="Observed Rate") +
   geom_point() +
