@@ -24,9 +24,9 @@ jobs:
 
     - name: install dependencies
       run: |
-        install.packages('remotes')
-        remotes::install_deps(dependencies = TRUE)
-        remotes::install_github('rstudio/bookdown')
+        Rscript -e "install.packages('remotes')""
+        Rscript -e "remotes::install_deps(dependencies = TRUE)"
+        Rscript -e "remotes::install_github('rstudio/bookdown')"
 
     - name: build book
       run: |
@@ -37,4 +37,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_book
-        
