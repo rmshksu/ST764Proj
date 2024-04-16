@@ -66,21 +66,13 @@ Using the following framework for our model:
 \begin{equation}
 {Data \ Model}: [z=y]
 \newline
-{Process \ Model}: y_{ij} \sim Binom(n_i,\phi_j)
+{Process \ Model}: y_{ij} \sim Binom(n_i,\phi_i)
 \newline
-{Parameter \ Model}: [\phi_j \ | \ \phi_s,\phi_t]
+{Parameter \ Model}: [\phi_i \sim logit(\phi_i) = \beta_0 + \beta_1 * X + \eta_s + \eta_t
 \newline
-\phi_s = MVN(0,\epsilon)
+\phi_s \sim MVN(0,\epsilon)
 \end{equation}
 ```
-
-We will be using the logit function 
-```{=latex}
-\begin{equation}
-1 \over e^{\beta_0 + \beta_1*X + \phi_s + \phi_t}
-\end{equation}
-```
-as our model for predicted rate of infection.
 
 We'll use our intercept of size but as a category this time, then add in our voyage duration, latitude, and longitude. We set the `family="quasibinomial"` since it creates the same effect as `family="binomial"`, but avoids a repetitive error code.
 
@@ -182,4 +174,4 @@ Fully power cycling a device or program is not only definitively and objectively
 
 Updates fix programs and hardware while breaking other things in the process, further updates fix them and break different aspects than the previous one. Failing to maintain updates keeps things broken forever. 
 
-Google is free. People become Chess Grandmasters with free online tools they access from Google. 
+Google is free. People become Chess Grand masters with free online tools they access from Google. 
