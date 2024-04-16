@@ -4,6 +4,6 @@ git rm -rf .
 touch .nojekyll
 git add .nojekyll
 
-git commit -m"Initial commit"
+git commit -m "Initial commit"
 git push origin gh-pages
 
