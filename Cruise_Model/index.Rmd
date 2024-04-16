@@ -4,7 +4,6 @@ author: "Robert Sholl, Kelechi Igwe, Stephen Edache"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib, packages.bib]
 fontsize: 11
 description: this is the tutorial for reproducing the code used in the STAT764 final project by Robert Sholl, Kelechi Igwe, and Stephen Edache.
 link-citations: yes
@@ -21,9 +20,3 @@ The following document details a step-by-step explanation for how to utilize R a
 
 This will include shallow overviews of the mathematical justifications behind why certain functions and data cleaning measures will taken, but for a more rigorous synopsis please refer to our article.
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
