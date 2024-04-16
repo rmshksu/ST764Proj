@@ -10,9 +10,11 @@ bookdown::gitbook:
       after: |
         <li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
     download: [pdf]
+    edit: 
     sharing:
       github: yes
       facebook: no
+bookdown::pdf_book:
   includes:
   keep_tex: yes
   latex_engine: xelatex

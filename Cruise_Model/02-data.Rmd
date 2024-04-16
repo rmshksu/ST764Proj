@@ -13,15 +13,15 @@ This chapter will cover all data acquisition, preparation, and organization. Eac
 Despite this, there will still be a component of acting as an in-depth R tutorial. The following packages will be needed for this book's content, so their install commands have been included below:
 
 ```{r data_prep_packages_install, eval=TRUE, include=FALSE, echo=FALSE}
-install.packages("readxl", dependencies=T, lib = "_bookdown_files/")
-install.packages("lubridate", dependencies=T, lib = "_bookdown_files/")
-install.packages("dplyr", dependencies=T, lib = "_bookdown_files/")
-install.packages("tidyr", dependencies=T, lib = "_bookdown_files/")
-install.packages("stringr", dependencies=T, lib = "_bookdown_files/")
-install.packages("ggplot2", dependencies=T, lib = "_bookdown_files/")
-install.packages("withr", dependencies=T, lib = "_bookdown_files/")
-install.packages("labeling", dependencies=T, lib="_bookdown_files/")
-install.packages("farver", dependencies=T, lib="_bookdown_files/")
+install.packages("readxl", dependencies=T, lib = "_bookdown_files/", repos = "https://mirror.las.iastate.edu/CRAN/")
+install.packages("lubridate", dependencies=T, lib = "_bookdown_files/", repos = "https://mirror.las.iastate.edu/CRAN/")
+install.packages("dplyr", dependencies=T, lib = "_bookdown_files/", repos = "https://mirror.las.iastate.edu/CRAN/")
+install.packages("tidyr", dependencies=T, lib = "_bookdown_files/", repos = "https://mirror.las.iastate.edu/CRAN/")
+install.packages("stringr", dependencies=T, lib = "_bookdown_files/", repos = "https://mirror.las.iastate.edu/CRAN/")
+install.packages("ggplot2", dependencies=T, lib = "_bookdown_files/", repos = "https://mirror.las.iastate.edu/CRAN/")
+install.packages("withr", dependencies=T, lib = "_bookdown_files/", repos = "https://mirror.las.iastate.edu/CRAN/")
+install.packages("labeling", dependencies=T, lib="_bookdown_files/", repos = "https://mirror.las.iastate.edu/CRAN/")
+install.packages("farver", dependencies=T, lib="_bookdown_files/", repos = "https://mirror.las.iastate.edu/CRAN/")
 ```
 
 ```{r data_prep_packages, eval=FALSE, include=FALSE, echo=TRUE}

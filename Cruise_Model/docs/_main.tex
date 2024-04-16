@@ -1,0 +1,1402 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11,
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.33,0.33,0.33}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.06,0.06,0.06}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.06,0.06,0.06}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.14,0.14,0.14}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.06,0.06,0.06}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.43,0.43,0.43}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.43,0.43,0.43}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Modeling the Spread of Norovirus on Commercial Cruise Voyages in R},
+  pdfauthor={Robert Sholl, Kelechi Igwe, Stephen Edache},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Modeling the Spread of Norovirus on Commercial Cruise Voyages in R}
+\author{Robert Sholl, Kelechi Igwe, Stephen Edache}
+\date{2024-04-15}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{about}{%
+\chapter*{About}\label{about}}
+
+
+The following document details a step-by-step explanation for how to utilize R and data collected from the CDC Vessel Sanitation Program (VSP) to determine the rate of transmission of Norovirus on commercial cruise ships.
+
+This will include shallow overviews of the mathematical justifications behind why certain functions and data cleaning measures will taken, but for a more rigorous synopsis please refer to our article.
+
+\hypertarget{part-introduction}{%
+\part{Introduction}\label{part-introduction}}
+
+\hypertarget{background}{%
+\chapter*{Background}\label{background}}
+
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Commercial cruise voyages are a multi-billion dollar tourism industry. With any large population sourcing from numerous different networks, (regardless of their level of prior connectivity), and an extended period of high volume interaction there are natural concerns for disease spread.
+
+The VSP is primarily concerned with outbreaks of acute gastroenteritis, (AGE). Norovirus is the primary source of AGE across the world and thus makes up the vast majority of the outbreaks tracked by the VSP.
+
+\hypertarget{project-intent}{%
+\subsection*{Project Intent}\label{project-intent}}
+
+
+This project's intent is to utilize publicly available disease outbreak data from cruise ship passenger voyages to predict the likelihood of any one person getting norovirus based on what specific cruise ship they're traveling on, the number of people traveling on the same ship, where they are going, how long the trip is, and the timeframe in which the cruise will occur.
+
+\hypertarget{structure}{%
+\subsection*{Structure}\label{structure}}
+
+
+The structure of this document will be split into the functional units of the R scripts used in the project:
+
+\begin{itemize}
+\item
+  Data Acquisition and Preparation
+
+  \begin{itemize}
+  \item
+    Infection Data
+  \item
+    Temporal Data
+  \item
+    Spatial Data
+  \end{itemize}
+\item
+  Model Fitting
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Program Validation
+  \end{itemize}
+\item
+  Model Checking
+
+  \begin{itemize}
+  \item
+    Regressing Diagnostics
+  \item
+    Graphical Diagnostics
+  \item
+    Within-Sample Validation
+  \item
+    Forecasting
+  \end{itemize}
+\item
+  Interpretation
+
+  \begin{itemize}
+  \item
+    Closing Remarks
+  \item
+    Source Code
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{simplifying-assumptions}{%
+\section*{Simplifying Assumptions}\label{simplifying-assumptions}}
+
+
+Simplifying assumptions are made throughout in order to achieve the end goal of this project. Aside from time and resource limitations, we have found three major factors that we believe justify the use of these assumptions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{vsp-definition-of-outbreak}{%
+\paragraph*{VSP Definition of Outbreak}\label{vsp-definition-of-outbreak}}
+\addcontentsline{toc}{paragraph}{VSP Definition of Outbreak}
+
+The VSP only collects data on what is considered to be an outbreak, which they define on their website.
+
+\begin{itemize}
+\item
+  Are on ships under VSP jurisdiction, defined as:
+
+  \begin{itemize}
+  \item
+    Carry 13 or more passengers
+  \item
+    Have a foreign itinerary with U.S. ports.
+  \end{itemize}
+\item
+  Are on ships carrying 100 or more passengers.
+\item
+  Are on voyages from 3-21 days long.
+\item
+  Are on voyages where 3\% or more of passengers or crew report symptoms of gastrointestinal illness to the ship's medical staff.
+\end{itemize}
+
+We will use this as a baseline for our simplifying assumptions, and justify all of them within this definition.
+
+\hypertarget{spread-of-norovirus}{%
+\paragraph*{Spread of Norovirus}\label{spread-of-norovirus}}
+\addcontentsline{toc}{paragraph}{Spread of Norovirus}
+
+Simplifying for the sake of brevity, \(R_0\) is a measure of how many additional infections are caused by each existing infection, with \(R_0 > 1\) being seen as a rising outbreak, \(R_0 = 1\) being a stable presence of disease, and \(R_0 < 1\) being a decline towards eventual die out of infection.
+
+Norovirus, along with all other AGE agents, is problematic from the perspective of generating a consistent and realistic number for an average \(R_0\) due to the prevalence of under reporting associated with this category of illness. Reported values show the range of \(1 < R_0 < 8\) with a general average of \(R_0 \approx 2\). Compared with seasonal influenza \(1 < R_0 < 2\) and recent observations of the highest value for SARS-CoV-19 Omicron \(R_0 = 1.9\), Norovirus is a highly infectious virus.
+
+We can make the statement then, that any existence of a single case of Norovirus on a cruise vessel will result in an outbreak given that the virus travels fast enough that traditional outbreak control measures won't prevent the VSP definition of an outbreak from occurring by the time symptoms become noticeable enough to warrant action being taken.
+
+\hypertarget{the-jones-act-and-the-passenger-vessel-services-act}{%
+\paragraph*{The Jones Act and The Passenger Vessel Services Act}\label{the-jones-act-and-the-passenger-vessel-services-act}}
+\addcontentsline{toc}{paragraph}{The Jones Act and The Passenger Vessel Services Act}
+
+These maritime laws paint two restrictions on cruise ships simultaneously.
+
+\begin{itemize}
+\item
+  Any vessel carrying merchandise between U.S. ports must be built, owned, and operated by U.S. Citizens, as well as constructed out of U.S. owned materials.
+\item
+  Foreign flagged ships must start and end their journey at the same port provided they began in a U.S. port, and must have a distant foreign port at part of their journey.
+\end{itemize}
+
+These restrictions in practice result in a system used by most cruise liners.
+
+\begin{itemize}
+\tightlist
+\item
+  Almost all cruise ships have U.S. ports.
+\item
+  Almost all cruise ships have foreign ports.
+\item
+  Almost all cruise ships start and end at the same location.
+\end{itemize}
+
+We believe that this justifies the sole use of VSP data for modeling the totality of Norovirus outbreaks on cruise vessels, due to a negligibly small population of cruise voyages having no interaction with U.S. ports at any given time.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{part-data}{%
+\part{Data}\label{part-data}}
+
+\hypertarget{data-acquisition-and-preparation}{%
+\chapter*{Data Acquisition and Preparation}\label{data-acquisition-and-preparation}}
+
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+This chapter will cover all data acquisition, preparation, and organization. Each step in this process will be ``over-detailed'' to an extent. This is done to act more as guide of the thought process and intent of the code in the event that:
+
+\begin{quote}
+The R packages and syntax used have lost support and become outdated.
+\end{quote}
+
+\begin{quote}
+The individual reading this intends to use an alternate programming language for replication of this project.
+\end{quote}
+
+Despite this, there will still be a component of acting as an in-depth R tutorial. The following packages will be needed for this book's content, so their install commands have been included below:
+
+Final Note: The entirety of the original code is riddled with ``shower thought'' markdowns. These have been left out of this tutorial in lieu of a more ``professionally acceptable'' documentation style, but they remain in the original code which can be viewed via a download link in the references portion of this book. This is just an acknowledgement, not an apology.
+
+\hypertarget{acquisition}{%
+\section*{Acquisition}\label{acquisition}}
+
+
+We first start with the acquisition of the VSP data. This can be found on the CDC website: \url{https://www.cdc.gov/nceh/vsp/surv/gilist.htm}
+
+The data is in descending chronological order, with the most recent outbreak on the current year shown first, and each year separated into its own block.
+
+We chose to use Excel to query the data directly from the website. It should be noted that there is a massive variety of data scraping techniques available, all of which are more efficient at the process than Excel. We chose Excel because it was the most user-friendly and readily accessible method at the time.
+
+The method for performing a query can be seen in the screenshots below:
+
+\begin{figure}
+\centering
+\includegraphics{_book/_main_files/images/Excel_Query_Guide.png}
+\caption{\label{fig:image1}1. Select the `Data' tab 2. Select `From Other Sources' 3. Select `From Web'}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{_book/_main_files/images/url_input.png}
+\caption{\label{fig:image2}Input the URL containing your data.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{_book/_main_files/images/Excel_Query_Multi.png}
+\caption{\label{fig:image3}Check the `Select Multiple Items' box if you wish you pull more than one, otherwise select one and press load.}
+\end{figure}
+
+Once the data is in the Excel document all that needs to be done is save the individual sheets in .csv format. We chose to do minor cleaning before-hand, and the steps associated with saving individual sheets is a needlessly cumbersome burden to place on the reader, so a dropbox link is included below containing the .csv files used in the proceeding code. Downloading the files is preferable to using the dropbox URL to reduce computing burden every time troubleshooting has to occur or a new environment is being loaded up.
+
+Dropbox is used over github for end-user friendliness.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{url}{%
+\subsubsection*{URL}\label{url}}
+
+
+\url{https://www.dropbox.com/scl/fo/7d2e8ro0e8mbkoxkbi6c3/AMT0sQ86B27OIEZopkIMXhg?rlkey=e5otlpcp0rr7931h3j1u5r3cp\&dl=0}
+
+\hypertarget{infection-data}{%
+\section*{Infection Data}\label{infection-data}}
+
+
+Place the files into an accessible folder of the RStudio environment you're using. The code string below will read them into R as named, accessible units.
+
+In order to get the code to function, you will have to rename the file paths. An easy way to ensure the file path is correct and readable from your project environment you can write the read.csv(``\,``) command and press `Tab' while the space between the two quotations is selected. This should show a list of files available to the environment that you can parse through to find what you're trying to connect to the command.
+
+You will need the following packages for all data preparation, the code block below will make them available to your project environment post-intallation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cru.noro}\FloatTok{.14} \OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\_book/\_main\_files/.csv files/Cruise\_2014.csv"}\NormalTok{)}
+\NormalTok{cru.noro}\FloatTok{.15} \OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\_book/\_main\_files/.csv files/Cruise\_2015.csv"}\NormalTok{)}
+\NormalTok{cru.noro}\FloatTok{.16} \OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\_book/\_main\_files/.csv files/Cruise\_2016.csv"}\NormalTok{)}
+\NormalTok{cru.noro}\FloatTok{.17} \OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\_book/\_main\_files/.csv files/Cruise\_2017.csv"}\NormalTok{)}
+\NormalTok{cru.noro}\FloatTok{.18} \OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\_book/\_main\_files/.csv files/Cruise\_2018.csv"}\NormalTok{)}
+\NormalTok{cru.noro}\FloatTok{.19} \OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\_book/\_main\_files/.csv files/Cruise\_2019.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(cru.noro}\FloatTok{.19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Column1       Column2              Column3            Column4
+## 1           Cruise Line   Cruise Ship Sailing_Dates(Start) Sailing_Dates(End)
+## 2 Norwegian Cruise Line Norwegian Joy            11/8/2019         11/24/2019
+## 3          Aida Cruises      AIDAdiva            10/3/2019         10/13/2019
+## 4          Aida Cruises      AIDAluna            9/28/2019         10/12/2019
+## 5          Aida Cruises      AIDAdiva             9/5/2019          9/23/2019
+## 6  Carnival Cruise Line      Conquest             9/7/2019          9/14/2019
+##           Column5                                      Column6
+## 1 Causative Agent Proportion_Case_Counts_Numerator(Passengers)
+## 2         Unknown                                          127
+## 3       Norovirus                                           83
+## 4       Norovirus                                           85
+## 5       Norovirus                                          117
+## 6       Norovirus                                           17
+##                                          Column7                   Column8
+## 1 Proportion_Case_Counts_Denominator(Passengers) %_Case_Counts(Passengers)
+## 2                                          3,602                      3.53
+## 3                                          2,251                      3.70
+## 4                                          2,166                      3.90
+## 5                                          2,055                      5.70
+## 6                                          3,241                      0.52
+##                                  Column9
+## 1 Proportion_Case_Counts_Numerator(Crew)
+## 2                                      6
+## 3                                     10
+## 4                                     10
+## 5                                      8
+## 6                                     35
+##                                   Column10            Column11
+## 1 Proportion_Case_Counts_Denominator(Crew) %_Case_Counts(Crew)
+## 2                                    1,769                0.34
+## 3                                      610                1.60
+## 4                                      612                1.60
+## 5                                      610                1.30
+## 6                                     1158                3.02
+\end{verbatim}
+
+Reading through the files you will find that there is a large amount of excess information, we want to isolate the numerator, (confirmed infected), and denominator, (total population), columns in each file so that we can begin working with the rates of infection.
+
+It's convenient to place the data we need into data frames as well, so we can accomplish two goals with one action per sheet by defining the columns we want as columns in a new data frame:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.cru}\FloatTok{.14} \OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{pcn =}\NormalTok{ cru.noro}\FloatTok{.14}\NormalTok{[,}\DecValTok{6}\NormalTok{],}
+                        \AttributeTok{pcd =}\NormalTok{ cru.noro}\FloatTok{.14}\NormalTok{[,}\DecValTok{7}\NormalTok{],}
+                        \AttributeTok{ccn =}\NormalTok{ cru.noro}\FloatTok{.14}\NormalTok{[,}\DecValTok{10}\NormalTok{],}
+                        \AttributeTok{ccd =}\NormalTok{ cru.noro}\FloatTok{.14}\NormalTok{[,}\DecValTok{11}\NormalTok{])}
+\NormalTok{df.cru}\FloatTok{.15} \OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{pcn =}\NormalTok{ cru.noro}\FloatTok{.15}\NormalTok{[,}\DecValTok{6}\NormalTok{],}
+                          \AttributeTok{pcd =}\NormalTok{ cru.noro}\FloatTok{.15}\NormalTok{[,}\DecValTok{7}\NormalTok{],}
+                          \AttributeTok{ccn =}\NormalTok{ cru.noro}\FloatTok{.15}\NormalTok{[,}\DecValTok{9}\NormalTok{],}
+                          \AttributeTok{ccd =}\NormalTok{ cru.noro}\FloatTok{.15}\NormalTok{[,}\DecValTok{10}\NormalTok{])}
+\NormalTok{df.cru}\FloatTok{.16} \OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{pcn =}\NormalTok{ cru.noro}\FloatTok{.16}\NormalTok{[,}\DecValTok{6}\NormalTok{],}
+                        \AttributeTok{pcd =}\NormalTok{ cru.noro}\FloatTok{.16}\NormalTok{[,}\DecValTok{7}\NormalTok{],}
+                        \AttributeTok{ccn =}\NormalTok{ cru.noro}\FloatTok{.16}\NormalTok{[,}\DecValTok{9}\NormalTok{],}
+                        \AttributeTok{ccd =}\NormalTok{ cru.noro}\FloatTok{.16}\NormalTok{[,}\DecValTok{10}\NormalTok{])}
+\NormalTok{df.cru}\FloatTok{.17} \OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{pcn =}\NormalTok{ cru.noro}\FloatTok{.17}\NormalTok{[,}\DecValTok{6}\NormalTok{],}
+                        \AttributeTok{pcd =}\NormalTok{ cru.noro}\FloatTok{.17}\NormalTok{[,}\DecValTok{7}\NormalTok{],}
+                        \AttributeTok{ccn =}\NormalTok{ cru.noro}\FloatTok{.17}\NormalTok{[,}\DecValTok{9}\NormalTok{],}
+                        \AttributeTok{ccd =}\NormalTok{ cru.noro}\FloatTok{.17}\NormalTok{[,}\DecValTok{10}\NormalTok{])}
+\NormalTok{df.cru}\FloatTok{.18} \OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{pcn =}\NormalTok{ cru.noro}\FloatTok{.18}\NormalTok{[,}\DecValTok{6}\NormalTok{],}
+                        \AttributeTok{pcd =}\NormalTok{ cru.noro}\FloatTok{.18}\NormalTok{[,}\DecValTok{7}\NormalTok{],}
+                        \AttributeTok{ccn =}\NormalTok{ cru.noro}\FloatTok{.18}\NormalTok{[,}\DecValTok{9}\NormalTok{],}
+                        \AttributeTok{ccd =}\NormalTok{ cru.noro}\FloatTok{.18}\NormalTok{[,}\DecValTok{10}\NormalTok{])}
+\NormalTok{df.cru}\FloatTok{.19} \OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{pcn =}\NormalTok{ cru.noro}\FloatTok{.19}\NormalTok{[,}\DecValTok{6}\NormalTok{],}
+                        \AttributeTok{pcd =}\NormalTok{ cru.noro}\FloatTok{.19}\NormalTok{[,}\DecValTok{7}\NormalTok{],}
+                        \AttributeTok{ccn =}\NormalTok{ cru.noro}\FloatTok{.19}\NormalTok{[,}\DecValTok{9}\NormalTok{],}
+                        \AttributeTok{ccd =}\NormalTok{ cru.noro}\FloatTok{.19}\NormalTok{[,}\DecValTok{10}\NormalTok{])}
+
+\FunctionTok{head}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                 pcn                                 pcd
+## 1 Case_Counts_Numerator(Passengers) Case_Counts_Denominator(Passengers)
+## 2                               158                               3,009
+## 3                               122                               3,161
+## 4                                97                               2,120
+## 5                               111                               2,122
+## 6                                65                               1,096
+##                           ccn                           ccd
+## 1 Case_Counts_Numerator(Crew) Case_Counts_Denominator(Crew)
+## 2                          14                         1,160
+## 3                          30                         1,176
+## 4                           8                           808
+## 5                           6                           790
+## 6                           8                           569
+\end{verbatim}
+
+The top row of each column contains the descriptions of the columns rather than any usable data, so we'll remove those:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.cru}\FloatTok{.14}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.14}\NormalTok{[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.cru}\FloatTok{.15}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.15}\NormalTok{[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.cru}\FloatTok{.16}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.16}\NormalTok{[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.cru}\FloatTok{.17}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.17}\NormalTok{[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.cru}\FloatTok{.18}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.18}\NormalTok{[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.cru}\FloatTok{.19}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.19}\NormalTok{[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+
+\FunctionTok{head}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   pcn   pcd ccn   ccd
+## 2 158 3,009  14 1,160
+## 3 122 3,161  30 1,176
+## 4  97 2,120   8   808
+## 5 111 2,122   6   790
+## 6  65 1,096   8   569
+## 7 114 1,273  10   575
+\end{verbatim}
+
+The numeric data includes commas to denote 1000s, while we can declare prefixes before working with the data to ensure these aren't a problem, it's more convenient for future troubleshooting of errors to not have them involved in our data frames.
+
+We'll remove them by using the \texttt{gsub} command and ``replacing'' our commas with nothing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd)}
+\NormalTok{df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd)}
+
+\NormalTok{df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd)}
+\NormalTok{df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd)}
+
+\NormalTok{df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd)}
+\NormalTok{df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd)}
+
+\NormalTok{df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd)}
+\NormalTok{df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd)}
+
+\NormalTok{df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd)}
+\NormalTok{df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd)}
+
+\NormalTok{df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd)}
+\NormalTok{df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{""}\NormalTok{, df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd)}
+
+\FunctionTok{head}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   pcn  pcd ccn  ccd
+## 2 127 3602   6 1769
+## 3  83 2251  10  610
+## 4  85 2166  10  612
+## 5 117 2055   8  610
+## 6  17 3241  35 1158
+## 7  36 1066   4  763
+\end{verbatim}
+
+\hypertarget{infection-totals-and-rate}{%
+\subsection*{Infection Totals and Rate}\label{infection-totals-and-rate}}
+
+
+Our basic infection data is now sufficiently cleaned up to begin organizing it into more useful formats.
+
+Next we'll compute the infection rate, which, as our labels of the data suggests, follows a simple rate of change format:
+
+\[
+Rate = {Cases \over Total}
+\]
+
+The code below generates a total count column across all voyages for each individual sheet:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.cru}\FloatTok{.14}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.14}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcn =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn))}
+\NormalTok{df.cru}\FloatTok{.14}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.14}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcd =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+
+\NormalTok{df.cru}\FloatTok{.15}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.15}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcn =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn))}
+\NormalTok{df.cru}\FloatTok{.15}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.15}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcd =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+
+\NormalTok{df.cru}\FloatTok{.16}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.16}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcn =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn))}
+\NormalTok{df.cru}\FloatTok{.16}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.16}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcd =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+
+\NormalTok{df.cru}\FloatTok{.17}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.17}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcn =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn))}
+\NormalTok{df.cru}\FloatTok{.17}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.17}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcd =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+
+\NormalTok{df.cru}\FloatTok{.18}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.18}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcn =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn))}
+\NormalTok{df.cru}\FloatTok{.18}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.18}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcd =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+
+\NormalTok{df.cru}\FloatTok{.19}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.19}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcn =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn))}
+\NormalTok{df.cru}\FloatTok{.19}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.19}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tcd =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd) }\SpecialCharTok{+} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+\end{Highlighting}
+\end{Shaded}
+
+This code block computes the rate of infection:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.cru}\FloatTok{.14}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.14}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{pc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd))}
+\NormalTok{df.cru}\FloatTok{.14}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.14}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+\NormalTok{df.cru}\FloatTok{.14}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.14}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd))}
+
+\NormalTok{df.cru}\FloatTok{.15}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.15}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{pc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd))}
+\NormalTok{df.cru}\FloatTok{.15}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.15}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+\NormalTok{df.cru}\FloatTok{.15}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.15}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd))}
+
+\NormalTok{df.cru}\FloatTok{.16}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.16}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{pc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd))}
+\NormalTok{df.cru}\FloatTok{.16}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.16}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+\NormalTok{df.cru}\FloatTok{.16}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.16}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd))}
+
+\NormalTok{df.cru}\FloatTok{.17}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.17}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{pc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd))}
+\NormalTok{df.cru}\FloatTok{.17}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.17}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+\NormalTok{df.cru}\FloatTok{.17}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.17}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd))}
+
+\NormalTok{df.cru}\FloatTok{.18}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.18}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{pc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd))}
+\NormalTok{df.cru}\FloatTok{.18}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.18}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+\NormalTok{df.cru}\FloatTok{.18}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.18}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd))}
+
+\NormalTok{df.cru}\FloatTok{.19}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.19}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{pc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{pcd))}
+\NormalTok{df.cru}\FloatTok{.19}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.19}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{ccd))}
+\NormalTok{df.cru}\FloatTok{.19}\NormalTok{c }\OtherTok{\textless{}{-}}\NormalTok{ df.cru}\FloatTok{.19}\NormalTok{c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tc =} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn) }\SpecialCharTok{/} \FunctionTok{as.numeric}\NormalTok{(df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{sectioning-off-data}{%
+\subsection*{Sectioning Off Data}\label{sectioning-off-data}}
+
+
+Now we'll pull the relevant columns out of our data frames and place them into vectors for later use in our models.
+
+It should be noted that this is not an ``absolute'' methodology for working with data in R, so long as the data ends up in the intended places and serves the intended purpose any method for getting it to that point can be used.
+
+Below you'll see us first pull our infection rates, then our ``sizes'' which is our nomenclature of sample population for the purpose of this project (total passenger and crew counts), and our total cases.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# vector of infection rates}
+\NormalTok{cru.rate }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{tc.14 =}\NormalTok{ df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tc,}
+                \AttributeTok{tc.15 =}\NormalTok{ df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tc,}
+                \AttributeTok{tc.16 =}\NormalTok{ df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tc,}
+                \AttributeTok{tc.17 =}\NormalTok{ df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tc,}
+                \AttributeTok{tc.18 =}\NormalTok{ df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tc,}
+                \AttributeTok{tc.19 =}\NormalTok{ df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tc)}
+
+\CommentTok{\# vector of cruise sizes in the vsp data}
+\NormalTok{Ac.size }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{tc.14 =}\NormalTok{ df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd,}
+             \AttributeTok{tc.15 =}\NormalTok{ df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd,}
+             \AttributeTok{tc.16 =}\NormalTok{ df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd,}
+             \AttributeTok{tc.17 =}\NormalTok{ df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd,}
+             \AttributeTok{tc.18 =}\NormalTok{ df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd,}
+             \AttributeTok{tc.19 =}\NormalTok{ df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcd)}
+
+\CommentTok{\# vector of case counts in the vsp data}
+\NormalTok{Ac.cases }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{tc.14 =}\NormalTok{ df.cru}\FloatTok{.14}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn,}
+              \AttributeTok{tc.15 =}\NormalTok{ df.cru}\FloatTok{.15}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn,}
+              \AttributeTok{tc.16 =}\NormalTok{ df.cru}\FloatTok{.16}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn,}
+              \AttributeTok{tc.17 =}\NormalTok{ df.cru}\FloatTok{.17}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn,}
+              \AttributeTok{tc.18 =}\NormalTok{ df.cru}\FloatTok{.18}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn,}
+              \AttributeTok{tc.19 =}\NormalTok{ df.cru}\FloatTok{.19}\NormalTok{c}\SpecialCharTok{$}\NormalTok{tcn)}
+\end{Highlighting}
+\end{Shaded}
+
+With this we can say that our disease data is set up for our model. We'll move on to our other model components.
+
+\hypertarget{temporal-data}{%
+\section*{Temporal Data}\label{temporal-data}}
+
+
+As the goal of this project is to produce a model that incorporates both space and time it's best we clean up and prepare our temporal component of the data.
+
+\hypertarget{voyage-duration}{%
+\subsection*{Voyage Duration}\label{voyage-duration}}
+
+
+We'll follow a similar system as with our infection data and place our start and end dates into data frames.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.t14 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{start =}\NormalTok{ cru.noro}\FloatTok{.14}\NormalTok{[,}\DecValTok{3}\NormalTok{],}
+                   \AttributeTok{end =}\NormalTok{ cru.noro}\FloatTok{.14}\NormalTok{[,}\DecValTok{4}\NormalTok{])}
+\NormalTok{df.t15 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{start =}\NormalTok{ cru.noro}\FloatTok{.15}\NormalTok{[,}\DecValTok{3}\NormalTok{],}
+                     \AttributeTok{end =}\NormalTok{ cru.noro}\FloatTok{.15}\NormalTok{[,}\DecValTok{4}\NormalTok{])}
+\NormalTok{df.t16 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{start =}\NormalTok{ cru.noro}\FloatTok{.16}\NormalTok{[,}\DecValTok{3}\NormalTok{],}
+                     \AttributeTok{end =}\NormalTok{ cru.noro}\FloatTok{.16}\NormalTok{[,}\DecValTok{4}\NormalTok{])}
+\NormalTok{df.t17 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{start =}\NormalTok{ cru.noro}\FloatTok{.17}\NormalTok{[,}\DecValTok{3}\NormalTok{],}
+                     \AttributeTok{end =}\NormalTok{ cru.noro}\FloatTok{.17}\NormalTok{[,}\DecValTok{4}\NormalTok{])}
+\NormalTok{df.t18 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{start =}\NormalTok{ cru.noro}\FloatTok{.18}\NormalTok{[,}\DecValTok{3}\NormalTok{],}
+                     \AttributeTok{end =}\NormalTok{ cru.noro}\FloatTok{.18}\NormalTok{[,}\DecValTok{4}\NormalTok{])}
+\NormalTok{df.t19 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{start =}\NormalTok{ cru.noro}\FloatTok{.19}\NormalTok{[,}\DecValTok{3}\NormalTok{],}
+                     \AttributeTok{end =}\NormalTok{ cru.noro}\FloatTok{.19}\NormalTok{[,}\DecValTok{4}\NormalTok{])}
+
+\FunctionTok{head}\NormalTok{(df.t14)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  start                end
+## 1 Sailing_Dates(Start) Sailing_Dates(End)
+## 2           10/18/2014         11/16/2014
+## 3             4/5/2014          4/12/2014
+## 4             4/5/2014          4/12/2014
+## 5            3/28/2014           4/5/2014
+## 6             3/2/2014          3/28/2014
+\end{verbatim}
+
+While this isn't a situation of actual messy data, it's appropriate to say the data's format is very ``messy''. We see once again that we have a descriptive row at the top of each column, using the same technique we'll remove it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.t14c }\OtherTok{\textless{}{-}}\NormalTok{ df.t14[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.t15c }\OtherTok{\textless{}{-}}\NormalTok{ df.t15[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.t16c }\OtherTok{\textless{}{-}}\NormalTok{ df.t16[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.t17c }\OtherTok{\textless{}{-}}\NormalTok{ df.t17[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.t18c }\OtherTok{\textless{}{-}}\NormalTok{ df.t18[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.t19c }\OtherTok{\textless{}{-}}\NormalTok{ df.t19[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\end{Highlighting}
+\end{Shaded}
+
+We'll now reformat the dates into Month/Day/Year using the \texttt{dplyr} \texttt{mutate} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.t14c }\OtherTok{\textless{}{-}}\NormalTok{ df.t14c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{start =} \FunctionTok{mdy}\NormalTok{(start))}
+\NormalTok{df.t14c }\OtherTok{\textless{}{-}}\NormalTok{ df.t14c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{end =} \FunctionTok{mdy}\NormalTok{(end))}
+
+\NormalTok{df.t15c }\OtherTok{\textless{}{-}}\NormalTok{ df.t15c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{start =} \FunctionTok{mdy}\NormalTok{(start))}
+\NormalTok{df.t15c }\OtherTok{\textless{}{-}}\NormalTok{ df.t15c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{end =} \FunctionTok{mdy}\NormalTok{(end))}
+
+\NormalTok{df.t16c }\OtherTok{\textless{}{-}}\NormalTok{ df.t16c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{start =} \FunctionTok{mdy}\NormalTok{(start))}
+\NormalTok{df.t16c }\OtherTok{\textless{}{-}}\NormalTok{ df.t16c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{end =} \FunctionTok{mdy}\NormalTok{(end))}
+
+\NormalTok{df.t17c }\OtherTok{\textless{}{-}}\NormalTok{ df.t17c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{start =} \FunctionTok{mdy}\NormalTok{(start))}
+\NormalTok{df.t17c }\OtherTok{\textless{}{-}}\NormalTok{ df.t17c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{end =} \FunctionTok{mdy}\NormalTok{(end))}
+
+\NormalTok{df.t18c }\OtherTok{\textless{}{-}}\NormalTok{ df.t18c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{start =} \FunctionTok{mdy}\NormalTok{(start))}
+\NormalTok{df.t18c }\OtherTok{\textless{}{-}}\NormalTok{ df.t18c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{end =} \FunctionTok{mdy}\NormalTok{(end))}
+
+\NormalTok{df.t19c }\OtherTok{\textless{}{-}}\NormalTok{ df.t19c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{start =} \FunctionTok{mdy}\NormalTok{(start))}
+\NormalTok{df.t19c }\OtherTok{\textless{}{-}}\NormalTok{ df.t19c }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{end =} \FunctionTok{mdy}\NormalTok{(end))}
+\end{Highlighting}
+\end{Shaded}
+
+Our goal is to use this as a way to get the duration these cruise ships are at sea. We also want to retain these start and end dates for future use in potential variables so we'll be sure to declare a new column rather than eliminate any currently cleaned up data.
+
+Taking the difference between the start and end will give us a number of days. We have to declare our column data \texttt{as.Date} in order for it to work in this function.
+
+It's more logical to subtract the end from the start rather than what we do with the code below, but this does allow an opportunity to detail the syntax for taking absolute values so it's useful to the overall tutorial to retain this method regardless of redundancy.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.t14c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t14c}\SpecialCharTok{$}\NormalTok{start))}\SpecialCharTok{{-}}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t14c}\SpecialCharTok{$}\NormalTok{end)))}
+\NormalTok{df.t15c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t15c}\SpecialCharTok{$}\NormalTok{start))}\SpecialCharTok{{-}}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t15c}\SpecialCharTok{$}\NormalTok{end)))}
+\NormalTok{df.t16c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t16c}\SpecialCharTok{$}\NormalTok{start))}\SpecialCharTok{{-}}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t16c}\SpecialCharTok{$}\NormalTok{end)))}
+\NormalTok{df.t17c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t17c}\SpecialCharTok{$}\NormalTok{start))}\SpecialCharTok{{-}}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t17c}\SpecialCharTok{$}\NormalTok{end)))}
+\NormalTok{df.t18c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t18c}\SpecialCharTok{$}\NormalTok{start))}\SpecialCharTok{{-}}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t18c}\SpecialCharTok{$}\NormalTok{end)))}
+\NormalTok{df.t19c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t19c}\SpecialCharTok{$}\NormalTok{start))}\SpecialCharTok{{-}}\FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(df.t19c}\SpecialCharTok{$}\NormalTok{end)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# convert negative values to positive}
+
+\NormalTok{df.t14c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(df.t14c}\SpecialCharTok{$}\NormalTok{d\_t)}
+\NormalTok{df.t15c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(df.t15c}\SpecialCharTok{$}\NormalTok{d\_t)}
+\NormalTok{df.t16c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(df.t16c}\SpecialCharTok{$}\NormalTok{d\_t)}
+\NormalTok{df.t17c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(df.t17c}\SpecialCharTok{$}\NormalTok{d\_t)}
+\NormalTok{df.t18c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(df.t18c}\SpecialCharTok{$}\NormalTok{d\_t)}
+\NormalTok{df.t19c}\SpecialCharTok{$}\NormalTok{d\_t }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(df.t19c}\SpecialCharTok{$}\NormalTok{d\_t)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we merge all of our cleaned up time data into one convenient data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.tt }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(df.t14c, df.t15c, df.t16c, df.t17c, df.t18c, df.t19c)}
+
+\FunctionTok{head}\NormalTok{(df.tt)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        start        end     d_t
+## 1 2014-10-18 2014-11-16 29 days
+## 2 2014-04-05 2014-04-12  7 days
+## 3 2014-04-05 2014-04-12  7 days
+## 4 2014-03-28 2014-04-05  8 days
+## 5 2014-03-02 2014-03-28 26 days
+## 6 2014-02-08 2014-02-22 14 days
+\end{verbatim}
+
+\hypertarget{voyage-seasons}{%
+\subsection*{Voyage Seasons}\label{voyage-seasons}}
+
+
+We want to categorize our data into seasons to gain another discrete temporal variable. It's easier to do this with our new data frame constructed out of our cleaned up time data, so please remember to follow these steps in the order they are presented to get proper results.
+
+It isn't a particularly clean technique to create a new data frame every time you want to create more variables.
+
+In an environment where your code may inevitably be passed along to someone further ahead in production than yourself you will want to clear all of the excess vectors and data frames we make use of here.
+
+However, it cannot be understated the value of using this practice when testing unfamiliar programming techniques. By separating variables of interest from their sources you can avoid a lot of unnecessary back tracking through your data preparation scripts whenever an error is made. This practice can also make troubleshooting errors a smooth, piece-wise operation, rather than a gauntlet of interpreting error logs.
+
+We'll create a new data frame to isolate the columns we want to work with.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.seasons }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{start =}\NormalTok{ df.tt}\SpecialCharTok{$}\NormalTok{start,}
+                         \AttributeTok{end =}\NormalTok{ df.tt}\SpecialCharTok{$}\NormalTok{end)}
+\end{Highlighting}
+\end{Shaded}
+
+We'll make use of the \texttt{dplyr} package again to reformat our M/D/Y format to just months. \texttt{lubridate} is currently a useful replacement for this package, in this context, but I found \texttt{dplyr} to be sufficient for this specific task and far less prone to errors.
+
+The syntax below simply declares the columns for the start and end dates as just the month component of each current column. If you receive errors after this point you will likely have to rebuild the \texttt{df.seasons} data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.seasons }\OtherTok{\textless{}{-}}\NormalTok{ df.seasons }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{start =} \FunctionTok{month}\NormalTok{(start))}
+\NormalTok{df.seasons }\OtherTok{\textless{}{-}}\NormalTok{ df.seasons }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{end =} \FunctionTok{month}\NormalTok{(end))}
+\end{Highlighting}
+\end{Shaded}
+
+Since we are categorizing our start and end dates by seasons, we have to declare what these seasons will look like in our final product. When looking at both the data available and the function being used, it's most convenient to organize them in the following way:
+
+\begin{quote}
+1 Winter = December to February (12 to 2) 2 Spring = March to May (3 to 5) 3 Fall = September to November (9 to 11) 4 Summer = June to August (6 to 8)
+\end{quote}
+
+\texttt{findInterval} works well for this, each number in \texttt{c(...)} has to be the cut-off for the category. Since winter includes a month labeled with a number greater than our cut-off value in it's category, we'll use \texttt{gsub} once again to change anything that is found to be in the \texttt{"0"} interval into the \texttt{"1"} interval.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.seasons}\SpecialCharTok{$}\NormalTok{start }\OtherTok{\textless{}{-}} \FunctionTok{findInterval}\NormalTok{(df.seasons}\SpecialCharTok{$}\NormalTok{start, }\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{11}\NormalTok{))}
+\NormalTok{df.seasons}\SpecialCharTok{$}\NormalTok{end }\OtherTok{\textless{}{-}} \FunctionTok{findInterval}\NormalTok{(df.seasons}\SpecialCharTok{$}\NormalTok{end, }\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{11}\NormalTok{))}
+
+\CommentTok{\# converting all 0s to 1s}
+\NormalTok{df.seasons}\SpecialCharTok{$}\NormalTok{start }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"0"}\NormalTok{,}\StringTok{"1"}\NormalTok{,df.seasons}\SpecialCharTok{$}\NormalTok{start)}
+\NormalTok{df.seasons}\SpecialCharTok{$}\NormalTok{end }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"0"}\NormalTok{,}\StringTok{"1"}\NormalTok{,df.seasons}\SpecialCharTok{$}\NormalTok{end)}
+
+\FunctionTok{head}\NormalTok{(df.seasons)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   start end
+## 1     3   4
+## 2     1   1
+## 3     1   1
+## 4     1   1
+## 5     1   1
+## 6     1   1
+\end{verbatim}
+
+We now have all of our time data prepared and organized for our model.
+
+\hypertarget{spatial-data}{%
+\section*{Spatial Data}\label{spatial-data}}
+
+
+For the purpose of this project, the cruise ships themselves will be treated as a ``Spatial'' component. There will be three major steps to this process.
+
+\begin{itemize}
+\tightlist
+\item
+  Isolating Cruise Liners (Corporate ownership) and Cruise Ships (The named vessel).
+\item
+  Creating ``size'' intervals (reminder that size references sample population).
+\item
+  Adding in their port of origin as a column.
+\end{itemize}
+
+\hypertarget{liners-and-ships}{%
+\subsection*{Liners and Ships}\label{liners-and-ships}}
+
+
+First, we go back to our original data and place it all into one unified data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.raw.all }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(cru.noro}\FloatTok{.14}\NormalTok{,cru.noro}\FloatTok{.15}\NormalTok{,cru.noro}\FloatTok{.16}\NormalTok{,cru.noro}\FloatTok{.17}\NormalTok{,cru.noro}\FloatTok{.18}\NormalTok{,cru.noro}\FloatTok{.19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Then we remove all of the rows that are our spreadsheet headers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.raw.all }\OtherTok{\textless{}{-}}\NormalTok{ df.raw.all[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{),]}
+\NormalTok{df.raw.all }\OtherTok{\textless{}{-}}\NormalTok{ df.raw.all[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{),]}
+\NormalTok{df.raw.all }\OtherTok{\textless{}{-}}\NormalTok{ df.raw.all[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{22}\NormalTok{),]}
+\NormalTok{df.raw.all }\OtherTok{\textless{}{-}}\NormalTok{ df.raw.all[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{35}\NormalTok{),]}
+\NormalTok{df.raw.all }\OtherTok{\textless{}{-}}\NormalTok{ df.raw.all[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{46}\NormalTok{),]}
+\NormalTok{df.raw.all }\OtherTok{\textless{}{-}}\NormalTok{ df.raw.all[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{57}\NormalTok{),]}
+\end{Highlighting}
+\end{Shaded}
+
+To finish this step we separate our liner and ship IDs into a new data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.las }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{liner =}\NormalTok{ df.raw.all[,}\DecValTok{1}\NormalTok{],}
+                     \AttributeTok{ship =}\NormalTok{ df.raw.all[,}\DecValTok{2}\NormalTok{])}
+
+\FunctionTok{head}\NormalTok{(df.las)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         liner                 ship
+## 1            Princess Cruises       Crown Princess
+## 2            Princess Cruises       Crown Princess
+## 3 Royal Caribbean Cruise Line Grandeur of the Seas
+## 4 Royal Caribbean Cruise Line Grandeur of the Seas
+## 5        Holland America Line           ms Maasdam
+## 6        Holland America Line           ms Veendam
+\end{verbatim}
+
+Step one of our process is complete.
+
+\hypertarget{size-intervals}{%
+\subsection*{Size Intervals}\label{size-intervals}}
+
+
+This step uses the same technique as the season categorization. First we declare our categories:
+
+\begin{quote}
+1 small cruise: 50-800 2 small-mid cruise: 801-1500 3 mid-sized cruise: 1501-2500 4 large cruise: 2501-3500 5 mega cruise: 3501+
+\end{quote}
+
+Then we apply our interval function and place the sizes into a column vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{size.interv }\OtherTok{\textless{}{-}} \FunctionTok{findInterval}\NormalTok{(Ac.size, }\FunctionTok{c}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{801}\NormalTok{,}\DecValTok{1501}\NormalTok{,}\DecValTok{2501}\NormalTok{,}\DecValTok{3501}\NormalTok{))}
+
+\FunctionTok{head}\NormalTok{(size.interv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5 5 4 4 3 3
+\end{verbatim}
+
+Step two is complete.
+
+\hypertarget{ports-of-origin}{%
+\subsection*{Ports of Origin}\label{ports-of-origin}}
+
+
+Gathering the port of origin for these ships is a more complicated act of research and data scraping than the scope of this tutorial allows. If you would like to learn more about making API calls, please refer to this website:
+
+\url{https://learn.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client}
+
+Data of the itineraries of the exact voyages for these cruises was found, and condensed into a .csv file.
+
+This file can be downloaded at the below URL:
+
+\url{https://www.dropbox.com/scl/fi/2efm7ugkhjanzqc0opiz6/Cleanedstartendcru.csv?rlkey=gpnynbxwlllzrb2v8gaynyc7e\&dl=0}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cru.strt\_lat\_long }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\_book/\_main\_files/.csv files/Cleanedstartendcru.csv"}\NormalTok{)}
+
+\FunctionTok{head}\NormalTok{(cru.strt\_lat\_long)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   Ship Start.Destination End.Destination Year Start.Lat
+## 1       Crown Princess       Los Angeles      California 2014   33.7405
+## 2       Crown Princess       Los Angeles      California 2014   33.7405
+## 3 Grandeur of the Seas         Baltimore         Bahamas 2014   39.2876
+## 4 Grandeur of the Seas         Baltimore         Bahamas 2014   39.2876
+## 5           ms Maasdam    Rio de Janeiro Fort Lauderdale 2014  -22.8955
+## 6           ms Veendam         San Diego Fort Lauderdale 2014   32.7157
+##   Start.Long  X X.1 X.2 X.3 X.4 X.5 X.6 X.7 X.8 X.9 X.10 X.11
+## 1  -118.2786 NA  NA  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 2  -118.2786 NA  NA  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 3   -76.6108 NA  NA  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 4   -76.6108 NA  NA  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 5   -43.1822 NA  NA  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+## 6  -117.1611 NA  NA  NA  NA  NA  NA  NA  NA  NA  NA   NA   NA
+\end{verbatim}
+
+There's a significant amount of NAs in columns of NAs. These columns are likely just errors in reading the .csv, as no data from the original .csv is missing. We'll clean those up by changing \texttt{cru.strt\_lat\_long} to a data frame with only the columns we want to retain.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cru.strt\_lat\_long }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Ship =}\NormalTok{ cru.strt\_lat\_long}\SpecialCharTok{$}\NormalTok{Ship,}
+                                \AttributeTok{Start\_dest =}\NormalTok{ cru.strt\_lat\_long}\SpecialCharTok{$}\NormalTok{Start.Destination,}
+                                \AttributeTok{End\_dest =}\NormalTok{ cru.strt\_lat\_long}\SpecialCharTok{$}\NormalTok{End.Destination,}
+                                \AttributeTok{Start\_lat =}\NormalTok{ cru.strt\_lat\_long}\SpecialCharTok{$}\NormalTok{Start.Lat,}
+                                \AttributeTok{Start\_long =}\NormalTok{ cru.strt\_lat\_long}\SpecialCharTok{$}\NormalTok{Start.Long)}
+
+\FunctionTok{head}\NormalTok{(cru.strt\_lat\_long)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   Ship     Start_dest        End_dest Start_lat Start_long
+## 1       Crown Princess    Los Angeles      California   33.7405  -118.2786
+## 2       Crown Princess    Los Angeles      California   33.7405  -118.2786
+## 3 Grandeur of the Seas      Baltimore         Bahamas   39.2876   -76.6108
+## 4 Grandeur of the Seas      Baltimore         Bahamas   39.2876   -76.6108
+## 5           ms Maasdam Rio de Janeiro Fort Lauderdale  -22.8955   -43.1822
+## 6           ms Veendam      San Diego Fort Lauderdale   32.7157  -117.1611
+\end{verbatim}
+
+\hypertarget{final-preparations}{%
+\section*{Final Preparations}\label{final-preparations}}
+
+
+When we inspect this data frame now we'll notice there are three missing cruise ships from the list. These ships did not have itinerary data available. Case deletion will be used for this situation, with the assumption that the loss of three data points due to lack of available associated spatial data will not cause significant error in our models.
+
+Understand, with every ounce of truth I can weigh against this statement, that it is far easier to locate the three missing cruise vessels manually than it is to use any amount of programming to automate the task. I retract that statement in the event there's a machine learning expert reading this tutorial for reasons far beyond comprehension.
+
+We'll remove the rows containing these cruise vessels. In order to do this lets make our first unified data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cruisedata.df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{cases =}\NormalTok{ Ac.cases,}
+                            \AttributeTok{size =}\NormalTok{ Ac.size,}
+                            \AttributeTok{infection =}\NormalTok{ cru.rate,}
+                            \AttributeTok{liner =}\NormalTok{ df.las[,}\DecValTok{1}\NormalTok{],}
+                            \AttributeTok{ship =}\NormalTok{ df.las[,}\DecValTok{2}\NormalTok{],}
+                            \AttributeTok{size.cat =} \FunctionTok{factor}\NormalTok{(size.interv),}
+                            \AttributeTok{start\_date =}\NormalTok{ df.tt[,}\DecValTok{1}\NormalTok{],}
+                            \AttributeTok{end\_date =}\NormalTok{ df.tt[,}\DecValTok{2}\NormalTok{],}
+                            \AttributeTok{start\_season =}\NormalTok{ df.seasons[,}\DecValTok{1}\NormalTok{],}
+                            \AttributeTok{end\_season =}\NormalTok{ df.seasons[,}\DecValTok{2}\NormalTok{],}
+                            \AttributeTok{total\_days =}\NormalTok{ df.tt[,}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+Then delete the rows of interest.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\{}
+\NormalTok{  cruisedata.df }\OtherTok{\textless{}{-}}\NormalTok{ cruisedata.df[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{19}\NormalTok{),]}
+\NormalTok{  cruisedata.df }\OtherTok{\textless{}{-}}\NormalTok{ cruisedata.df[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{37}\NormalTok{),]}
+\NormalTok{  cruisedata.df }\OtherTok{\textless{}{-}}\NormalTok{ cruisedata.df[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{42}\NormalTok{),]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Finally we add our latitude and longitudes to the unified data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cruisedata.df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{cases =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{cases,}
+                            \AttributeTok{size =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{size,}
+                            \AttributeTok{infection =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{infection,}
+                            \AttributeTok{liner =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{liner,}
+                            \AttributeTok{ship =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{ship,}
+                            \AttributeTok{size.cat =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{size.cat,}
+                            \AttributeTok{start\_date =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{start\_date,}
+                            \AttributeTok{end\_date =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{end\_date,}
+                            \AttributeTok{start\_season =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{start\_season,}
+                            \AttributeTok{end\_season =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{end\_season,}
+                            \AttributeTok{total\_days =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{total\_days,}
+                            \AttributeTok{Start\_dest =}\NormalTok{ cru.strt\_lat\_long}\SpecialCharTok{$}\NormalTok{Start\_dest,}
+                            \AttributeTok{End\_dest =}\NormalTok{ cru.strt\_lat\_long}\SpecialCharTok{$}\NormalTok{End\_dest,}
+                            \AttributeTok{Start\_lat =}\NormalTok{ cru.strt\_lat\_long}\SpecialCharTok{$}\NormalTok{Start\_lat,}
+                            \AttributeTok{Start\_long =}\NormalTok{ cru.strt\_lat\_long}\SpecialCharTok{$}\NormalTok{Start\_long)  }
+\end{Highlighting}
+\end{Shaded}
+
+We've completed the tedious portion of this project. The end result is a large data frame with all of the variables we've deemed necessary and appropriate for our analytics.
+
+\hypertarget{part-model-fitting}{%
+\part{Model Fitting}\label{part-model-fitting}}
+
+\hypertarget{model-selection}{%
+\chapter*{Model selection}\label{model-selection}}
+
+
+The objective of this R program is to build a viable model for making predictions on probability of infection for cruise voyages based on set parameters. Two models will be used and checked against one another:
+
+\begin{itemize}
+\item
+  An intercept-only linear model (serving as a reference)
+\item
+  A binomial regression model
+\end{itemize}
+
+Results of each model will be shown, but analysis on what they provide will not be covered in this section.
+
+For the analytics, please refer to Analysis chapter.
+
+\hypertarget{intercept-only-model}{%
+\section*{Intercept-Only Model}\label{intercept-only-model}}
+
+
+The intercept-only regression model contains no predictor variables. For our purpose, it serves as a baseline reference to the efficacy of our other models.
+
+The general model is shown below:
+
+\begin{equation}
+Y_{ij} = \beta_0*\epsilon_{i,j}
+\end{equation}
+
+We're using the duration of our voyages as the intercept, and plotting the results of the model against the reported rate of infection and the duration of the voyages.
+
+The \texttt{lm} function is used, where we declare our \texttt{infection} variable, (our reported rates), to \texttt{total\_days}, (our voyage duration), referencing our master data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(infection }\SpecialCharTok{\textasciitilde{}}\NormalTok{ size, }\AttributeTok{data=}\NormalTok{cruisedata.df)}
+
+\FunctionTok{summary}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = infection ~ size, data = cruisedata.df)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.034107 -0.012933 -0.004742  0.002294  0.155384 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 4.295e-02  8.011e-03   5.361 1.34e-06 ***
+## size        6.776e-07  2.529e-06   0.268     0.79    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.02882 on 61 degrees of freedom
+## Multiple R-squared:  0.001176,   Adjusted R-squared:  -0.0152 
+## F-statistic: 0.07181 on 1 and 61 DF,  p-value: 0.7896
+\end{verbatim}
+
+We'll create a data frame for our model's predictions of rate, declaring an empty column for that prediction and placing in our reported rate as well as our voyage duration as additional columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.predm1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{yhat\_rate =} \ConstantTok{NA}\NormalTok{,}
+                        \AttributeTok{actual\_rate =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{infection,}
+                        \AttributeTok{size =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{size)}
+
+\NormalTok{df.predm1}\SpecialCharTok{$}\NormalTok{yhat\_rate }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(m1,}\AttributeTok{newdata=}\NormalTok{df.predm1) }
+
+\FunctionTok{head}\NormalTok{(df.predm1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    yhat_rate actual_rate size
+## 1 0.04577220  0.04125690 4169
+## 2 0.04588604  0.03504727 4337
+## 3 0.04493127  0.03586066 2928
+## 4 0.04492043  0.04017857 2912
+## 5 0.04407544  0.04384384 1665
+## 6 0.04419945  0.06709957 1848
+\end{verbatim}
+
+We'll use \texttt{ggplot} to visualize the model on a line plot, with the X-axis being our voyage duration, the Y-axis being our observed rates, and the rate predictions of the model shown as a red line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df.predm1, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{size, }\AttributeTok{y=}\NormalTok{actual\_rate)) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Passenger Population"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Observed Rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{yhat\_rate), }\AttributeTok{color=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/predm1_plot-1.pdf}
+
+\hypertarget{binomial-regression}{%
+\section*{Binomial Regression}\label{binomial-regression}}
+
+
+The \texttt{glm} function in the \texttt{stats} R package is a simple yet effective tool for this next model.
+
+Using the following framework for our model:
+
+\begin{equation}
+{Data \ Model}: [z=y]
+\newline
+{Process \ Model}: y_{ij} \sim Binom(n_i,\phi_j)
+\newline
+{Parameter \ Model}: [\phi_j \ | \ \phi_s,\phi_t]
+\newline
+\phi_s = MVN(0,\epsilon)
+\end{equation}
+
+We will be using the logit function
+
+\begin{equation}
+1 \over e^{\beta_0 + \beta_1*X + \phi_s + \phi_t}
+\end{equation}
+
+as our model for predicted rate of infection.
+
+We'll use our intercept of size but as a category this time, then add in our voyage duration, latitude, and longitude. We set the \texttt{family="quasibinomial"} since it creates the same effect as \texttt{family="binomial"}, but avoids a repetitive error code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m2 }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(infection }\SpecialCharTok{\textasciitilde{}}\NormalTok{ size.cat }\SpecialCharTok{+}\NormalTok{ total\_days }\SpecialCharTok{+}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{Start\_lat }\SpecialCharTok{+}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{Start\_long, }\AttributeTok{data=}\NormalTok{cruisedata.df, }\AttributeTok{family=}\StringTok{"quasibinomial"}\NormalTok{)}
+
+\FunctionTok{summary}\NormalTok{(m2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = infection ~ size.cat + total_days + cruisedata.df$Start_lat + 
+##     cruisedata.df$Start_long, family = "quasibinomial", data = cruisedata.df)
+## 
+## Coefficients:
+##                           Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)              -3.354517   0.448056  -7.487 6.01e-10 ***
+## size.cat2                -0.066468   0.384998  -0.173   0.8636    
+## size.cat3                -0.138738   0.374774  -0.370   0.7127    
+## size.cat4                -0.148188   0.368990  -0.402   0.6895    
+## size.cat5                 0.070229   0.361981   0.194   0.8469    
+## total_days                0.032019   0.012450   2.572   0.0129 *  
+## cruisedata.df$Start_lat   0.004797   0.003678   1.304   0.1976    
+## cruisedata.df$Start_long  0.002612   0.001564   1.670   0.1006    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for quasibinomial family taken to be 0.01363758)
+## 
+##     Null deviance: 0.84225  on 62  degrees of freedom
+## Residual deviance: 0.64622  on 55  degrees of freedom
+## AIC: NA
+## 
+## Number of Fisher Scoring iterations: 6
+\end{verbatim}
+
+Once again, a data frame for our prediction is built, with predicted rate, size categories, observed rate of infection, voyage duration, latitude, and longitude. Then we fill the empty prediction column with expected rates of infection.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.predm2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{yhat\_rate =} \ConstantTok{NA}\NormalTok{,}
+                        \AttributeTok{size.cat =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{size.cat,}
+                        \AttributeTok{actual\_rate =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{infection,}
+                        \AttributeTok{total\_days =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{total\_days,}
+                        \AttributeTok{lat =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{Start\_lat,}
+                        \AttributeTok{long =}\NormalTok{ cruisedata.df}\SpecialCharTok{$}\NormalTok{Start\_long)}
+
+\NormalTok{df.predm2}\SpecialCharTok{$}\NormalTok{yhat\_rate }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(m2,}\AttributeTok{newdata=}\NormalTok{df.predm2) }
+
+\NormalTok{df.predm2}\SpecialCharTok{$}\NormalTok{yhat\_rate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{df.predm2}\SpecialCharTok{$}\NormalTok{yhat\_rate))}
+
+\FunctionTok{head}\NormalTok{(df.predm2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    yhat_rate size.cat actual_rate total_days      lat      long
+## 1 0.07566357        5  0.04125690    29 days  33.7405 -118.2786
+## 2 0.03889552        5  0.03504727     7 days  33.7405 -118.2786
+## 3 0.03590919        4  0.03586066     7 days  39.2876  -76.6108
+## 4 0.03703431        4  0.04017857     8 days  39.2876  -76.6108
+## 5 0.05298255        3  0.04384384    26 days -22.8955  -43.1822
+## 6 0.03939088        3  0.06709957    14 days  32.7157 -117.1611
+\end{verbatim}
+
+Plotting this the way we did before does not achieve much due to how many variables we're working with. The plot below details that concept, in my opinion, very well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df.predm2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FunctionTok{as.numeric}\NormalTok{(total\_days), }\AttributeTok{y=}\NormalTok{actual\_rate)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Voyage Duration"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Observed Rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{yhat\_rate), }\AttributeTok{color=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/predm2_plot-1.pdf}
+
+\hypertarget{program-validation}{%
+\section*{Program Validation}\label{program-validation}}
+
+
+Our data is organized, our models are fit. I find it appropriate to look at the data that's being returned by the code that's been written, to ensure everything is rational to the intent. This portion is a practice I have become fond of in my personal experience, but it is not necessary since it doesn't follow any statistical methodology
+
+We'll observe the predictions our models have made.
+
+\begin{verbatim}
+##    yhat_rate actual_rate size
+## 1 0.04577220  0.04125690 4169
+## 2 0.04588604  0.03504727 4337
+## 3 0.04493127  0.03586066 2928
+## 4 0.04492043  0.04017857 2912
+## 5 0.04407544  0.04384384 1665
+## 6 0.04419945  0.06709957 1848
+\end{verbatim}
+
+\begin{verbatim}
+##    yhat_rate        actual_rate           size     
+##  Min.   :0.04313   Min.   :0.01182   Min.   : 265  
+##  1st Qu.:0.04419   1st Qu.:0.03195   1st Qu.:1838  
+##  Median :0.04487   Median :0.04018   Median :2839  
+##  Mean   :0.04486   Mean   :0.04486   Mean   :2824  
+##  3rd Qu.:0.04554   3rd Qu.:0.04785   3rd Qu.:3832  
+##  Max.   :0.04868   Max.   :0.19930   Max.   :8454
+\end{verbatim}
+
+\begin{verbatim}
+##    yhat_rate size.cat actual_rate total_days      lat      long
+## 1 0.07566357        5  0.04125690    29 days  33.7405 -118.2786
+## 2 0.03889552        5  0.03504727     7 days  33.7405 -118.2786
+## 3 0.03590919        4  0.03586066     7 days  39.2876  -76.6108
+## 4 0.03703431        4  0.04017857     8 days  39.2876  -76.6108
+## 5 0.05298255        3  0.04384384    26 days -22.8955  -43.1822
+## 6 0.03939088        3  0.06709957    14 days  32.7157 -117.1611
+\end{verbatim}
+
+\begin{verbatim}
+##    yhat_rate       size.cat  actual_rate       total_days      
+##  Min.   :0.03173   1: 3     Min.   :0.01182   Length:63        
+##  1st Qu.:0.03732   2: 9     1st Qu.:0.03195   Class :difftime  
+##  Median :0.04148   3:15     Median :0.04018   Mode  :numeric   
+##  Mean   :0.04486   4:18     Mean   :0.04486                    
+##  3rd Qu.:0.04827   5:18     3rd Qu.:0.04785                    
+##  Max.   :0.10990            Max.   :0.19930                    
+##       lat              long        
+##  Min.   :-33.05   Min.   :-149.44  
+##  1st Qu.: 25.94   1st Qu.:-117.16  
+##  Median : 32.72   Median : -80.19  
+##  Mean   : 29.22   Mean   : -82.01  
+##  3rd Qu.: 40.69   3rd Qu.: -75.36  
+##  Max.   : 60.10   Max.   : 139.69
+\end{verbatim}
+
+For each model, the results of our predicted rates are rational to the models themselves. Low variance on model 1 is to be expected, model 2 looks appropriate given the syntax it's constructed from.
+
+Visualizing it in our plots may not be inherently useful to the analysis of our data, but I've learned that it's exceptionally good at parsing out any errors that might have occured in our code blocks.
+
+\includegraphics{_main_files/figure-latex/predm1_plot2-1.pdf}
+
+\includegraphics{_main_files/figure-latex/predm2_plot2-1.pdf}
+
+The plots don't return any errors, and our lines of fit coincide with what the data frames have been telling us. Interpreting them isn't the current goal, so whether or not the second model is ``over-fit'' isn't relevant at the moment.
+
+\hypertarget{troubleshooting}{%
+\subsection*{Troubleshooting}\label{troubleshooting}}
+
+
+The majority of errors you'll experience during this process with come from two sources:
+
+\begin{quote}
+Out of order set-up
+\end{quote}
+
+As stated previously, if you don't build your code in the order it has been presented so far, you will encounter continuous errors. In the event you make this error, clear the environment. Rebuild your variables and data frames. Double check you have followed the correct path laid out by this tutorial.
+
+\begin{quote}
+Incorrect specification of file pathing
+\end{quote}
+
+There are 5 files that have been provided through dropbox URLs. If you:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Have not downloaded them.
+\item
+  Have not placed them into a folder your environment can path to.
+\item
+  Have not deleted the file paths in the code provided so far and re-specified the appropriate paths for your system.
+\end{enumerate}
+
+You will encounter errors that won't resolve until you complete those three steps.
+
+Remember the golden rules of troubleshooting all technology:
+
+\begin{quote}
+Power cycle then repeat the fault
+\end{quote}
+
+\begin{quote}
+When in doubt, check for updates
+\end{quote}
+
+\begin{quote}
+If all else fails, Google the error message
+\end{quote}
+
+Fully power cycling a device or program is not only definitively and objectively a mystical solution to 99\% of all technological errors the instant the IT support tech shows up, it's also essential in the process of ``repeat the fault''. If you can figure out how to make the error repeatedly, you can work to locate the source.
+
+Updates fix programs and hardware while breaking other things in the process, further updates fix them and break different aspects than the previous one. Failing to maintain updates keeps things broken forever.
+
+Google is free. People become Chess Grandmasters with free online tools they access from Google.
+
+\hypertarget{part-model-evaluation}{%
+\part{Model Evaluation}\label{part-model-evaluation}}
+
+\hypertarget{model-checking}{%
+\chapter*{Model Checking}\label{model-checking}}
+
+
+Checking the predictive accuracy of our model is the next step in this process. There are numerous methods for performing model checks and their efficacy varies based on the data/model/function being used.
+
+For this project and tutorial we'll be using 4 separate methods:
+
+\begin{itemize}
+\item
+  Regression Diagnostics
+\item
+  Graphical Diagnostics
+\item
+  Within-Sample Validation
+\item
+  Forecasting
+\end{itemize}
+
+\hypertarget{regression-diagnostics}{%
+\section*{Regression Diagnostics}\label{regression-diagnostics}}
+
+
+\hypertarget{graphical-diagnostics}{%
+\section*{Graphical Diagnostics}\label{graphical-diagnostics}}
+
+
+\hypertarget{within-sample-validation}{%
+\section*{Within-Sample Validation}\label{within-sample-validation}}
+
+
+\hypertarget{forecasting}{%
+\section*{Forecasting}\label{forecasting}}
+
+
+\end{document}

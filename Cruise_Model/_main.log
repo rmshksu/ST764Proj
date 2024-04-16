@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.4.12)  12 APR 2024 13:46
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.4.12)  15 APR 2024 21:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -715,21 +715,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 225.
+(Font)              scaled to size 7.0pt on input line 247.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 225.
+(Font)              scaled to size 5.0pt on input line 247.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 225.
+(Font)              scaled to size 10.00092pt on input line 247.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 225.
+(Font)              scaled to size 7.00064pt on input line 247.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 225.
+(Font)              scaled to size 5.00046pt on input line 247.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 225.
+(Font)              scaled to size 9.99893pt on input line 247.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 225.
+(Font)              scaled to size 6.99925pt on input line 247.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 225.
+(Font)              scaled to size 4.99947pt on input line 247.
 [10] [11] [12
 
 ] [13] [14] [15
@@ -742,114 +742,114 @@ File: _book/_main_files/images/url_input.png Graphic file (type bmp)
 File: _book/_main_files/images/Excel_Query_Multi.png Graphic file (type bmp)
 <_book/_main_files/images/Excel_Query_Multi.png>
 [16] [17] [18]
-Overfull \hbox (59.97998pt too wide) in paragraph at lines 323--324
+Overfull \hbox (59.97998pt too wide) in paragraph at lines 345--346
 []$[][][][][] [] [] [] [][][] [] [][][][][][][] [] [][][] [] [][][] [] [][] [] [][][][][][][][][][][][][][][][][][][][][] [] [][][][][][][][][][][][][][][][][][][][][][][] []
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 337.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 359.
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 388--388
+Overfull \hbox (75.0pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ##                 Column1       Column2              Column3            Column4[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 388--388
+Overfull \hbox (75.0pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 1           Cruise Line   Cruise Ship Sailing_Dates(Start) Sailing_Dates(End)[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 388--388
+Overfull \hbox (75.0pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 2 Norwegian Cruise Line Norwegian Joy            11/8/2019         11/24/2019[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 388--388
+Overfull \hbox (75.0pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 3          Aida Cruises      AIDAdiva            10/3/2019         10/13/2019[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 388--388
+Overfull \hbox (75.0pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 4          Aida Cruises      AIDAluna            9/28/2019         10/12/2019[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 388--388
+Overfull \hbox (75.0pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 5          Aida Cruises      AIDAdiva             9/5/2019          9/23/2019[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 388--388
+Overfull \hbox (75.0pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 6  Carnival Cruise Line      Conquest             9/7/2019          9/14/2019[] 
  []
 
 [19]
-Overfull \hbox (59.25pt too wide) in paragraph at lines 388--388
+Overfull \hbox (59.25pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ##                                          Column7                   Column8[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 388--388
+Overfull \hbox (59.25pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 1 Proportion_Case_Counts_Denominator(Passengers) %_Case_Counts(Passengers)[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 388--388
+Overfull \hbox (59.25pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 2                                          3,602                      3.53[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 388--388
+Overfull \hbox (59.25pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 3                                          2,251                      3.70[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 388--388
+Overfull \hbox (59.25pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 4                                          2,166                      3.90[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 388--388
+Overfull \hbox (59.25pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 5                                          2,055                      5.70[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 388--388
+Overfull \hbox (59.25pt too wide) in paragraph at lines 410--410
 []\TU/lmtt/m/n/10 ## 6                                          3,241                      0.52[] 
  []
 
 [20]
-Overfull \hbox (43.5pt too wide) in paragraph at lines 440--440
+Overfull \hbox (43.5pt too wide) in paragraph at lines 462--462
 []\TU/lmtt/m/n/10 ##                                 pcn                                 pcd[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 440--440
+Overfull \hbox (43.5pt too wide) in paragraph at lines 462--462
 []\TU/lmtt/m/n/10 ## 1 Case_Counts_Numerator(Passengers) Case_Counts_Denominator(Passengers)[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 440--440
+Overfull \hbox (43.5pt too wide) in paragraph at lines 462--462
 []\TU/lmtt/m/n/10 ## 2                               158                               3,009[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 440--440
+Overfull \hbox (43.5pt too wide) in paragraph at lines 462--462
 []\TU/lmtt/m/n/10 ## 3                               122                               3,161[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 440--440
+Overfull \hbox (43.5pt too wide) in paragraph at lines 462--462
 []\TU/lmtt/m/n/10 ## 4                                97                               2,120[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 440--440
+Overfull \hbox (43.5pt too wide) in paragraph at lines 462--462
 []\TU/lmtt/m/n/10 ## 5                               111                               2,122[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 440--440
+Overfull \hbox (43.5pt too wide) in paragraph at lines 462--462
 []\TU/lmtt/m/n/10 ## 6                                65                               1,096[] 
  []
 
@@ -860,116 +860,222 @@ Underfull \vbox (badness 2744) has occurred while \output is active []
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 516.
+(amsmath)                 on input line 536.
 
 [23] [24] [25] [26] [27] [28] [29]
-Underfull \hbox (badness 10000) in paragraph at lines 904--905
+Underfull \hbox (badness 10000) in paragraph at lines 922--923
 [][]$[][][][][] [] [] [] [][][][][] [] [][][][][][][][][] [] [][][] [] [][] [][] [][] [] [][][][][][] [] [][][] [][] [][][] [] [][][][][][][][] [] [][][][][][][][] []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 910--911
+Underfull \hbox (badness 10000) in paragraph at lines 928--929
 [][]$[][][][][] [] [] [] [][][] [] [][][][][][][] [] [][][] [] [][][] [] [][] [] [][][][][][][][][][][][][][][][][][][][][] [] [][][][][][][][][][][][][][][][][][] []
  []
 
 [30]
-Overfull \hbox (43.5pt too wide) in paragraph at lines 935--935
+Overfull \hbox (43.5pt too wide) in paragraph at lines 953--953
 []\TU/lmtt/m/n/10 ##                   Ship Start.Destination End.Destination Year Start.Lat[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 935--935
+Overfull \hbox (43.5pt too wide) in paragraph at lines 953--953
 []\TU/lmtt/m/n/10 ## 1       Crown Princess       Los Angeles      California 2014   33.7405[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 935--935
+Overfull \hbox (43.5pt too wide) in paragraph at lines 953--953
 []\TU/lmtt/m/n/10 ## 2       Crown Princess       Los Angeles      California 2014   33.7405[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 935--935
+Overfull \hbox (43.5pt too wide) in paragraph at lines 953--953
 []\TU/lmtt/m/n/10 ## 3 Grandeur of the Seas         Baltimore         Bahamas 2014   39.2876[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 935--935
+Overfull \hbox (43.5pt too wide) in paragraph at lines 953--953
 []\TU/lmtt/m/n/10 ## 4 Grandeur of the Seas         Baltimore         Bahamas 2014   39.2876[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 935--935
+Overfull \hbox (43.5pt too wide) in paragraph at lines 953--953
 []\TU/lmtt/m/n/10 ## 5           ms Maasdam    Rio de Janeiro Fort Lauderdale 2014  -22.8955[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 935--935
+Overfull \hbox (43.5pt too wide) in paragraph at lines 953--953
 []\TU/lmtt/m/n/10 ## 6           ms Veendam         San Diego Fort Lauderdale 2014   32.7157[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 959--959
+Overfull \hbox (59.25pt too wide) in paragraph at lines 977--977
 []\TU/lmtt/m/n/10 ##                   Ship     Start_dest        End_dest Start_lat Start_long[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 959--959
+Overfull \hbox (59.25pt too wide) in paragraph at lines 977--977
 []\TU/lmtt/m/n/10 ## 1       Crown Princess    Los Angeles      California   33.7405  -118.2786[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 959--959
+Overfull \hbox (59.25pt too wide) in paragraph at lines 977--977
 []\TU/lmtt/m/n/10 ## 2       Crown Princess    Los Angeles      California   33.7405  -118.2786[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 959--959
+Overfull \hbox (59.25pt too wide) in paragraph at lines 977--977
 []\TU/lmtt/m/n/10 ## 3 Grandeur of the Seas      Baltimore         Bahamas   39.2876   -76.6108[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 959--959
+Overfull \hbox (59.25pt too wide) in paragraph at lines 977--977
 []\TU/lmtt/m/n/10 ## 4 Grandeur of the Seas      Baltimore         Bahamas   39.2876   -76.6108[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 959--959
+Overfull \hbox (59.25pt too wide) in paragraph at lines 977--977
 []\TU/lmtt/m/n/10 ## 5           ms Maasdam Rio de Janeiro Fort Lauderdale  -22.8955   -43.1822[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 959--959
+Overfull \hbox (59.25pt too wide) in paragraph at lines 977--977
 []\TU/lmtt/m/n/10 ## 6           ms Veendam      San Diego Fort Lauderdale   32.7157  -117.1611[] 
  []
 
 [31] [32] [33] [34
 
-] [35] [36]
-Missing character: There is no 𝛽 (U+1D6FD) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no 𝜖 (U+1D716) in font [lmroman10-regular]:mapping=tex-text;!
-[37
+] [35] [36] [37
 
 ] [38]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 1140--1140
-[]\TU/lmtt/m/n/10 ## Don't know how to automatically pick scale for object of type <difftime>.[] 
- []
-
 File: _main_files/figure-latex/predm1_plot-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/predm1_plot-1.pdf>
-No file _main.bbl.
-[39] (./_main.aux)
+
+Overfull \hbox (119.94559pt too wide) detected at line 1159
+[][][][] [] [][] [] [][][] [] [] [][] [] [][][][][][][][][] [][][][] [] [] [][][] [] [][][] [][][][] [][] [] [][][][][][] [][]
+ []
+
+[39]
+Overfull \hbox (64.5pt too wide) in paragraph at lines 1205--1205
+[]\TU/lmtt/m/n/10 ## glm(formula = infection ~ size.cat + total_days + cruisedata.df$Start_lat +[] 
+ []
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1205--1205
+[]\TU/lmtt/m/n/10 ##     cruisedata.df$Start_long, family = "quasibinomial", data = cruisedata.df)[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 1205--1205
+[]\TU/lmtt/m/n/10 ## (Intercept)              -3.354517   0.448056  -7.487 6.01e-10 ***[] 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 1205--1205
+[]\TU/lmtt/m/n/10 ## total_days                0.032019   0.012450   2.572   0.0129 *[] 
+ []
+
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1205--1205
+[]\TU/lmtt/m/n/10 ## (Dispersion parameter for quasibinomial family taken to be 0.01363758)[] 
+ []
+
+[40]
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+[]\TU/lmtt/m/n/10 ##    yhat_rate size.cat actual_rate total_days      lat      long[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+[]\TU/lmtt/m/n/10 ## 1 0.07566357        5  0.04125690    29 days  33.7405 -118.2786[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+[]\TU/lmtt/m/n/10 ## 2 0.03889552        5  0.03504727     7 days  33.7405 -118.2786[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+[]\TU/lmtt/m/n/10 ## 3 0.03590919        4  0.03586066     7 days  39.2876  -76.6108[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+[]\TU/lmtt/m/n/10 ## 4 0.03703431        4  0.04017857     8 days  39.2876  -76.6108[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+[]\TU/lmtt/m/n/10 ## 5 0.05298255        3  0.04384384    26 days -22.8955  -43.1822[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+[]\TU/lmtt/m/n/10 ## 6 0.03939088        3  0.06709957    14 days  32.7157 -117.1611[] 
+ []
+
+File: _main_files/figure-latex/predm2_plot-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/predm2_plot-1.pdf>
+[41]
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+[]\TU/lmtt/m/n/10 ##    yhat_rate size.cat actual_rate total_days      lat      long[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+[]\TU/lmtt/m/n/10 ## 1 0.07566357        5  0.04125690    29 days  33.7405 -118.2786[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+[]\TU/lmtt/m/n/10 ## 2 0.03889552        5  0.03504727     7 days  33.7405 -118.2786[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+[]\TU/lmtt/m/n/10 ## 3 0.03590919        4  0.03586066     7 days  39.2876  -76.6108[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+[]\TU/lmtt/m/n/10 ## 4 0.03703431        4  0.04017857     8 days  39.2876  -76.6108[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+[]\TU/lmtt/m/n/10 ## 5 0.05298255        3  0.04384384    26 days -22.8955  -43.1822[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+[]\TU/lmtt/m/n/10 ## 6 0.03939088        3  0.06709957    14 days  32.7157 -117.1611[] 
+ []
+
+[42]
+File: _main_files/figure-latex/predm1_plot2-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/predm1_plot2-1.pdf>
+File: _main_files/figure-latex/predm2_plot2-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/predm2_plot2-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[43] [44] [45] [46
+
+] [47] [48] [49
+
+] (./_main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 17553 strings out of 476760
- 322047 string characters out of 5800794
+ 17592 strings out of 476760
+ 323598 string characters out of 5800794
  1946148 words of memory out of 5000000
- 39356 multiletter control sequences out of 15000+600000
+ 39392 multiletter control sequences out of 15000+600000
  564536 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,6n,121p,557b,477s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,6n,121p,557b,479s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on _main.pdf (39 pages).
+Output written on _main.pdf (49 pages).
