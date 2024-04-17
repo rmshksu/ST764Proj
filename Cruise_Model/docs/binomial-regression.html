@@ -23,7 +23,7 @@
 <meta name="author" content="Robert Sholl, Kelechi Igwe, Stephen Edache" />
 
 
-<meta name="date" content="2024-04-15" />
+<meta name="date" content="2024-04-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,17 +215,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[\begin{equation}
 {Data \ Model}: [z=y]
 \newline
-{Process \ Model}: y_{ij} \sim Binom(n_i,\phi_j)
+{Process \ Model}: y_{ij} \sim Binom(n_i,\phi_i)
 \newline
-{Parameter \ Model}: [\phi_j \ | \ \phi_s,\phi_t]
+{Parameter \ Model}: [\phi_i \sim logit(\phi_i) = \beta_0 + \beta_1 * X + \eta_s + \eta_t
 \newline
-\phi_s = MVN(0,\epsilon)
+\phi_s \sim MVN(0,\epsilon)
 \end{equation}\]</span>
-<p>We will be using the logit function</p>
-<span class="math display">\[\begin{equation}
-1 \over e^{\beta_0 + \beta_1*X + \phi_s + \phi_t}
-\end{equation}\]</span>
-<p>as our model for predicted rate of infection.</p>
 <p>We’ll use our intercept of size but as a category this time, then add in our voyage duration, latitude, and longitude. We set the <code>family="quasibinomial"</code> since it creates the same effect as <code>family="binomial"</code>, but avoids a repetitive error code.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="binomial-regression.html#cb43-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(infection <span class="sc">~</span> size.cat <span class="sc">+</span> total_days <span class="sc">+</span> cruisedata.df<span class="sc">$</span>Start_lat <span class="sc">+</span> cruisedata.df<span class="sc">$</span>Start_long, <span class="at">data=</span>cruisedata.df, <span class="at">family=</span><span class="st">&quot;quasibinomial&quot;</span>)</span>
 <span id="cb43-2"><a href="binomial-regression.html#cb43-2" tabindex="-1"></a></span>

@@ -34,11 +34,11 @@ jobs:
     - name: build book
       run: |
         cd Cruise_Model
-        Rscript -e "rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8')
+        Rscript -e "bookdown::render_book('index.Rmd')"
+        Rscript -e "rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8')"
 
     - name: deploy to the hub pages
-      uses: Cecilapp/GitHub-Pages-deploy@master
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        EMAIL: ${{ secrets.RM_S }}
         github_token: ${{ secrets.PHOE_BE }}
-        BUILD_DIR: ./_book
+        publish_dir: ./_book

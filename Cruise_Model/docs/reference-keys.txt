@@ -1,0 +1,3 @@
+fig:image1
+fig:image2
+fig:image3
