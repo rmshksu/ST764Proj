@@ -35,7 +35,6 @@ jobs:
       run: |
         cd Cruise_Model
         Rscript -e "bookdown::render_book('index.Rmd')"
-        Rscript -e "rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8')"
 
     - name: deploy to the hub pages
       uses: peaceiris/actions-gh-pages@v3
