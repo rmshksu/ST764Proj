@@ -3,3 +3,4 @@ output_dir: "Cruise_Model"
 language:
   ui:
     chapter_name: "Chapter "
+include: ".nojekyll"
