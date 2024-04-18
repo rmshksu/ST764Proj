@@ -2,17 +2,12 @@
 title: "Modeling the Spread of Norovirus on Commercial Cruise Voyages in R"
 author: "Robert Sholl, Kelechi Igwe, Stephen Edache"
 date: "`r Sys.Date()`"
-site: bookdown::gitbook
+site: bookdown::bookdown_site
 documentclass: book
 fontsize: 11
 description: this is the tutorial for reproducing the code used in the STAT764 final project by Robert Sholl, Kelechi Igwe, and Stephen Edache.
 link-citations: yes
 ---
-
-```{r, include=FALSE}
-options(tinytex.verbose = TRUE)
-```
-
 
 # About {-}
 

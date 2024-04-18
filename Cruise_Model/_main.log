@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.4.12)  15 APR 2024 21:44
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.4.17)  17 APR 2024 19:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -950,104 +950,107 @@ Overfull \hbox (59.25pt too wide) in paragraph at lines 977--977
 File: _main_files/figure-latex/predm1_plot-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/predm1_plot-1.pdf>
 
-Overfull \hbox (119.94559pt too wide) detected at line 1159
-[][][][] [] [][] [] [][][] [] [] [][] [] [][][][][][][][][] [][][][] [] [] [][][] [] [][][] [][][][] [][] [] [][][][][][] [][]
+Overfull \hbox (223.63882pt too wide) detected at line 1159
+[][][][] [] [][] [] [][][] [] [] [][] [] [][][][][][][][][] [][][][] [] [] [][][] [] [][][][][][][][][] [] [][] [] [][] [] [] [] [][] [] [][][] [][] [] [][][][][][] [][]
  []
 
 [39]
-Overfull \hbox (64.5pt too wide) in paragraph at lines 1205--1205
+Overfull \hbox (64.5pt too wide) in paragraph at lines 1197--1197
 []\TU/lmtt/m/n/10 ## glm(formula = infection ~ size.cat + total_days + cruisedata.df$Start_lat +[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 1205--1205
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1197--1197
 []\TU/lmtt/m/n/10 ##     cruisedata.df$Start_long, family = "quasibinomial", data = cruisedata.df)[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 1205--1205
+Overfull \hbox (17.25pt too wide) in paragraph at lines 1197--1197
 []\TU/lmtt/m/n/10 ## (Intercept)              -3.354517   0.448056  -7.487 6.01e-10 ***[] 
  []
 
 
-Overfull \hbox (6.75pt too wide) in paragraph at lines 1205--1205
+Overfull \hbox (6.75pt too wide) in paragraph at lines 1197--1197
 []\TU/lmtt/m/n/10 ## total_days                0.032019   0.012450   2.572   0.0129 *[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1205--1205
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1197--1197
 []\TU/lmtt/m/n/10 ## (Dispersion parameter for quasibinomial family taken to be 0.01363758)[] 
  []
 
 [40]
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1226--1226
 []\TU/lmtt/m/n/10 ##    yhat_rate size.cat actual_rate total_days      lat      long[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1226--1226
 []\TU/lmtt/m/n/10 ## 1 0.07566357        5  0.04125690    29 days  33.7405 -118.2786[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1226--1226
 []\TU/lmtt/m/n/10 ## 2 0.03889552        5  0.03504727     7 days  33.7405 -118.2786[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1226--1226
 []\TU/lmtt/m/n/10 ## 3 0.03590919        4  0.03586066     7 days  39.2876  -76.6108[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1226--1226
 []\TU/lmtt/m/n/10 ## 4 0.03703431        4  0.04017857     8 days  39.2876  -76.6108[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1226--1226
 []\TU/lmtt/m/n/10 ## 5 0.05298255        3  0.04384384    26 days -22.8955  -43.1822[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1234--1234
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1226--1226
 []\TU/lmtt/m/n/10 ## 6 0.03939088        3  0.06709957    14 days  32.7157 -117.1611[] 
  []
 
 File: _main_files/figure-latex/predm2_plot-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/predm2_plot-1.pdf>
+
+Underfull \vbox (badness 3989) has occurred while \output is active []
+
 [41]
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1277--1277
 []\TU/lmtt/m/n/10 ##    yhat_rate size.cat actual_rate total_days      lat      long[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1277--1277
 []\TU/lmtt/m/n/10 ## 1 0.07566357        5  0.04125690    29 days  33.7405 -118.2786[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1277--1277
 []\TU/lmtt/m/n/10 ## 2 0.03889552        5  0.03504727     7 days  33.7405 -118.2786[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1277--1277
 []\TU/lmtt/m/n/10 ## 3 0.03590919        4  0.03586066     7 days  39.2876  -76.6108[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1277--1277
 []\TU/lmtt/m/n/10 ## 4 0.03703431        4  0.04017857     8 days  39.2876  -76.6108[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1277--1277
 []\TU/lmtt/m/n/10 ## 5 0.05298255        3  0.04384384    26 days -22.8955  -43.1822[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1285--1285
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1277--1277
 []\TU/lmtt/m/n/10 ## 6 0.03939088        3  0.06709957    14 days  32.7157 -117.1611[] 
  []
 

@@ -9,12 +9,12 @@ bookdown::gitbook:
         <li><a href="./">Modeling the Spread of Norovirus on Commercial Cruise Voyages in R</a></li>
       after: |
         <li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
-    download:
+    download: [pdf]
     edit: 
     sharing:
       github: yes
       facebook: no
-  includes:
+bookdown::pdf_book:
   keep_tex: yes
   latex_engine: xelatex
   citation_package: natbib

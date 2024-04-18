@@ -8,8 +8,6 @@ For this project and tutorial we'll be using 4 separate methods:
 
 - Regression Diagnostics
 
-
-
 - Graphical Diagnostics
 
 - Within-Sample Validation
@@ -17,8 +15,6 @@ For this project and tutorial we'll be using 4 separate methods:
 - Forecasting
 
 ## Regression Diagnostics {-}
-
-
 
 ## Graphical Diagnostics {-}
 
